@@ -12,10 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var cocoaBar: CocoaBar?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let cocoaBar = CocoaBar(window: self.window)
+        self.cocoaBar = cocoaBar
+        
         return true
     }
 
