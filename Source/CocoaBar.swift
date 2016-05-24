@@ -16,11 +16,12 @@ private let CocoaBarHideNotification: String = "CocoaBarHideNotification"
 class CocoaBar: UIView {
     
     // MARK: Defaults
-    let cocoaBarDefaultHeight: Float = 50.0
+    let cocoaBarDefaultHeight: Float = 88.0
     
     // MARK: Variables
     var height: Float
-    private var displayWindow: UIWindow?
+    
+    private var rootWindow: UIWindow?
     
     // MARK: Init
     
@@ -36,7 +37,7 @@ class CocoaBar: UIView {
             self.height = self.cocoaBarDefaultHeight
         }
         
-        self.displayWindow = window
+        self.rootWindow = window
         super.init(frame: CGRectZero)
         
         self.registerForNotifications()
@@ -62,16 +63,25 @@ class CocoaBar: UIView {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: #selector(showNotificationReceived), name: CocoaBarShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(hideNotificationReceived), name: CocoaBarHideNotification, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(windowDidBecomeVisible), name: UIWindowDidBecomeVisibleNotification, object: nil)
     }
     
     private func setUpIfRequired() {
-        if self.superview == nil {
-            if let window = self.displayWindow {
-                window.addSubview(self)
+        if let rootWindow = self.rootWindow {
+            if self.superview == nil {
                 
+                // add bar to display view controller
+                rootWindow.addSubview(self)
                 self.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Top)
                 self.autoSetDimension(ALDimension.Height, toSize: CGFloat(self.height))
             }
+        }
+    }
+    
+    private func bringBarToFront() {
+        if let rootWindow = self.rootWindow {
+            rootWindow.bringSubviewToFront(self)
         }
     }
     
@@ -80,7 +90,7 @@ class CocoaBar: UIView {
     func show() {
         self.setUpIfRequired()
         
-        
+        self.backgroundColor = UIColor.redColor()
     }
     
     func hide() {
@@ -105,5 +115,9 @@ class CocoaBar: UIView {
     
     @objc func hideNotificationReceived(notification: NSNotification) {
         self.hide()
+    }
+    
+    @objc func windowDidBecomeVisible(notification: NSNotification) {
+        self.bringBarToFront()
     }
 }
