@@ -72,7 +72,9 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    var isShowing: Bool = false
+    private(set) var isShowing: Bool = false
+    
+    var tapToDismiss: Bool = false
     
     // MARK: Init
     
@@ -220,9 +222,9 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
         let hitView = super.hitTest(point, withEvent: event)
         
-        // hide if touch outside of frame while showing
+        // hide if tap to dismiss enabled
         let point = self.convertPoint(point, toView: self)
-        if self.isShowing && !CGRectContainsPoint(self.bounds, point) {
+        if self.isShowing && CGRectContainsPoint(self.bounds, point) && tapToDismiss {
             self.hide(true)
         }
         return hitView
