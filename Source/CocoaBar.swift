@@ -13,7 +13,7 @@ import PureLayout
 private let CocoaBarShowNotification: String = "CocoaBarShowNotification"
 private let CocoaBarHideNotification: String = "CocoaBarHideNotification"
 
-class CocoaBar: UIView {
+class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     enum BackgroundStyle {
         case SolidColor
@@ -29,9 +29,14 @@ class CocoaBar: UIView {
     // MARK: Variables
     private var height: Float
     private var rootWindow: UIWindow?
+    
     private var backgroundViewContainer: UIView?
+    private var layoutContainer: UIView?
     
     private var _backgroundView: UIView?
+    
+    private var _customLayout: CocoaBarLayout?
+    private var _defaultLayout: CocoaBarLayout
     
     // MARK: Properties
     
@@ -46,6 +51,21 @@ class CocoaBar: UIView {
     var backgroundView: UIView? {
         get {
             return _backgroundView
+        }
+    }
+    
+    var layout: CocoaBarLayout {
+        get {
+            guard let customLayout = _customLayout else {
+                return _defaultLayout
+            }
+            return customLayout
+        }
+        set {
+            if _customLayout != newValue {
+                _customLayout = newValue
+                self.updateLayout(newValue)
+            }
         }
     }
     
@@ -64,15 +84,18 @@ class CocoaBar: UIView {
         }
         
         self.rootWindow = window
+        _defaultLayout = CocoaBarDefaultLayout()
+        
         super.init(frame: CGRectZero)
         
         self.registerForNotifications()
     }
     
-    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        self.height = self.cocoaBarDefaultHeight
         
+        self.height = self.cocoaBarDefaultHeight
+        _defaultLayout = CocoaBarDefaultLayout()
+
         super.init(coder: aDecoder)
         
         self.registerForNotifications()
@@ -119,6 +142,11 @@ class CocoaBar: UIView {
         self.backgroundViewContainer = backgroundViewContainer
         self.updateBackgroundStyle(self.backgroundStyle)
         
+        let layoutContainer = UIView()
+        self.addSubview(layoutContainer)
+        layoutContainer.autoPinEdgesToSuperviewEdges()
+        self.layoutContainer = layoutContainer
+        self.updateLayout(self.layout)
     }
     
     private func bringBarToFront() {
@@ -168,6 +196,20 @@ class CocoaBar: UIView {
         }
     }
     
+    private func updateLayout(layout: CocoaBarLayout) {
+        if let layoutContainer = self.layoutContainer {
+            
+            // clear layout container
+            for view in layoutContainer.subviews {
+                view.removeFromSuperview()
+            }
+            
+            layout.delegate = self
+            layoutContainer.addSubview(layout)
+            layout.autoPinEdgesToSuperviewEdges()
+        }
+    }
+    
     // MARK: Public
     
     func show() {
@@ -201,5 +243,15 @@ class CocoaBar: UIView {
     
     @objc func windowDidBecomeVisible(notification: NSNotification) {
         self.bringBarToFront()
+    }
+    
+    // MARK: CocoaBarLayoutDelegate
+    
+    func cocoaBarLayoutDismissButtonPressed(dismissButton: UIButton?) {
+        
+    }
+    
+    func cocoaBarLayoutActionButtonPressed(actionButton: UIButton?) {
+        
     }
 }
