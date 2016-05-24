@@ -228,14 +228,22 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     
                     self.bottomMarginConstraint?.constant = 0.0
                     self.isAnimating = true
-                    UIView.animateWithDuration(0.2, animations: {
-                        self.layoutIfNeeded()
-                        }, completion: { (completed) in
+                    UIView.animateWithDuration(0.2,
+                                               delay: 0.0,
+                                               options: UIViewAnimationOptions.CurveEaseOut,
+                                               animations:
+                        {
+                            self.layoutIfNeeded()
+                        },
+                                               completion:
+                        { (completed) in
                             self.isShowing = true
                             self.isAnimating = false
-                    })
+                        }
+                    )
                 }
             } else {
+                
                 self.bottomMarginConstraint?.constant = 0.0
                 self.layoutIfNeeded()
                 self.isShowing = true
@@ -251,14 +259,22 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     
                     self.bottomMarginConstraint?.constant = self.bounds.size.height
                     self.isAnimating = true
-                    UIView.animateWithDuration(0.2, animations: {
-                        self.layoutIfNeeded()
-                        }, completion: { (completed) in
+                    UIView.animateWithDuration(0.2,
+                                               delay: 0.0,
+                                               options: UIViewAnimationOptions.CurveEaseIn,
+                                               animations:
+                        {
+                            self.layoutIfNeeded()
+                        },
+                                               completion:
+                        { (completed) in
                             self.isShowing = false
                             self.isAnimating = false
-                    })
+                        }
+                    )
                 }
             } else {
+                
                 self.bottomMarginConstraint?.constant = self.bounds.size.height
                 self.layoutIfNeeded()
                 self.isShowing = false
