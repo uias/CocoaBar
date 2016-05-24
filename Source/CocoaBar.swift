@@ -131,7 +131,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         // hide if tap to dismiss enabled
         let point = self.convertPoint(point, toView: self)
         if self.isShowing && CGRectContainsPoint(self.bounds, point) && tapToDismiss {
-            self.hideAnimated(true)
+            self.hideAnimated(true, completion: nil)
         }
         return hitView
     }
@@ -262,7 +262,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     @objc private func displayTimerElapsed(timer: NSTimer?) {
         self.destroyDisplayTimer()
-        self.hideAnimated(true)
+        self.hideAnimated(true, completion: nil)
     }
     
     // MARK: Public
@@ -316,7 +316,9 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    func hideAnimated(animated: Bool) {
+    func hideAnimated(animated: Bool,
+                      completion: CocoaBarAnimationCompletionClosure?) {
+        
         if self.isShowing && !self.isAnimating {
             self.destroyDisplayTimer()
             
@@ -336,6 +338,10 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
                         { (completed) in
                             self.isShowing = false
                             self.isAnimating = false
+                            
+                            if let completion = completion {
+                                completion(animated: animated, completed: completed, visible: self.isShowing)
+                            }
                         }
                     )
                 }
@@ -344,6 +350,10 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 self.bottomMarginConstraint?.constant = self.bounds.size.height
                 self.layoutIfNeeded()
                 self.isShowing = false
+                
+                if let completion = completion {
+                    completion(animated: animated, completed: true, visible: self.isShowing)
+                }
             }
         }
     }
@@ -377,7 +387,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         if let userInfo = notification.userInfo {
             animated = userInfo[CocoaBarAnimatedKey] as! Bool
         }
-        self.hideAnimated(animated)
+        self.hideAnimated(animated, completion: nil)
     }
     
     @objc func windowDidBecomeVisible(notification: NSNotification) {
@@ -387,7 +397,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     // MARK: CocoaBarLayoutDelegate
     
     func cocoaBarLayoutDismissButtonPressed(dismissButton: UIButton?) {
-        self.hideAnimated(true)
+        self.hideAnimated(true, completion: nil)
     }
     
     func cocoaBarLayoutActionButtonPressed(actionButton: UIButton?) {
