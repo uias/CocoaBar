@@ -217,6 +217,17 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        let hitView = super.hitTest(point, withEvent: event)
+        
+        // hide if touch outside of frame while showing
+        let point = self.convertPoint(point, toView: self)
+        if self.isShowing && !CGRectContainsPoint(self.bounds, point) {
+            self.hide(true)
+        }
+        return hitView
+    }
+    
     // MARK: Public
     
     func show(animated: Bool) {
