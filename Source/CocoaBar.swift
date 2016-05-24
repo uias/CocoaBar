@@ -52,6 +52,8 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     private var displayTimer: NSTimer?
     
+    private static var keyCocoaBar: CocoaBar?
+    
     // MARK: Properties
     
     var backgroundStyle: BackgroundStyle = .BlurExtraLight {
@@ -106,6 +108,12 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         
         super.init(frame: CGRectZero)
         
+        // set key bar to the one initialised on key window
+        if let window = window {
+            if window.keyWindow == true {
+                CocoaBar.keyCocoaBar = self
+            }
+        }
         self.registerForNotifications()
     }
     
@@ -274,6 +282,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         
         if !self.isShowing {
             self.setUpIfRequired()
+            self.bringBarToFront()
             
             if let populate = populate {
                 populate(layout: self.layout)
@@ -360,16 +369,30 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Class
     
-    class func show(animated: Bool, populate: CocoaBarPopulationClosure?) {
-        NSNotificationCenter.defaultCenter().postNotificationName(CocoaBarShowNotification,
-                                                                  object: nil,
-                                                                  userInfo: [CocoaBarAnimatedKey : animated])
+    class func show(animated: Bool,
+                    duration: DisplayDuration,
+                    populate: CocoaBarPopulationClosure?,
+                    completion: CocoaBarAnimationCompletionClosure?) {
+        
+        if let keyBar = self.keyCocoaBar {
+            keyBar.showAnimated(animated,
+                                duration: duration,
+                                populate: populate,
+                                completion: completion)
+        } else {
+            print("Could not show as no CocoaBar is currently attached to the keyWindow")
+        }
     }
     
-    class func hide(animated: Bool) {
-        NSNotificationCenter.defaultCenter().postNotificationName(CocoaBarHideNotification,
-                                                                  object: nil,
-                                                                  userInfo: [CocoaBarAnimatedKey : animated])
+    class func hide(animated: Bool,
+                    completion: CocoaBarAnimationCompletionClosure?) {
+        
+        if let keyBar = self.keyCocoaBar {
+            keyBar.hideAnimated(animated,
+                                completion: completion)
+        } else {
+            print("Could not hide as no CocoaBar is currently attached to the keyWindow")
+        }
     }
     
     // MARK: Notifications
