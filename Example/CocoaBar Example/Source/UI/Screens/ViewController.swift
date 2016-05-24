@@ -20,7 +20,9 @@ class ViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        CocoaBar.show(false)
+        CocoaBar.show(true) { (layout) in
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,7 +32,9 @@ class ViewController: UIViewController {
 
 
     @IBAction func showButtonPressed(sender: UIButton) {
-        CocoaBar.show(true)
+        CocoaBar.show(true) { (layout) in
+            
+        }
     }
 }
 

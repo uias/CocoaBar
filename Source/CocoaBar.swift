@@ -13,6 +13,8 @@ private let CocoaBarShowNotification: String =  "CocoaBarShowNotification"
 private let CocoaBarHideNotification: String =  "CocoaBarHideNotification"
 private let CocoaBarAnimatedKey: String =       "animated"
 
+typealias CocoaBarPopulationClosure = (layout: CocoaBarLayout) -> Void
+
 class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     enum BackgroundStyle {
@@ -110,6 +112,19 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: Lifecycle
+    
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        let hitView = super.hitTest(point, withEvent: event)
+        
+        // hide if tap to dismiss enabled
+        let point = self.convertPoint(point, toView: self)
+        if self.isShowing && CGRectContainsPoint(self.bounds, point) && tapToDismiss {
+            self.hide(true)
+        }
+        return hitView
     }
     
     // MARK: Private
@@ -219,22 +234,15 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-        let hitView = super.hitTest(point, withEvent: event)
-        
-        // hide if tap to dismiss enabled
-        let point = self.convertPoint(point, toView: self)
-        if self.isShowing && CGRectContainsPoint(self.bounds, point) && tapToDismiss {
-            self.hide(true)
-        }
-        return hitView
-    }
-    
     // MARK: Public
     
-    func show(animated: Bool) {
+    func show(animated: Bool, populate: CocoaBarPopulationClosure?) {
         if !self.isShowing {
             self.setUpIfRequired()
+            
+            if let populate = populate {
+                populate(layout: self.layout)
+            }
             
             if animated { // animate in
                 if !self.isAnimating {
@@ -297,7 +305,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Class
     
-    class func show(animated: Bool) {
+    class func show(animated: Bool, populate: CocoaBarPopulationClosure?) {
         NSNotificationCenter.defaultCenter().postNotificationName(CocoaBarShowNotification,
                                                                   object: nil,
                                                                   userInfo: [CocoaBarAnimatedKey : animated])
@@ -316,7 +324,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         if let userInfo = notification.userInfo {
             animated = userInfo[CocoaBarAnimatedKey] as! Bool
         }
-        self.show(animated)
+        self.show(animated, populate: nil)
     }
     
     @objc func hideNotificationReceived(notification: NSNotification) {
