@@ -9,7 +9,6 @@
 import UIKit
 import PureLayout
 
-// MARK: Notifications
 private let CocoaBarShowNotification: String = "CocoaBarShowNotification"
 private let CocoaBarHideNotification: String = "CocoaBarHideNotification"
 
