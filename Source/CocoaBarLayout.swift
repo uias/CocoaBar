@@ -39,7 +39,15 @@ class CocoaBarLayout: UIView {
             }
         }
     }
-    @IBOutlet weak var actionButton: UIButton?
+    @IBOutlet weak var actionButton: UIButton? {
+        willSet {
+            if let actionButton = newValue {
+                actionButton.addTarget(self,
+                                        action: #selector(actionButtonPressed),
+                                        forControlEvents: UIControlEvents.TouchUpInside)
+            }
+        }
+    }
     
     // MARK: Init
     
@@ -81,6 +89,12 @@ class CocoaBarLayout: UIView {
     @objc func closeButtonPressed(sender: UIButton?) {
         if let delegate = self.delegate {
             delegate.cocoaBarLayoutDismissButtonPressed(sender)
+        }
+    }
+    
+    @objc func actionButtonPressed(sender: UIButton?) {
+        if let delegate = self.delegate {
+            delegate.cocoaBarLayoutActionButtonPressed(sender)
         }
     }
 }
