@@ -15,13 +15,39 @@ private let CocoaBarHideNotification: String = "CocoaBarHideNotification"
 
 class CocoaBar: UIView {
     
+    enum BackgroundStyle {
+        case SolidColor
+        case BlurExtraLight
+        case BlurLight
+        case BlurDark
+        case Custom
+    }
+    
     // MARK: Defaults
     let cocoaBarDefaultHeight: Float = 88.0
     
     // MARK: Variables
-    var height: Float
-    
+    private var height: Float
     private var rootWindow: UIWindow?
+    private var backgroundViewContainer: UIView?
+    
+    private var _backgroundView: UIView?
+    
+    // MARK: Properties
+    
+    var backgroundStyle: BackgroundStyle = .BlurExtraLight {
+        willSet {
+            if newValue != self.backgroundStyle {
+                self.updateBackgroundStyle(newValue)
+            }
+        }
+    }
+    
+    var backgroundView: UIView? {
+        get {
+            return _backgroundView
+        }
+    }
     
     // MARK: Init
     
@@ -77,6 +103,22 @@ class CocoaBar: UIView {
                 self.autoSetDimension(ALDimension.Height, toSize: CGFloat(self.height))
             }
         }
+        
+        // set up view components
+        if self.backgroundViewContainer == nil {
+            self.setUpComponents()
+        }
+    }
+    
+    private func setUpComponents() {
+        
+        // add background view container
+        let backgroundViewContainer = UIView()
+        self.addSubview(backgroundViewContainer)
+        backgroundViewContainer.autoPinEdgesToSuperviewEdges()
+        self.backgroundViewContainer = backgroundViewContainer
+        self.updateBackgroundStyle(self.backgroundStyle)
+        
     }
     
     private func bringBarToFront() {
@@ -85,12 +127,52 @@ class CocoaBar: UIView {
         }
     }
     
+    private func updateBackgroundStyle(newStyle: BackgroundStyle) {
+        if let backgroundViewContainer = self.backgroundViewContainer {
+            
+            // clear subviews
+            for view in backgroundViewContainer.subviews{
+                view.removeFromSuperview()
+            }
+            _backgroundView = nil
+            
+            switch newStyle {
+                
+            case .BlurExtraLight, .BlurLight, .BlurDark:
+                self.backgroundViewContainer?.backgroundColor = UIColor.clearColor()
+                
+                var style: UIBlurEffectStyle
+                switch newStyle {
+                case .BlurExtraLight: style = UIBlurEffectStyle.ExtraLight
+                case .BlurDark: style = UIBlurEffectStyle.Dark
+                default: style = UIBlurEffectStyle.Light
+                }
+                
+                // add blur view
+                let blurEffect = UIBlurEffect(style: style)
+                let visualEffectView = UIVisualEffectView(effect: blurEffect)
+                
+                self.backgroundViewContainer?.addSubview(visualEffectView)
+                visualEffectView.autoPinEdgesToSuperviewEdges()
+                
+            case .Custom:
+                
+                // create custom background view
+                let backgroundView = UIView()
+                backgroundViewContainer.addSubview(backgroundView)
+                backgroundView.autoPinEdgesToSuperviewEdges()
+                _backgroundView = backgroundView
+                
+            default:()
+            }
+        }
+    }
+    
     // MARK: Public
     
     func show() {
         self.setUpIfRequired()
         
-        self.backgroundColor = UIColor.redColor()
     }
     
     func hide() {
