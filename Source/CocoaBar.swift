@@ -9,8 +9,9 @@
 import UIKit
 import PureLayout
 
-private let CocoaBarShowNotification: String = "CocoaBarShowNotification"
-private let CocoaBarHideNotification: String = "CocoaBarHideNotification"
+private let CocoaBarShowNotification: String =  "CocoaBarShowNotification"
+private let CocoaBarHideNotification: String =  "CocoaBarHideNotification"
+private let CocoaBarAnimatedKey: String =       "animated"
 
 class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
@@ -28,6 +29,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     // MARK: Variables
     private var height: Float
     private var rootWindow: UIWindow?
+    private var bottomMarginConstraint: NSLayoutConstraint?
     
     private var backgroundViewContainer: UIView?
     private var layoutContainer: UIView?
@@ -36,6 +38,8 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     private var _customLayout: CocoaBarLayout?
     private var _defaultLayout: CocoaBarLayout
+    
+    private var isAnimating: Bool = false
     
     // MARK: Properties
     
@@ -67,6 +71,8 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
             }
         }
     }
+    
+    var isShowing: Bool = false
     
     // MARK: Init
     
@@ -121,8 +127,10 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 
                 // add bar to display view controller
                 rootWindow.addSubview(self)
-                self.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Top)
+                let constraints = self.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Top)
                 self.autoSetDimension(ALDimension.Height, toSize: CGFloat(self.height))
+                
+                self.bottomMarginConstraint = constraints[1]
             }
         }
         
@@ -211,33 +219,83 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Public
     
-    func show() {
-        self.setUpIfRequired()
-        
+    func show(animated: Bool) {
+        if !self.isShowing {
+            self.setUpIfRequired()
+            
+            if animated { // animate in
+                if !self.isAnimating {
+                    
+                    self.bottomMarginConstraint?.constant = 0.0
+                    self.isAnimating = true
+                    UIView.animateWithDuration(0.2, animations: {
+                        self.layoutIfNeeded()
+                        }, completion: { (completed) in
+                            self.isShowing = true
+                            self.isAnimating = false
+                    })
+                }
+            } else {
+                self.bottomMarginConstraint?.constant = 0.0
+                self.layoutIfNeeded()
+                self.isShowing = true
+            }
+        }
     }
     
-    func hide() {
-        
+    func hide(animated: Bool) {
+        if self.isShowing && !self.isAnimating {
+            
+            if animated {
+                if !self.isAnimating { // animate out
+                    
+                    self.bottomMarginConstraint?.constant = self.bounds.size.height
+                    self.isAnimating = true
+                    UIView.animateWithDuration(0.2, animations: {
+                        self.layoutIfNeeded()
+                        }, completion: { (completed) in
+                            self.isShowing = false
+                            self.isAnimating = false
+                    })
+                }
+            } else {
+                self.bottomMarginConstraint?.constant = self.bounds.size.height
+                self.layoutIfNeeded()
+                self.isShowing = false
+            }
+        }
     }
     
     // MARK: Class
     
-    class func show() {
-        NSNotificationCenter.defaultCenter().postNotificationName(CocoaBarShowNotification, object: nil)
+    class func show(animated: Bool) {
+        NSNotificationCenter.defaultCenter().postNotificationName(CocoaBarShowNotification,
+                                                                  object: nil,
+                                                                  userInfo: [CocoaBarAnimatedKey : animated])
     }
     
-    class func hide() {
-        NSNotificationCenter.defaultCenter().postNotificationName(CocoaBarHideNotification, object: nil)
+    class func hide(animated: Bool) {
+        NSNotificationCenter.defaultCenter().postNotificationName(CocoaBarHideNotification,
+                                                                  object: nil,
+                                                                  userInfo: [CocoaBarAnimatedKey : animated])
     }
     
     // MARK: Notifications
     
     @objc func showNotificationReceived(notification: NSNotification) {
-        self.show()
+        var animated = true
+        if let userInfo = notification.userInfo {
+            animated = userInfo[CocoaBarAnimatedKey] as! Bool
+        }
+        self.show(animated)
     }
     
     @objc func hideNotificationReceived(notification: NSNotification) {
-        self.hide()
+        var animated = true
+        if let userInfo = notification.userInfo {
+            animated = userInfo[CocoaBarAnimatedKey] as! Bool
+        }
+        self.hide(animated)
     }
     
     @objc func windowDidBecomeVisible(notification: NSNotification) {
@@ -247,7 +305,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     // MARK: CocoaBarLayoutDelegate
     
     func cocoaBarLayoutDismissButtonPressed(dismissButton: UIButton?) {
-        
+        self.hide(true)
     }
     
     func cocoaBarLayoutActionButtonPressed(actionButton: UIButton?) {
