@@ -23,14 +23,6 @@ enum DisplayDuration: Double {
 
 class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
-    enum BackgroundStyle {
-        case SolidColor
-        case BlurExtraLight
-        case BlurLight
-        case BlurDark
-        case Custom
-    }
-    
     // MARK: Defaults
     let cocoaBarDefaultHeight: Float = 88.0
     
@@ -39,10 +31,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private var rootWindow: UIWindow?
     private var bottomMarginConstraint: NSLayoutConstraint?
     
-    private var backgroundViewContainer: UIView?
     private var layoutContainer: UIView?
-    
-    private var _backgroundView: UIView?
     
     private var _customLayout: CocoaBarLayout?
     private var _defaultLayout: CocoaBarLayout
@@ -54,20 +43,6 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private static var keyCocoaBar: CocoaBar?
     
     // MARK: Properties
-    
-    var backgroundStyle: BackgroundStyle = .BlurExtraLight {
-        willSet {
-            if newValue != self.backgroundStyle {
-                self.updateBackgroundStyle(newValue)
-            }
-        }
-    }
-    
-    var backgroundView: UIView? {
-        get {
-            return _backgroundView
-        }
-    }
     
     var layout: CocoaBarLayout {
         get {
@@ -153,7 +128,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
     
     private func setUpIfRequired() {
-        if let rootWindow = self.rootWindow {
+        if let rootWindow = self.rootWindow { // if we have a display window
             if self.superview == nil {
                 
                 // add bar to display view controller
@@ -166,20 +141,14 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
         
         // set up view components
-        if self.backgroundViewContainer == nil {
+        if self.layoutContainer == nil {
             self.setUpComponents()
         }
     }
     
     private func setUpComponents() {
         
-        // add background view container
-        let backgroundViewContainer = UIView()
-        self.addSubview(backgroundViewContainer)
-        backgroundViewContainer.autoPinEdgesToSuperviewEdges()
-        self.backgroundViewContainer = backgroundViewContainer
-        self.updateBackgroundStyle(self.backgroundStyle)
-        
+        // set up layout container
         let layoutContainer = UIView()
         self.addSubview(layoutContainer)
         layoutContainer.autoPinEdgesToSuperviewEdges()
@@ -190,47 +159,6 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private func bringBarToFront() {
         if let rootWindow = self.rootWindow {
             rootWindow.bringSubviewToFront(self)
-        }
-    }
-    
-    private func updateBackgroundStyle(newStyle: BackgroundStyle) {
-        if let backgroundViewContainer = self.backgroundViewContainer {
-            
-            // clear subviews
-            for view in backgroundViewContainer.subviews{
-                view.removeFromSuperview()
-            }
-            _backgroundView = nil
-            
-            switch newStyle {
-                
-            case .BlurExtraLight, .BlurLight, .BlurDark:
-                self.backgroundViewContainer?.backgroundColor = UIColor.clearColor()
-                
-                var style: UIBlurEffectStyle
-                switch newStyle {
-                case .BlurExtraLight: style = UIBlurEffectStyle.ExtraLight
-                case .BlurDark: style = UIBlurEffectStyle.Dark
-                default: style = UIBlurEffectStyle.Light
-                }
-                
-                // add blur view
-                let blurEffect = UIBlurEffect(style: style)
-                let visualEffectView = UIVisualEffectView(effect: blurEffect)
-                
-                self.backgroundViewContainer?.addSubview(visualEffectView)
-                visualEffectView.autoPinEdgesToSuperviewEdges()
-                
-            case .Custom:
-                
-                // create custom background view
-                let backgroundView = UIView()
-                backgroundViewContainer.addSubview(backgroundView)
-                backgroundView.autoPinEdgesToSuperviewEdges()
-                _backgroundView = backgroundView
-                
-            default:()
-            }
         }
     }
     
