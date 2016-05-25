@@ -57,6 +57,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     // MARK: Variables
     
     private var rootWindow: UIWindow?
+    private var rootView: UIView?
     private static var keyCocoaBar: CocoaBar?
 
     private var bottomMarginConstraint: NSLayoutConstraint?
@@ -64,7 +65,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private var layoutContainer: UIView?
     
     private var _customLayout: CocoaBarLayout?
-    private var _defaultLayout: CocoaBarLayout
+    private var _defaultLayout: CocoaBarLayout = CocoaBarDefaultLayout()
     
     private var isAnimating: Bool = false
     
@@ -104,10 +105,14 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Init
     
+    /**
+     Create a new instance of a CocoaBar that will display from a window. Using 
+     the keyWindow will set the instance to the keyCocoaBar for access from class
+     methods.
+     */
     public init(window: UIWindow?) {
         
         self.rootWindow = window
-        _defaultLayout = CocoaBarDefaultLayout()
         
         super.init(frame: CGRectZero)
         
@@ -117,6 +122,18 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 CocoaBar.keyCocoaBar = self
             }
         }
+        self.registerForNotifications()
+    }
+    
+    /**
+     Create a new instance of a CocoaBar that will display from a view.
+     */
+    public init(view: UIView?) {
+        
+        self.rootView = view
+        
+        super.init(frame: CGRectZero)
+        
         self.registerForNotifications()
     }
     
@@ -159,12 +176,15 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         if let rootWindow = self.rootWindow { // if we have a display window
             if self.superview == nil {
                 
-                // add bar to display view controller
+                // add bar to display window
                 rootWindow.addSubview(self)
-                let constraints = self.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Top)
-                self.heightConstraint = self.autoSetDimension(ALDimension.Height, toSize: CGFloat(0.0))
+                self.setUpConstraints()
+            }
+        } else if let rootView = self.rootView { // fallback to displaying from view
+            if self.superview == nil {
                 
-                self.bottomMarginConstraint = constraints[1]
+                rootView.addSubview(self)
+                self.setUpConstraints()
             }
         }
         
@@ -172,6 +192,13 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         if self.layoutContainer == nil {
             self.setUpComponents()
         }
+    }
+    
+    private func setUpConstraints() {
+        let constraints = self.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Top)
+        self.heightConstraint = self.autoSetDimension(ALDimension.Height, toSize: CGFloat(0.0))
+        
+        self.bottomMarginConstraint = constraints[1]
     }
     
     private func setUpComponents() {
