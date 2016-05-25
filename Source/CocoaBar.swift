@@ -16,6 +16,12 @@ private let CocoaBarAnimatedKey: String =       "animated"
 typealias CocoaBarPopulationClosure = (layout: CocoaBarLayout) -> Void
 typealias CocoaBarAnimationCompletionClosure = (animated: Bool, completed: Bool, visible: Bool) -> Void
 
+enum DisplayDuration: Double {
+    case Short = 2.0
+    case Long = 4.0
+    case ExtraLong = 6.0
+}
+
 class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     enum BackgroundStyle {
@@ -24,12 +30,6 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
         case BlurLight
         case BlurDark
         case Custom
-    }
-    
-    enum DisplayDuration: Double {
-        case Short = 2.0
-        case Long = 4.0
-        case ExtraLong = 6.0
     }
     
     // MARK: Defaults
@@ -280,6 +280,17 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
                       populate: CocoaBarPopulationClosure?,
                       completion: CocoaBarAnimationCompletionClosure?) {
         
+        self.showAnimated(animated,
+                          duration: duration.rawValue,
+                          populate: populate,
+                          completion: completion)
+    }
+    
+    func showAnimated(animated: Bool,
+                      duration: Double,
+                      populate: CocoaBarPopulationClosure?,
+                      completion: CocoaBarAnimationCompletionClosure?) {
+        
         if !self.isShowing {
             self.setUpIfRequired()
             self.bringBarToFront()
@@ -304,7 +315,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
                         { (completed) in
                             self.isShowing = true
                             self.isAnimating = false
-                            self.setUpDisplayTimer(duration.rawValue)
+                            self.setUpDisplayTimer(duration)
                             
                             if let completion = completion {
                                 completion(animated: animated, completed: completed, visible: self.isShowing)
@@ -317,6 +328,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 self.bottomMarginConstraint?.constant = 0.0
                 self.layoutIfNeeded()
                 self.isShowing = true
+                self.setUpDisplayTimer(duration)
                 
                 if let completion = completion {
                     completion(animated: animated, completed: true, visible: self.isShowing)

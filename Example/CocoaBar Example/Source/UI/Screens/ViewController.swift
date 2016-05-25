@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         
         CocoaBar.show(false,
-                      duration: CocoaBar.DisplayDuration.Short,
+                      duration: DisplayDuration.Short,
                       populate:
             { (layout) in
                 
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
 
     @IBAction func showButtonPressed(sender: UIButton) {
         CocoaBar.show(true,
-                      duration: CocoaBar.DisplayDuration.Short,
+                      duration: DisplayDuration.Short,
                       populate:
             { (layout) in
                 
