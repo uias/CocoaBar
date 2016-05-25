@@ -9,17 +9,35 @@
 import UIKit
 import PureLayout
 
-class CocoaBarLayout: UIView {
-    
-    // MARK: Enums
-    
-    enum BackgroundStyle {
-        case SolidColor
-        case BlurExtraLight
-        case BlurLight
-        case BlurDark
-        case Custom
-    }
+/**
+ BackgroundStyle dictates the appearance of the background view
+ in the layout.
+ */
+public enum BackgroundStyle {
+    /**
+     SolidColor relies on setting the backgroundColor property of the layout.
+     */
+    case SolidColor
+    /**
+     BlurExtraLight displays a blur view with UIBlurEffectStyle.ExtraLight
+     */
+    case BlurExtraLight
+    /**
+     BlurLight displays a blur view with UIBlurEffectStyle.Light
+     */
+    case BlurLight
+    /**
+     BlurDark displays a blur view with UIBlurEffectStyle.Dark
+     */
+    case BlurDark
+    /**
+     Custom provides a UIView to the backgroundView property for enhanced
+     customisation.
+     */
+    case Custom
+}
+
+public class CocoaBarLayout: UIView {
     
     // MARK: Variables
     private var _nibName: String?
@@ -41,7 +59,11 @@ class CocoaBarLayout: UIView {
         }
     }
     
-    var delegate: CocoaBarLayoutDelegate?
+    /**
+     The object that acts as a delegate to the layout.
+     This should always be the CocoaBar
+    */
+    internal var delegate: CocoaBarLayoutDelegate?
     
     @IBOutlet weak var dismissButton: UIButton? {
         willSet {
@@ -62,7 +84,12 @@ class CocoaBarLayout: UIView {
         }
     }
     
-    var backgroundStyle: BackgroundStyle = .BlurExtraLight {
+    // MARK: Public Properties
+    
+    /**
+     The background style to use for the layout. Defaults to BlurExtraLight.
+     */
+    public var backgroundStyle: BackgroundStyle = .BlurExtraLight {
         willSet {
             if newValue != self.backgroundStyle {
                 self.updateBackgroundStyle(newValue)
@@ -70,6 +97,10 @@ class CocoaBarLayout: UIView {
         }
     }
     
+    /**
+     The background view in the layout. This is only available when using .Custom
+     for the backgroundStyle.
+     */
     var backgroundView: UIView? {
         get {
             return _backgroundView
@@ -78,11 +109,20 @@ class CocoaBarLayout: UIView {
     
     // MARK: Init
     
-    convenience init() {
+    /**
+     Create a new instance of a CocoaBarLayout. This will use the default nibName
+     equal to the class name.
+     */
+    convenience public init() {
         self.init(nibName: nil)
     }
     
-    init(nibName: String?) {
+    /**
+     Create a new instance of a CocoaBarLayout with a specific nib name.
+     
+     :param: nibName    The name of the nib to inflate for the layout.
+    */
+    public init(nibName: String?) {
         _nibName = nibName
         super.init(frame: CGRectZero)
         
@@ -90,7 +130,7 @@ class CocoaBarLayout: UIView {
         self.setUpNibView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.setUpBackgroundView()
@@ -135,7 +175,7 @@ class CocoaBarLayout: UIView {
             switch newStyle {
                 
             case .BlurExtraLight, .BlurLight, .BlurDark:
-                backgroundContainer.backgroundColor = UIColor.clearColor()
+                self.backgroundColor = UIColor.clearColor()
                 
                 var style: UIBlurEffectStyle
                 switch newStyle {
@@ -152,6 +192,7 @@ class CocoaBarLayout: UIView {
                 visualEffectView.autoPinEdgesToSuperviewEdges()
                 
             case .Custom:
+                self.backgroundColor = UIColor.clearColor()
                 
                 // create custom background view
                 let backgroundView = UIView()
@@ -179,9 +220,19 @@ class CocoaBarLayout: UIView {
     }
 }
 
-protocol CocoaBarLayoutDelegate {
+internal protocol CocoaBarLayoutDelegate {
     
+    /**
+     The dismiss button has been pressed on the layout.
+     
+     :param: dismissButton  The dismiss button.
+     */
     func cocoaBarLayoutDismissButtonPressed(dismissButton: UIButton?)
     
+    /**
+     The action button has been pressed on the layout.
+     
+     :param: actionButton  The action button.
+     */
     func cocoaBarLayoutActionButtonPressed(actionButton: UIButton?)
 }
