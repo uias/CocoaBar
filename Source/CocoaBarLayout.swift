@@ -39,8 +39,14 @@ public enum BackgroundStyle {
 
 public class CocoaBarLayout: UIView {
     
+    // MARK: Defaults
+    
+    let CocoaBarLayoutDefaultHeight: Float = 88.0
+    
     // MARK: Variables
+    
     private var _nibName: String?
+    private var _height: Float?
     
     private var backgroundContainer: UIView?
     private var _backgroundView: UIView?
@@ -101,9 +107,25 @@ public class CocoaBarLayout: UIView {
      The background view in the layout. This is only available when using .Custom
      for the backgroundStyle.
      */
-    var backgroundView: UIView? {
+    public var backgroundView: UIView? {
         get {
             return _backgroundView
+        }
+    }
+    
+    /**
+     The height required for the layout. Uses CocoaBarLayoutDefaultHeight if custom
+     height not specified.
+     */
+    public private(set) var height: Float {
+        get {
+            guard let height = _height else {
+                return CocoaBarLayoutDefaultHeight
+            }
+            return height
+        }
+        set {
+            _height = height
         }
     }
     
@@ -114,7 +136,7 @@ public class CocoaBarLayout: UIView {
      equal to the class name.
      */
     convenience public init() {
-        self.init(nibName: nil)
+        self.init(nibName: nil, height: nil)
     }
     
     /**
@@ -122,8 +144,11 @@ public class CocoaBarLayout: UIView {
      
      :param: nibName    The name of the nib to inflate for the layout.
     */
-    public init(nibName: String?) {
+    public init(nibName: String?, height: Float?) {
         _nibName = nibName
+        if let height = height {
+            _height = height
+        }
         super.init(frame: CGRectZero)
         
         self.setUpBackgroundView()

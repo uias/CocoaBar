@@ -23,16 +23,13 @@ public enum DisplayDuration: Double {
 
 public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
-    // MARK: Defaults
-    let cocoaBarDefaultHeight: Float = 88.0
-    
     // MARK: Variables
     
-    private var height: Float
     private var rootWindow: UIWindow?
     private static var keyCocoaBar: CocoaBar?
 
     private var bottomMarginConstraint: NSLayoutConstraint?
+    private var heightConstraint: NSLayoutConstraint?
     private var layoutContainer: UIView?
     
     private var _customLayout: CocoaBarLayout?
@@ -76,17 +73,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Init
     
-    convenience public init(window: UIWindow?) {
-        self.init(window: window, height: nil)
-    }
-    
-    public init(window: UIWindow?, height: Float?) {
-        
-        if let height = height {
-            self.height = height
-        } else {
-            self.height = self.cocoaBarDefaultHeight
-        }
+    public init(window: UIWindow?) {
         
         self.rootWindow = window
         _defaultLayout = CocoaBarDefaultLayout()
@@ -104,7 +91,6 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     required public init?(coder aDecoder: NSCoder) {
         
-        self.height = self.cocoaBarDefaultHeight
         _defaultLayout = CocoaBarDefaultLayout()
 
         super.init(coder: aDecoder)
@@ -145,7 +131,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 // add bar to display view controller
                 rootWindow.addSubview(self)
                 let constraints = self.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Top)
-                self.autoSetDimension(ALDimension.Height, toSize: CGFloat(self.height))
+                self.heightConstraint = self.autoSetDimension(ALDimension.Height, toSize: CGFloat(0.0))
                 
                 self.bottomMarginConstraint = constraints[1]
             }
@@ -184,6 +170,9 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             layout.delegate = self
             layoutContainer.addSubview(layout)
             layout.autoPinEdgesToSuperviewEdges()
+            
+            // update height
+            self.heightConstraint?.constant = CGFloat(layout.height)
         }
     }
     
