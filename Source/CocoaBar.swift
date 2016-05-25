@@ -15,10 +15,41 @@ private let CocoaBarAnimatedKey: String =       "animated"
 public typealias CocoaBarPopulationClosure = (layout: CocoaBarLayout) -> Void
 public typealias CocoaBarAnimationCompletionClosure = (animated: Bool, completed: Bool, visible: Bool) -> Void
 
-public enum DisplayDuration: Double {
-    case Short = 2.0
-    case Long = 4.0
-    case ExtraLong = 6.0
+/**
+ The duration to display the CocoaBar for when shown.
+ */
+public enum DisplayDuration {
+    
+    /**
+     Display the bar for 2 seconds before auto-dismissal.
+    */
+    case Short
+    /**
+     Display the bar for 4 seconds before auto-dismissal.
+     */
+    case Long
+    /**
+     Display the bar for 8 seconds before auto-dismissal.
+     */
+    case ExtraLong
+    /**
+     Display the bar indeterminately.
+     */
+    case Indeterminate
+    
+    var value: Double {
+        switch self {
+        case .Short:
+            return 2.0
+        case .Long:
+            return 4.0
+        case .ExtraLong:
+            return 8.0
+            
+        default:
+            return DBL_MAX
+        }
+    }
 }
 
 public class CocoaBar: UIView, CocoaBarLayoutDelegate {
@@ -217,7 +248,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                              completion: CocoaBarAnimationCompletionClosure?) {
         
         self.showAnimated(animated,
-                          duration: duration.rawValue,
+                          duration: duration.value,
                           layout: layout,
                           populate: populate,
                           completion: completion)
@@ -356,7 +387,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                                    completion: CocoaBarAnimationCompletionClosure?) {
         
         CocoaBar.showAnimated(animated,
-                              duration: duration.rawValue,
+                              duration: duration.value,
                               layout: layout,
                               populate: populate,
                               completion: completion)
