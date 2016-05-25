@@ -9,7 +9,6 @@
 import UIKit
 import PureLayout
 
-private let CocoaBarShowNotification: String =  "CocoaBarShowNotification"
 private let CocoaBarHideNotification: String =  "CocoaBarHideNotification"
 private let CocoaBarAnimatedKey: String =       "animated"
 
@@ -78,7 +77,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
             return customLayout
         }
         set {
-            if _customLayout != newValue {
+            if (_customLayout != newValue) && (newValue != _defaultLayout) {
                 _customLayout = newValue
                 self.updateLayout(newValue)
             }
@@ -149,9 +148,7 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private func registerForNotifications() {
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(showNotificationReceived), name: CocoaBarShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(hideNotificationReceived), name: CocoaBarHideNotification, object: nil)
-        
         notificationCenter.addObserver(self, selector: #selector(windowDidBecomeVisible), name: UIWindowDidBecomeVisibleNotification, object: nil)
     }
     
@@ -277,23 +274,29 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     func showAnimated(animated: Bool,
                       duration: DisplayDuration,
+                      layout: CocoaBarLayout?,
                       populate: CocoaBarPopulationClosure?,
                       completion: CocoaBarAnimationCompletionClosure?) {
         
         self.showAnimated(animated,
                           duration: duration.rawValue,
+                          layout: layout,
                           populate: populate,
                           completion: completion)
     }
     
     func showAnimated(animated: Bool,
                       duration: Double,
+                      layout: CocoaBarLayout?,
                       populate: CocoaBarPopulationClosure?,
                       completion: CocoaBarAnimationCompletionClosure?) {
         
         if !self.isShowing {
             self.setUpIfRequired()
             self.bringBarToFront()
+            if let layout = layout {
+                self.layout = layout
+            }
             
             if let populate = populate {
                 populate(layout: self.layout)
@@ -381,14 +384,29 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Class
     
-    class func show(animated: Bool,
-                    duration: DisplayDuration,
-                    populate: CocoaBarPopulationClosure?,
-                    completion: CocoaBarAnimationCompletionClosure?) {
+    class func showAnimated(animated: Bool,
+                            duration: DisplayDuration,
+                            layout: CocoaBarLayout?,
+                            populate: CocoaBarPopulationClosure?,
+                            completion: CocoaBarAnimationCompletionClosure?) {
+        
+        CocoaBar.showAnimated(animated,
+                              duration: duration.rawValue,
+                              layout: layout,
+                              populate: populate,
+                              completion: completion)
+    }
+    
+    class func showAnimated(animated: Bool,
+                            duration: Double,
+                            layout: CocoaBarLayout?,
+                            populate: CocoaBarPopulationClosure?,
+                            completion: CocoaBarAnimationCompletionClosure?) {
         
         if let keyBar = self.keyCocoaBar {
             keyBar.showAnimated(animated,
                                 duration: duration,
+                                layout: layout,
                                 populate: populate,
                                 completion: completion)
         } else {
@@ -408,14 +426,6 @@ class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
     
     // MARK: Notifications
-    
-    @objc func showNotificationReceived(notification: NSNotification) {
-        var animated = true
-        if let userInfo = notification.userInfo {
-            animated = userInfo[CocoaBarAnimatedKey] as! Bool
-        }
-        self.showAnimated(animated, duration: .Short, populate: nil, completion: nil)
-    }
     
     @objc func hideNotificationReceived(notification: NSNotification) {
         var animated = true

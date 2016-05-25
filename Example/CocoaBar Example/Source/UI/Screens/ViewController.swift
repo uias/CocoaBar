@@ -20,13 +20,14 @@ class ViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        CocoaBar.show(false,
-                      duration: DisplayDuration.Short,
-                      populate:
-            { (layout) in
-                
-            },
-                      completion: nil)
+//        CocoaBar.showAnimated(false,
+//                              duration: DisplayDuration.Long,
+//                              populate:
+//            { (layout) in
+//            
+//            }) { (animated, completed, visible) in
+//                
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,13 +37,14 @@ class ViewController: UIViewController {
 
 
     @IBAction func showButtonPressed(sender: UIButton) {
-        CocoaBar.show(true,
-                      duration: DisplayDuration.Short,
-                      populate:
-            { (layout) in
-                
-            },
-                      completion: nil)
+//        CocoaBar.showAnimated(true,
+//                              duration: DisplayDuration.Long,
+//                              populate:
+//            { (layout) in
+//                
+//        }) { (animated, completed, visible) in
+//            
+//        }
     }
 }
 
