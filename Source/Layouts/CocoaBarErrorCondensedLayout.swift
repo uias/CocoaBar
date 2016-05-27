@@ -13,6 +13,6 @@ class CocoaBarErrorCondensedLayout: CocoaBarLayout {
     @IBOutlet weak var errorLabel: UILabel?
     
     override func requiredHeight() -> Float {
-        return 44.0
+        return 52.0
     }
 }
