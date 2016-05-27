@@ -14,10 +14,10 @@
 		4628CF3F1CF34BF200B4F4A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628CF3A1CF34BF200B4F4A8 /* ViewController.swift */; };
 		4628CF411CF34C4E00B4F4A8 /* CocoaBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628CF401CF34C4E00B4F4A8 /* CocoaBar.swift */; };
 		46B808B41CF45ECD000D7F0E /* CocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B808B31CF45ECD000D7F0E /* CocoaBarLayout.swift */; };
-		46B808BC1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B808BA1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.swift */; };
-		46B808BD1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B808BB1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.xib */; };
-		46EA15681CF87F0700908E49 /* CocoaBarErrorCondensedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA15671CF87F0700908E49 /* CocoaBarErrorCondensedLayout.swift */; };
-		46EA156A1CF87F1A00908E49 /* CocoaBarErrorCondensedLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46EA15691CF87F1A00908E49 /* CocoaBarErrorCondensedLayout.xib */; };
+		46EA15701CF88FF200908E49 /* CocoaBarErrorCondensedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA156C1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.swift */; };
+		46EA15711CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46EA156D1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib */; };
+		46EA15721CF88FF200908E49 /* CocoaBarErrorExpandedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA156E1CF88FF200908E49 /* CocoaBarErrorExpandedLayout.swift */; };
+		46EA15731CF88FF200908E49 /* CocoaBarErrorExpandedLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46EA156F1CF88FF200908E49 /* CocoaBarErrorExpandedLayout.xib */; };
 		E7B1B2C500DEE6935A099223 /* Pods_CocoaBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B9031FA0ADAA7B40EA35EF /* Pods_CocoaBar_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,10 +32,10 @@
 		4628CF3A1CF34BF200B4F4A8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4628CF401CF34C4E00B4F4A8 /* CocoaBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBar.swift; sourceTree = "<group>"; };
 		46B808B31CF45ECD000D7F0E /* CocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarLayout.swift; sourceTree = "<group>"; };
-		46B808BA1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarErrorExpandedLayout.swift; sourceTree = "<group>"; };
-		46B808BB1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarErrorExpandedLayout.xib; sourceTree = "<group>"; };
-		46EA15671CF87F0700908E49 /* CocoaBarErrorCondensedLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarErrorCondensedLayout.swift; sourceTree = "<group>"; };
-		46EA15691CF87F1A00908E49 /* CocoaBarErrorCondensedLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarErrorCondensedLayout.xib; sourceTree = "<group>"; };
+		46EA156C1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarErrorCondensedLayout.swift; sourceTree = "<group>"; };
+		46EA156D1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarErrorCondensedLayout.xib; sourceTree = "<group>"; };
+		46EA156E1CF88FF200908E49 /* CocoaBarErrorExpandedLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarErrorExpandedLayout.swift; sourceTree = "<group>"; };
+		46EA156F1CF88FF200908E49 /* CocoaBarErrorExpandedLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarErrorExpandedLayout.xib; sourceTree = "<group>"; };
 		79B9031FA0ADAA7B40EA35EF /* Pods_CocoaBar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaBar_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9E09407A49FB0C7A95FB76 /* Pods-CocoaBar Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaBar Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaBar Example/Pods-CocoaBar Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,7 +85,7 @@
 			children = (
 				4628CF401CF34C4E00B4F4A8 /* CocoaBar.swift */,
 				46B808B31CF45ECD000D7F0E /* CocoaBarLayout.swift */,
-				46B808B91CF49978000D7F0E /* DefaultLayout */,
+				46EA156B1CF88FF200908E49 /* Layouts */,
 			);
 			name = CocoaBar;
 			path = ../Source;
@@ -127,15 +127,15 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		46B808B91CF49978000D7F0E /* DefaultLayout */ = {
+		46EA156B1CF88FF200908E49 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				46B808BA1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.swift */,
-				46B808BB1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.xib */,
-				46EA15671CF87F0700908E49 /* CocoaBarErrorCondensedLayout.swift */,
-				46EA15691CF87F1A00908E49 /* CocoaBarErrorCondensedLayout.xib */,
+				46EA156C1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.swift */,
+				46EA156D1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib */,
+				46EA156E1CF88FF200908E49 /* CocoaBarErrorExpandedLayout.swift */,
+				46EA156F1CF88FF200908E49 /* CocoaBarErrorExpandedLayout.xib */,
 			);
-			path = DefaultLayout;
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 		CB7C9C01DAC780D4D3139701 /* Pods */ = {
@@ -216,11 +216,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46EA15711CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib in Resources */,
+				46EA15731CF88FF200908E49 /* CocoaBarErrorExpandedLayout.xib in Resources */,
 				4628CF3E1CF34BF200B4F4A8 /* Main.storyboard in Resources */,
-				46EA156A1CF87F1A00908E49 /* CocoaBarErrorCondensedLayout.xib in Resources */,
 				4628CF3B1CF34BF200B4F4A8 /* Assets.xcassets in Resources */,
 				4628CF3C1CF34BF200B4F4A8 /* LaunchScreen.storyboard in Resources */,
-				46B808BD1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,12 +279,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46EA15681CF87F0700908E49 /* CocoaBarErrorCondensedLayout.swift in Sources */,
 				4628CF411CF34C4E00B4F4A8 /* CocoaBar.swift in Sources */,
 				4628CF3F1CF34BF200B4F4A8 /* ViewController.swift in Sources */,
 				4628CF3D1CF34BF200B4F4A8 /* AppDelegate.swift in Sources */,
-				46B808BC1CF49978000D7F0E /* CocoaBarErrorExpandedLayout.swift in Sources */,
 				46B808B41CF45ECD000D7F0E /* CocoaBarLayout.swift in Sources */,
+				46EA15701CF88FF200908E49 /* CocoaBarErrorCondensedLayout.swift in Sources */,
+				46EA15721CF88FF200908E49 /* CocoaBarErrorExpandedLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
