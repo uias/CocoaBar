@@ -146,10 +146,14 @@ public class CocoaBarLayout: UIView {
     */
     public init(nibName: String?, height: Float?) {
         _nibName = nibName
+        
+        super.init(frame: CGRectZero)
+        
         if let height = height {
             _height = height
+        } else if self.requiredHeight() > 0 {
+            _height = self.requiredHeight()
         }
-        super.init(frame: CGRectZero)
         
         self.setUpBackgroundView()
         self.setUpNibView()
@@ -228,6 +232,12 @@ public class CocoaBarLayout: UIView {
             default:()
             }
         }
+    }
+    
+    // MARK: Internal
+    
+    internal func requiredHeight() -> Float {
+        return 0
     }
     
     // MARK: Interaction

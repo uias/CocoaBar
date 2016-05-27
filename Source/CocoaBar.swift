@@ -15,44 +15,62 @@ private let CocoaBarAnimatedKey: String =       "animated"
 public typealias CocoaBarPopulationClosure = (layout: CocoaBarLayout) -> Void
 public typealias CocoaBarAnimationCompletionClosure = (animated: Bool, completed: Bool, visible: Bool) -> Void
 
-/**
- The duration to display the CocoaBar for when shown.
- */
-public enum DisplayDuration {
-    
-    /**
-     Display the bar for 2 seconds before auto-dismissal.
-    */
-    case Short
-    /**
-     Display the bar for 4 seconds before auto-dismissal.
-     */
-    case Long
-    /**
-     Display the bar for 8 seconds before auto-dismissal.
-     */
-    case ExtraLong
-    /**
-     Display the bar indeterminately.
-     */
-    case Indeterminate
-    
-    var value: Double {
-        switch self {
-        case .Short:
-            return 2.0
-        case .Long:
-            return 4.0
-        case .ExtraLong:
-            return 8.0
-            
-        default:
-            return DBL_MAX
-        }
-    }
-}
+
 
 public class CocoaBar: UIView, CocoaBarLayoutDelegate {
+    
+    /**
+     The duration to display the CocoaBar for when shown.
+     */
+    public enum DisplayDuration {
+        
+        /**
+         Display the bar for 2 seconds before auto-dismissal.
+         */
+        case Short
+        /**
+         Display the bar for 4 seconds before auto-dismissal.
+         */
+        case Long
+        /**
+         Display the bar for 8 seconds before auto-dismissal.
+         */
+        case ExtraLong
+        /**
+         Display the bar indeterminately.
+         */
+        case Indeterminate
+        
+        var value: Double {
+            switch self {
+            case .Short:
+                return 2.0
+            case .Long:
+                return 4.0
+            case .ExtraLong:
+                return 8.0
+                
+            default:
+                return DBL_MAX
+            }
+        }
+    }
+    
+    /**
+     The style of the CocoaBar
+     */
+    public enum Style {
+        
+        /**
+         Expanded Error style (Default) - uses CocoaBarErrorExpandedLayout
+         */
+        case ErrorExpanded
+        
+        /**
+          Condensed Error style - uses CocoaBarErrorCondensedLayout
+        */
+        case ErrorCondensed
+    }
     
     // MARK: Variables
     
@@ -65,7 +83,9 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private var layoutContainer: UIView?
     
     private var _customLayout: CocoaBarLayout?
-    private var _defaultLayout: CocoaBarLayout = CocoaBarDefaultLayout()
+    private var _defaultLayout: CocoaBarLayout = CocoaBarErrorExpandedLayout()
+    private var _expandedErrorLayout: CocoaBarErrorExpandedLayout = CocoaBarErrorExpandedLayout()
+    private var _condensedErrorLayout: CocoaBarErrorCondensedLayout = CocoaBarErrorCondensedLayout()
     
     private var isAnimating: Bool = false
     
@@ -138,8 +158,6 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        
-        _defaultLayout = CocoaBarDefaultLayout()
 
         super.init(coder: aDecoder)
         
@@ -256,6 +274,21 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         self.hideAnimated(true, completion: nil)
     }
     
+    private func layoutForStyle(style: Style?) -> CocoaBarLayout? {
+        if let style = style {
+            switch style {
+                
+            case .ErrorCondensed:
+                return _condensedErrorLayout
+                
+            case .ErrorExpanded:
+                return _expandedErrorLayout
+                
+            }
+        }
+        return nil
+    }
+    
     // MARK: Public
     
     /**
@@ -277,6 +310,29 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         self.showAnimated(animated,
                           duration: duration.value,
                           layout: layout,
+                          populate: populate,
+                          completion: completion)
+    }
+    
+    /**
+     Shows the CocoaBar
+     
+     :param: animated       Whether to animate showing the bar.
+     :param: duration       The duration to display the bar for (DisplayDuration enum).
+     :param: style          The style to use for the bar. Using nil will use the existing style.
+     :param: populate       Closure to populate the layout with data.
+     :param: completion     Closure for completion of the show transition.
+     
+     */
+    public func showAnimated(animated: Bool,
+                             duration: DisplayDuration,
+                             style: Style?,
+                             populate: CocoaBarPopulationClosure?,
+                             completion: CocoaBarAnimationCompletionClosure?) {
+        
+        self.showAnimated(animated,
+                          duration: duration,
+                          layout: self.layoutForStyle(style),
                           populate: populate,
                           completion: completion)
     }
@@ -344,6 +400,29 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 }
             }
         }
+    }
+    
+    /**
+     Shows the CocoaBar
+     
+     :param: animated       Whether to animate showing the bar.
+     :param: duration       The exact duration to display the bar for (Double).
+     :param: style          The style to use for the bar. Using nil will use the existing style.
+     :param: populate       Closure to populate the layout with data.
+     :param: completion     Closure for completion of the show transition.
+     
+     */
+    public func showAnimated(animated: Bool,
+                             duration: Double,
+                             style: Style?,
+                             populate: CocoaBarPopulationClosure?,
+                             completion: CocoaBarAnimationCompletionClosure?) {
+        
+        self.showAnimated(animated,
+                          duration: duration,
+                          layout: self.layoutForStyle(style),
+                          populate: populate,
+                          completion: completion)
     }
     
     /**
@@ -424,6 +503,28 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      Shows the keyCocoaBar if it exists. The keyCocoaBar is the CocoaBar attached to the keyWindow.
      
      :param: animated       Whether to animate showing the bar.
+     :param: duration       The duration to display the bar for (DisplayDuration enum).
+     :param: style          The style to use for the bar. Using nil will use the existing style.
+     :param: populate       Closure to populate the layout with data.
+     :param: completion     Closure for completion of the show transition.
+     
+     */
+    public class func showAnimated(animated: Bool,
+                                   duration: DisplayDuration,
+                                   style: Style?,
+                                   populate: CocoaBarPopulationClosure?,
+                                   completion: CocoaBarAnimationCompletionClosure?) {
+        CocoaBar.showAnimated(animated,
+                              duration: duration,
+                              layout: CocoaBar.keyCocoaBar?.layoutForStyle(style),
+                              populate: populate,
+                              completion: completion)
+    }
+    
+    /**
+     Shows the keyCocoaBar if it exists. The keyCocoaBar is the CocoaBar attached to the keyWindow.
+     
+     :param: animated       Whether to animate showing the bar.
      :param: duration       The exact duration to display the bar for (Double).
      :param: layout         The layout to use for the bar. Using nil will keep the existing layout.
      :param: populate       Closure to populate the layout with data.
@@ -445,6 +546,29 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         } else {
             print("Could not show as no CocoaBar is currently attached to the keyWindow")
         }
+    }
+    
+    /**
+     Shows the keyCocoaBar if it exists. The keyCocoaBar is the CocoaBar attached to the keyWindow.
+     
+     :param: animated       Whether to animate showing the bar.
+     :param: duration       The exact duration to display the bar for (Double).
+     :param: style          The style to use for the bar. Using nil will use the existing style.
+     :param: populate       Closure to populate the layout with data.
+     :param: completion     Closure for completion of the show transition.
+     
+     */
+    public class func showAnimated(animated: Bool,
+                                   duration: Double,
+                                   style: Style?,
+                                   populate: CocoaBarPopulationClosure?,
+                                   completion: CocoaBarAnimationCompletionClosure?) {
+        
+        CocoaBar.showAnimated(animated,
+                              duration: duration,
+                              layout: CocoaBar.keyCocoaBar?.layoutForStyle(style),
+                              populate: populate,
+                              completion: completion)
     }
     
     /**

@@ -1,5 +1,5 @@
 //
-//  CocoaBarDefaultLayout.swift
+//  CocoaBarErrorExpandedLayout.swift
 //  CocoaBar Example
 //
 //  Created by Merrick Sapsford on 24/05/2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CocoaBarDefaultLayout: CocoaBarLayout {
+class CocoaBarErrorExpandedLayout: CocoaBarLayout {
     
     @IBOutlet weak var titleLabel: UILabel?
     

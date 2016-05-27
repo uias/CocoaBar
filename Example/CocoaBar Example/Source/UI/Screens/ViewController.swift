@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        CocoaBar.showAnimated(false, duration: DisplayDuration.Short, layout: nil, populate: { (layout) in
+        CocoaBar.showAnimated(false, duration: .Short, layout: nil, populate: { (layout) in
             
             }, completion: nil)
     }
@@ -32,7 +32,8 @@ class ViewController: UIViewController {
 
 
     @IBAction func showButtonPressed(sender: UIButton) {
-        CocoaBar.showAnimated(true, duration: DisplayDuration.Short, layout: nil, populate: { (layout) in
+        
+        CocoaBar.showAnimated(true, duration: .Short, style: .ErrorCondensed, populate: { (layout) in
             
             }, completion: nil)
     }
