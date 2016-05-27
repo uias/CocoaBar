@@ -579,8 +579,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the hide transition.
      
      */
-    public class func hide(animated: Bool,
-                           completion: CocoaBarAnimationCompletionClosure?) {
+    public class func hideAnimated(animated: Bool,
+                                   completion: CocoaBarAnimationCompletionClosure?) {
         
         if let keyBar = self.keyCocoaBar {
             keyBar.hideAnimated(animated,
