@@ -367,6 +367,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             if animated { // animate in
                 if !self.isAnimating {
                     
+                    self.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = 0.0
                     self.isAnimating = true
                     UIView.animateWithDuration(0.2,
