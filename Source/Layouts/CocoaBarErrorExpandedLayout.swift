@@ -14,4 +14,7 @@ class CocoaBarErrorExpandedLayout: CocoaBarLayout {
     
     @IBOutlet weak var subtitleLabel: UILabel?
     
+    override func requiredHeight() -> Float {
+        return 88.0
+    }
 }

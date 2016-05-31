@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CocoaBarErrorCondensedLayout" customModule="CocoaBar_Example" customModuleProvider="target">
             <connections>
                 <outlet property="dismissButton" destination="c5I-QZ-iCa" id="G76-Qu-TVu"/>
-                <outlet property="errorLabel" destination="x0D-BE-beZ" id="yr8-3p-k7E"/>
+                <outlet property="titleLabel" destination="x0D-BE-beZ" id="6a7-c6-bi7"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

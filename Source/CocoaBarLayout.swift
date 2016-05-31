@@ -41,7 +41,7 @@ public class CocoaBarLayout: UIView {
     
     // MARK: Defaults
     
-    let CocoaBarLayoutDefaultHeight: Float = 88.0
+    let CocoaBarLayoutDefaultHeight: Float = 60.0
     
     // MARK: Variables
     
