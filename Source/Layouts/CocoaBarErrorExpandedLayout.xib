@@ -22,16 +22,16 @@
                     <state key="normal" title="Close"/>
                 </button>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="1Yx-5a-j9H">
-                    <rect key="frame" x="16" y="20" width="317" height="48"/>
+                    <rect key="frame" x="16" y="0.0" width="317" height="88"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Title label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhv-Fu-Ghd">
-                            <rect key="frame" x="0.0" y="0.0" width="317" height="23"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Title label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhv-Fu-Ghd">
+                            <rect key="frame" x="0.0" y="20" width="317" height="23"/>
                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Subtitle label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW5-bY-aza">
-                            <rect key="frame" x="0.0" y="27" width="317" height="21"/>
+                            <rect key="frame" x="0.0" y="47" width="317" height="21"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -40,12 +40,12 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="oW5-bY-aza" firstAttribute="leading" secondItem="1Yx-5a-j9H" secondAttribute="leading" id="7YG-Ig-ySz"/>
-                        <constraint firstItem="Mhv-Fu-Ghd" firstAttribute="top" secondItem="1Yx-5a-j9H" secondAttribute="top" id="9PR-Cz-6zo"/>
+                        <constraint firstItem="Mhv-Fu-Ghd" firstAttribute="top" secondItem="1Yx-5a-j9H" secondAttribute="top" constant="20" id="9PR-Cz-6zo"/>
                         <constraint firstAttribute="trailing" secondItem="oW5-bY-aza" secondAttribute="trailing" id="G6f-6J-cL1"/>
                         <constraint firstItem="oW5-bY-aza" firstAttribute="top" secondItem="Mhv-Fu-Ghd" secondAttribute="bottom" constant="4" id="KAa-QR-Xkq"/>
                         <constraint firstItem="Mhv-Fu-Ghd" firstAttribute="leading" secondItem="1Yx-5a-j9H" secondAttribute="leading" id="uEU-pG-tGP"/>
                         <constraint firstAttribute="trailing" secondItem="Mhv-Fu-Ghd" secondAttribute="trailing" id="vcL-Mu-SVE"/>
-                        <constraint firstAttribute="bottom" secondItem="oW5-bY-aza" secondAttribute="bottom" id="zGE-gw-Pgd"/>
+                        <constraint firstAttribute="bottom" secondItem="oW5-bY-aza" secondAttribute="bottom" constant="20" id="zGE-gw-Pgd"/>
                     </constraints>
                 </view>
             </subviews>
@@ -53,9 +53,10 @@
             <constraints>
                 <constraint firstItem="NS5-Kw-VgG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2ZQ-Rc-EnA"/>
                 <constraint firstAttribute="trailing" secondItem="NS5-Kw-VgG" secondAttribute="trailing" constant="16" id="AKl-sQ-fdg"/>
+                <constraint firstItem="1Yx-5a-j9H" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="CBz-si-xee"/>
                 <constraint firstItem="NS5-Kw-VgG" firstAttribute="leading" secondItem="1Yx-5a-j9H" secondAttribute="trailing" constant="12" id="W69-gP-NV9"/>
-                <constraint firstItem="1Yx-5a-j9H" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hTM-Ra-EGd"/>
                 <constraint firstItem="1Yx-5a-j9H" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="nw7-Wi-rLa"/>
+                <constraint firstAttribute="bottom" secondItem="1Yx-5a-j9H" secondAttribute="bottom" id="ojs-7i-hdw"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

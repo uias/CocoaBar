@@ -24,8 +24,4 @@ class CocoaBarErrorExpandedLayout: CocoaBarLayout {
             self.subtitleLabel?.textColor = UIColor.blackColor()
         }
     }
-    
-    override func requiredHeight() -> Float {
-        return 88.0
-    }
 }

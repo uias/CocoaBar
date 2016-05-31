@@ -13,6 +13,8 @@
 		4628CF3E1CF34BF200B4F4A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4628CF391CF34BF200B4F4A8 /* Main.storyboard */; };
 		4628CF3F1CF34BF200B4F4A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628CF3A1CF34BF200B4F4A8 /* ViewController.swift */; };
 		4628CF411CF34C4E00B4F4A8 /* CocoaBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628CF401CF34C4E00B4F4A8 /* CocoaBar.swift */; };
+		4656DCDE1CFD94A40007AB62 /* AutoLayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656DCDD1CFD94A40007AB62 /* AutoLayoutUtils.swift */; };
+		4656DCE01CFD993F0007AB62 /* ViewSizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656DCDF1CFD993F0007AB62 /* ViewSizer.swift */; };
 		46B808B41CF45ECD000D7F0E /* CocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B808B31CF45ECD000D7F0E /* CocoaBarLayout.swift */; };
 		46EA15701CF88FF200908E49 /* CocoaBarErrorCondensedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA156C1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.swift */; };
 		46EA15711CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46EA156D1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib */; };
@@ -31,6 +33,8 @@
 		4628CF391CF34BF200B4F4A8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4628CF3A1CF34BF200B4F4A8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4628CF401CF34C4E00B4F4A8 /* CocoaBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBar.swift; sourceTree = "<group>"; };
+		4656DCDD1CFD94A40007AB62 /* AutoLayoutUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutUtils.swift; sourceTree = "<group>"; };
+		4656DCDF1CFD993F0007AB62 /* ViewSizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSizer.swift; sourceTree = "<group>"; };
 		46B808B31CF45ECD000D7F0E /* CocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarLayout.swift; sourceTree = "<group>"; };
 		46EA156C1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarErrorCondensedLayout.swift; sourceTree = "<group>"; };
 		46EA156D1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarErrorCondensedLayout.xib; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 				4628CF401CF34C4E00B4F4A8 /* CocoaBar.swift */,
 				46B808B31CF45ECD000D7F0E /* CocoaBarLayout.swift */,
 				46EA156B1CF88FF200908E49 /* Layouts */,
+				4656DCDA1CFD94800007AB62 /* Utilities */,
 			);
 			name = CocoaBar;
 			path = ../Source;
@@ -125,6 +130,15 @@
 				4628CF3A1CF34BF200B4F4A8 /* ViewController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		4656DCDA1CFD94800007AB62 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4656DCDD1CFD94A40007AB62 /* AutoLayoutUtils.swift */,
+				4656DCDF1CFD993F0007AB62 /* ViewSizer.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		46EA156B1CF88FF200908E49 /* Layouts */ = {
@@ -279,7 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4656DCDE1CFD94A40007AB62 /* AutoLayoutUtils.swift in Sources */,
 				4628CF411CF34C4E00B4F4A8 /* CocoaBar.swift in Sources */,
+				4656DCE01CFD993F0007AB62 /* ViewSizer.swift in Sources */,
 				4628CF3F1CF34BF200B4F4A8 /* ViewController.swift in Sources */,
 				4628CF3D1CF34BF200B4F4A8 /* AppDelegate.swift in Sources */,
 				46B808B41CF45ECD000D7F0E /* CocoaBarLayout.swift in Sources */,

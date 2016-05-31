@@ -48,6 +48,8 @@ public class CocoaBarLayout: UIView {
     // MARK: Variables
     
     private var _nibName: String?
+    private var _nibView: UIView?
+    
     private var _height: Float?
     
     private var backgroundContainer: UIView?
@@ -181,15 +183,15 @@ public class CocoaBarLayout: UIView {
         
         super.init(frame: CGRectZero)
         
+        self.setUpBackgroundView()
+        self.setUpNibView()
+        self.setUpAppearance()
+        
         if let height = height {
             _height = height
         } else if self.requiredHeight() > 0 {
             _height = self.requiredHeight()
         }
-        
-        self.setUpBackgroundView()
-        self.setUpNibView()
-        self.setUpAppearance()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -223,6 +225,7 @@ public class CocoaBarLayout: UIView {
             
             let nib = UINib(nibName: self.nibName, bundle: bundle)
             let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+            _nibView = view
             
             self.addSubview(view)
             view.autoPinEdgesToSuperviewEdges()
@@ -290,6 +293,10 @@ public class CocoaBarLayout: UIView {
      height for the cocoa bar layout.
     */
     internal func requiredHeight() -> Float {
+        if let nibView = _nibView {
+            let requiredSize = nibView.requiredSizeWithWidth(self.bounds.size.width, requiredHeight: nil)
+            return Float(requiredSize.height)
+        }
         return 0
     }
     
