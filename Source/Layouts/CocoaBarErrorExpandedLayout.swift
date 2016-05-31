@@ -14,6 +14,17 @@ class CocoaBarErrorExpandedLayout: CocoaBarLayout {
     
     @IBOutlet weak var subtitleLabel: UILabel?
     
+    override func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
+        switch newStyle {
+        case .BlurDark:
+            self.titleLabel?.textColor = UIColor.whiteColor()
+            self.subtitleLabel?.textColor = UIColor.whiteColor()
+        default:
+            self.titleLabel?.textColor = UIColor.blackColor()
+            self.subtitleLabel?.textColor = UIColor.blackColor()
+        }
+    }
+    
     override func requiredHeight() -> Float {
         return 88.0
     }

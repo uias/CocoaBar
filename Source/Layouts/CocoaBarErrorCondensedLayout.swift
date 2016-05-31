@@ -12,6 +12,15 @@ class CocoaBarErrorCondensedLayout: CocoaBarLayout {
 
     @IBOutlet weak var titleLabel: UILabel?
     
+    override func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
+        switch newStyle {
+        case .BlurDark:
+            self.titleLabel?.textColor = UIColor.whiteColor()
+        default:
+            self.titleLabel?.textColor = UIColor.blackColor()
+        }
+    }
+    
     override func requiredHeight() -> Float {
         return 52.0
     }

@@ -42,6 +42,8 @@ public class CocoaBarLayout: UIView {
     // MARK: Defaults
     
     let CocoaBarLayoutDefaultHeight: Float = 60.0
+    let CocoaBarLayoutDefaultKeylineColor: UIColor = UIColor.lightGrayColor()
+    let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
     
     // MARK: Variables
     
@@ -51,7 +53,8 @@ public class CocoaBarLayout: UIView {
     private var backgroundContainer: UIView?
     private var _backgroundView: UIView?
     
-    // MARK: Properties
+    private var keylineView: UIView?
+    private var _keylineColor: UIColor?
     
     private var nibName: String {
         get {
@@ -65,12 +68,17 @@ public class CocoaBarLayout: UIView {
         }
     }
     
+    // MARK: Properties
+    
     /**
      The object that acts as a delegate to the layout.
      This should always be the CocoaBar
     */
     internal var delegate: CocoaBarLayoutDelegate?
     
+    /**
+     The dismiss button on the layout
+     */
     @IBOutlet weak var dismissButton: UIButton? {
         willSet {
             if let dismissButton = newValue {
@@ -80,6 +88,10 @@ public class CocoaBarLayout: UIView {
             }
         }
     }
+    
+    /**
+     The action button on the layout
+     */
     @IBOutlet weak var actionButton: UIButton? {
         willSet {
             if let actionButton = newValue {
@@ -89,8 +101,6 @@ public class CocoaBarLayout: UIView {
             }
         }
     }
-    
-    // MARK: Public Properties
     
     /**
      The background style to use for the layout. Defaults to BlurExtraLight.
@@ -129,6 +139,28 @@ public class CocoaBarLayout: UIView {
         }
     }
     
+    /**
+     The color of the keyline at the top of the layout.
+     */
+    public var keylineColor: UIColor {
+        get {
+            guard let keylineColor = _keylineColor else {
+                switch self.backgroundStyle {
+                case .BlurDark:
+                    return CocoaBarLayoutDefaultKeylineColorDark
+                default:
+                    return CocoaBarLayoutDefaultKeylineColor
+
+                }
+            }
+            return keylineColor
+        }
+        set {
+            _keylineColor = newValue
+            self.keylineView?.backgroundColor = newValue
+        }
+    }
+    
     // MARK: Init
     
     /**
@@ -157,6 +189,7 @@ public class CocoaBarLayout: UIView {
         
         self.setUpBackgroundView()
         self.setUpNibView()
+        self.setUpAppearance()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -175,7 +208,11 @@ public class CocoaBarLayout: UIView {
         backgroundContainer.autoPinEdgesToSuperviewEdges()
         self.backgroundContainer = backgroundContainer
         
-        self.updateBackgroundStyle(self.backgroundStyle)
+        let keylineView = UIView()
+        self.addSubview(keylineView)
+        keylineView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Bottom)
+        keylineView.autoSetDimension(ALDimension.Height, toSize: 1.0)
+        self.keylineView = keylineView
     }
     
     private func setUpNibView() {
@@ -189,7 +226,17 @@ public class CocoaBarLayout: UIView {
             
             self.addSubview(view)
             view.autoPinEdgesToSuperviewEdges()
+            
+            // view is transparent
+            view.backgroundColor = UIColor.clearColor()
         }
+    }
+    
+    private func setUpAppearance() {
+        
+        self.keylineView?.backgroundColor = self.keylineColor
+        
+        self.updateBackgroundStyle(self.backgroundStyle)
     }
     
     private func updateBackgroundStyle(newStyle: BackgroundStyle) {
@@ -231,13 +278,30 @@ public class CocoaBarLayout: UIView {
                 
             default:()
             }
+            
+            self.updateLayoutForBackgroundStyle(newStyle, backgroundView: _backgroundView)
         }
     }
     
     // MARK: Internal
     
+    /**
+     The height required for the bar layout. Override this to manually specify a 
+     height for the cocoa bar layout.
+    */
     internal func requiredHeight() -> Float {
         return 0
+    }
+    
+    /**
+     Update the layout when the background style changes.
+     
+     :param: newStyle           The new background style.
+     :param: backgroundView     The custom background view (only available when 
+                                using .Custom backgroundStyle).
+     */
+    internal func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
+        
     }
     
     // MARK: Interaction
