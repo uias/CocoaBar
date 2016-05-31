@@ -15,7 +15,10 @@ private let CocoaBarAnimatedKey: String =       "animated"
 public typealias CocoaBarPopulationClosure = (layout: CocoaBarLayout) -> Void
 public typealias CocoaBarAnimationCompletionClosure = (animated: Bool, completed: Bool, visible: Bool) -> Void
 
-
+public protocol CocoaBarDelegate: Any {
+    
+    func cocoaBar(cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?)
+}
 
 public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
@@ -74,9 +77,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Variables
     
-    private var rootWindow: UIWindow?
-    private var rootView: UIView?
-    private static var keyCocoaBar: CocoaBar?
+    private var displayWindow: UIWindow?
+    private var displayView: UIView?
 
     private var bottomMarginConstraint: NSLayoutConstraint?
     private var heightConstraint: NSLayoutConstraint?
@@ -123,6 +125,16 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      */
     public var tapToDismiss: Bool = false
     
+    /**
+     The object that acts as a delegate to the CocoaBar
+     */
+    public var delegate: CocoaBarDelegate?
+    
+    /**
+     The CocoaBar that is attached to the key window.
+     */
+    public private(set) static var keyCocoaBar: CocoaBar?
+    
     // MARK: Init
     
     /**
@@ -132,12 +144,18 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      */
     public init(window: UIWindow?) {
         
-        self.rootWindow = window
+        self.displayWindow = window
         
         super.init(frame: CGRectZero)
         
         // set key bar to the one initialised on key window
         if let window = window {
+            
+            // if keyCocoaBar does not exist - assume that this is key window
+            if CocoaBar.keyCocoaBar == nil {
+                window.becomeKeyWindow()
+            }
+            
             if window.keyWindow == true {
                 CocoaBar.keyCocoaBar = self
             }
@@ -150,7 +168,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      */
     public init(view: UIView?) {
         
-        self.rootView = view
+        self.displayView = view
         
         super.init(frame: CGRectZero)
         
@@ -191,17 +209,17 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
     
     private func setUpIfRequired() {
-        if let rootWindow = self.rootWindow { // if we have a display window
+        if let displayWindow = self.displayWindow { // if we have a display window
             if self.superview == nil {
                 
                 // add bar to display window
-                rootWindow.addSubview(self)
+                displayWindow.addSubview(self)
                 self.setUpConstraints()
             }
-        } else if let rootView = self.rootView { // fallback to displaying from view
+        } else if let displayView = self.displayView { // fallback to displaying from view
             if self.superview == nil {
                 
-                rootView.addSubview(self)
+                displayView.addSubview(self)
                 self.setUpConstraints()
             }
         }
@@ -230,8 +248,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
     
     private func bringBarToFront() {
-        if let rootWindow = self.rootWindow {
-            rootWindow.bringSubviewToFront(self)
+        if let displayWindow = self.displayWindow {
+            displayWindow.bringSubviewToFront(self)
         }
     }
     
@@ -611,6 +629,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
     
     func cocoaBarLayoutActionButtonPressed(actionButton: UIButton?) {
-        
+        if let delegate = self.delegate {
+            delegate.cocoaBar(self, actionButtonPressed: actionButton)
+        }
     }
 }

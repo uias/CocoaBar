@@ -255,7 +255,7 @@ public class CocoaBarLayout: UIView {
     }
 }
 
-internal protocol CocoaBarLayoutDelegate {
+internal protocol CocoaBarLayoutDelegate: Any {
     
     /**
      The dismiss button has been pressed on the layout.
