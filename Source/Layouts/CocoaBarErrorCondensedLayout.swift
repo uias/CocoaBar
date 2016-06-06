@@ -20,8 +20,4 @@ class CocoaBarErrorCondensedLayout: CocoaBarLayout {
             self.titleLabel?.textColor = UIColor.blackColor()
         }
     }
-    
-    override func requiredHeight() -> Float {
-        return 52.0
-    }
 }
