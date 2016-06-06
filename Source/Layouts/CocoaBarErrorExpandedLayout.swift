@@ -19,9 +19,11 @@ class CocoaBarErrorExpandedLayout: CocoaBarLayout {
         case .BlurDark:
             self.titleLabel?.textColor = UIColor.whiteColor()
             self.subtitleLabel?.textColor = UIColor.whiteColor()
+            self.dismissButton?.setTitleColor(UIColor.lightTextColor(), forState: UIControlState.Normal)
         default:
             self.titleLabel?.textColor = UIColor.blackColor()
             self.subtitleLabel?.textColor = UIColor.blackColor()
+            self.dismissButton?.setTitleColor(self.tintColor, forState: UIControlState.Normal)
         }
     }
 }

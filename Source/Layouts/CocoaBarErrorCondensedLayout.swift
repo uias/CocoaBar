@@ -16,8 +16,10 @@ class CocoaBarErrorCondensedLayout: CocoaBarLayout {
         switch newStyle {
         case .BlurDark:
             self.titleLabel?.textColor = UIColor.whiteColor()
+            self.dismissButton?.setTitleColor(UIColor.lightTextColor(), forState: UIControlState.Normal)
         default:
             self.titleLabel?.textColor = UIColor.blackColor()
+            self.dismissButton?.setTitleColor(self.tintColor, forState: UIControlState.Normal)
         }
     }
 }
