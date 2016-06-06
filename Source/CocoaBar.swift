@@ -353,6 +353,9 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                             if let completion = completion {
                                 completion(animated: animated, completed: completed, visible: self.isShowing)
                             }
+                            if let delegate = self.delegate {
+                                delegate.cocoaBar(self, didShowAnimated: animated)
+                            }
                         }
                     )
                 }
@@ -366,8 +369,59 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 if let completion = completion {
                     completion(animated: animated, completed: true, visible: self.isShowing)
                 }
+                if let delegate = self.delegate {
+                    delegate.cocoaBar(self, didShowAnimated: animated)
+                }
             }
         }
+    }
+    
+    private func doHideAnimated(animated: Bool,
+                                completion: CocoaBarAnimationCompletionClosure?) {
+        if self.isShowing && !self.isAnimating {
+            self.destroyDisplayTimer()
+            
+            if animated {
+                if !self.isAnimating { // animate out
+                    
+                    self.bottomMarginConstraint?.constant = self.bounds.size.height
+                    self.isAnimating = true
+                    UIView.animateWithDuration(0.2,
+                                               delay: 0.0,
+                                               options: UIViewAnimationOptions.CurveEaseIn,
+                                               animations:
+                        {
+                            self.layoutIfNeeded()
+                        },
+                                               completion:
+                        { (completed) in
+                            self.isShowing = false
+                            self.isAnimating = false
+                            
+                            if let completion = completion {
+                                completion(animated: animated, completed: completed, visible: self.isShowing)
+                            }
+                            if let delegate = self.delegate {
+                                delegate.cocoaBar(self, didHideAnimated: animated)
+                            }
+                        }
+                    )
+                }
+            } else {
+                
+                self.bottomMarginConstraint?.constant = self.bounds.size.height
+                self.layoutIfNeeded()
+                self.isShowing = false
+                
+                if let completion = completion {
+                    completion(animated: animated, completed: true, visible: self.isShowing)
+                }
+                if let delegate = self.delegate {
+                    delegate.cocoaBar(self, didHideAnimated: animated)
+                }
+            }
+        }
+
     }
     
     // MARK: Public
@@ -472,44 +526,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      */
     public func hideAnimated(animated: Bool,
                              completion: CocoaBarAnimationCompletionClosure?) {
-        
-        if self.isShowing && !self.isAnimating {
-            self.destroyDisplayTimer()
-            
-            if animated {
-                if !self.isAnimating { // animate out
-                    
-                    self.bottomMarginConstraint?.constant = self.bounds.size.height
-                    self.isAnimating = true
-                    UIView.animateWithDuration(0.2,
-                                               delay: 0.0,
-                                               options: UIViewAnimationOptions.CurveEaseIn,
-                                               animations:
-                        {
-                            self.layoutIfNeeded()
-                        },
-                                               completion:
-                        { (completed) in
-                            self.isShowing = false
-                            self.isAnimating = false
-                            
-                            if let completion = completion {
-                                completion(animated: animated, completed: completed, visible: self.isShowing)
-                            }
-                        }
-                    )
-                }
-            } else {
-                
-                self.bottomMarginConstraint?.constant = self.bounds.size.height
-                self.layoutIfNeeded()
-                self.isShowing = false
-                
-                if let completion = completion {
-                    completion(animated: animated, completed: true, visible: self.isShowing)
-                }
-            }
-        }
+        self.doHideAnimated(animated,
+                            completion: completion)
     }
     
     // MARK: Class
