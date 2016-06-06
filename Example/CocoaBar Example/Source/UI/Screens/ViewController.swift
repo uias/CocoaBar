@@ -8,13 +8,46 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    // MARK: Properties
+    
+    @IBOutlet weak var gradientView: GradientView?
+    @IBOutlet weak var tableView: UITableView?
+    
+    var styles: [BarStyle] = []
+    
+    // MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        self.gradientView?.colors = [UIColor.purpleColor(), UIColor(red: 29, green: 0, blue: 174)]
         
+        self.styles.append(BarStyle(title: "Compressed Error",
+            description: "Compressed Error Layout with ultra light background",
+            backgroundStyle: .BlurDark,
+            barStyle: .ErrorExpanded,
+            duration: .Long))
+        self.styles.append(BarStyle(title: "Expanded Error Light",
+            description: "Expanded Error layout with light background",
+            backgroundStyle: .BlurLight,
+            barStyle: .ErrorExpanded,
+            duration: .Long))
+        self.styles.append(BarStyle(title: "Expanded Error Dark",
+            description: "Expanded Error Layout with dark background",
+            backgroundStyle: .BlurDark,
+            barStyle: .ErrorExpanded,
+            duration: .Long))
+        self.styles.append(BarStyle(title: "Custom Layout",
+            description: "Custom CocoaBarLayout",
+            backgroundStyle: .BlurDark,
+            barStyle: .ErrorExpanded,
+            duration: .Long))
+        
+        self.tableView?.rowHeight = UITableViewAutomaticDimension
+        self.tableView?.estimatedRowHeight = 96.0
+        self.tableView?.reloadData()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -24,13 +57,35 @@ class ViewController: UIViewController {
             
             }, completion: nil)
     }
+
+    // MARK: UITableViewDataSource
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
-
-
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.styles.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let barStyleCell = tableView.dequeueReusableCellWithIdentifier("BarStyleCell") as! BarStyleCell
+        let style = self.styles[indexPath.row]
+        
+        barStyleCell.titleLabel?.text = style.title
+        barStyleCell.descriptionLabel?.text = style.styleDescription
+        
+        // alternate row colours
+        if indexPath.row % 2 != 0 {
+            barStyleCell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.15)
+        }
+        
+        return barStyleCell
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    
     @IBAction func showButtonPressed(sender: UIButton) {
         
         CocoaBar.showAnimated(true, duration: .Short, style: .ErrorCondensed, populate: { (layout) in

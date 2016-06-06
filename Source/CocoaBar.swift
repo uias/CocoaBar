@@ -17,10 +17,29 @@ public typealias CocoaBarAnimationCompletionClosure = (animated: Bool, completed
 
 public protocol CocoaBarDelegate: Any {
     
+    /**
+     The action button on the CocoaBar has been pressed.
+     
+     :param: cocoaBar       The CocoaBar that contains the action button.
+     :param: actionButton   The action button that was pressed.
+     
+     */
     func cocoaBar(cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?)
-    
+    /**
+     The CocoaBar has shown.
+     
+     :param: cocoaBar       The CocoaBar that has shown.
+     :param: animated       Whether the show transition was animated.
+     
+     */
     func cocoaBar(cocoaBar: CocoaBar, didShowAnimated animated: Bool)
-    
+    /**
+     The CocoaBar has gidden.
+     
+     :param: cocoaBar       The CocoaBar that has become hidden.
+     :param: animated       Whether the hide transition was animated.
+     
+     */
     func cocoaBar(cocoaBar: CocoaBar, didHideAnimated animated: Bool)
 }
 

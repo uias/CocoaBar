@@ -9,35 +9,35 @@
 import UIKit
 import PureLayout
 
-/**
- BackgroundStyle dictates the appearance of the background view
- in the layout.
- */
-public enum BackgroundStyle {
-    /**
-     SolidColor relies on setting the backgroundColor property of the layout.
-     */
-    case SolidColor
-    /**
-     BlurExtraLight displays a blur view with UIBlurEffectStyle.ExtraLight
-     */
-    case BlurExtraLight
-    /**
-     BlurLight displays a blur view with UIBlurEffectStyle.Light
-     */
-    case BlurLight
-    /**
-     BlurDark displays a blur view with UIBlurEffectStyle.Dark
-     */
-    case BlurDark
-    /**
-     Custom provides a UIView to the backgroundView property for enhanced
-     customisation.
-     */
-    case Custom
-}
-
 public class CocoaBarLayout: UIView {
+    
+    /**
+     BackgroundStyle dictates the appearance of the background view
+     in the layout.
+     */
+    public enum BackgroundStyle {
+        /**
+         SolidColor relies on setting the backgroundColor property of the layout.
+         */
+        case SolidColor
+        /**
+         BlurExtraLight displays a blur view with UIBlurEffectStyle.ExtraLight
+         */
+        case BlurExtraLight
+        /**
+         BlurLight displays a blur view with UIBlurEffectStyle.Light
+         */
+        case BlurLight
+        /**
+         BlurDark displays a blur view with UIBlurEffectStyle.Dark
+         */
+        case BlurDark
+        /**
+         Custom provides a UIView to the backgroundView property for enhanced
+         customisation.
+         */
+        case Custom
+    }
     
     // MARK: Defaults
     
