@@ -73,13 +73,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         barStyleCell.titleLabel?.text = style.title
         barStyleCell.descriptionLabel?.text = style.styleDescription
         
+        let selectedBackgroundView = UIView()
+        
         // alternate row colours
         if indexPath.row % 2 != 0 {
             barStyleCell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.15)
+            selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        } else {
+            selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         }
         
-        let selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        
         barStyleCell.selectedBackgroundView = selectedBackgroundView
         
         return barStyleCell
@@ -124,6 +128,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func showBarWithStyle(style: BarStyle) {
         CocoaBar.showAnimated(true, duration: style.duration, style: style.barStyle, populate: { (layout) in
             layout.backgroundStyle = style.backgroundStyle
+            
+            if let expandedErrorLayout = layout as? CocoaBarErrorExpandedLayout {
+                expandedErrorLayout.titleLabel?.text = "Expanded Error Layout"
+                expandedErrorLayout.subtitleLabel?.text = "This one lets you have a bit of detail"
+            } else if let condensedErrorLayout = layout as? CocoaBarErrorCondensedLayout {
+                condensedErrorLayout.titleLabel?.text = "A nice simple short error layout"
+            }
             
             }, completion: nil)
     }

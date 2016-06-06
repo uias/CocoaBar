@@ -42,7 +42,7 @@ public class CocoaBarLayout: UIView {
     // MARK: Defaults
     
     let CocoaBarLayoutDefaultKeylineColor: UIColor = UIColor.lightGrayColor()
-    let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+    let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
     
     // MARK: Variables
     
