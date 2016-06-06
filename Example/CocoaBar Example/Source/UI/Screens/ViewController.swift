@@ -25,17 +25,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.gradientView?.colors = [UIColor.purpleColor(), UIColor(red: 29, green: 0, blue: 174)]
         
         self.styles.append(BarStyle(title: "Compressed Error",
-            description: "Compressed Error Layout with ultra light background",
+            description: "Compressed Error Layout with ultra light blur background",
             backgroundStyle: .BlurDark,
             barStyle: .ErrorExpanded,
             duration: .Long))
-        self.styles.append(BarStyle(title: "Expanded Error Light",
-            description: "Expanded Error layout with light background",
+        self.styles.append(BarStyle(title: "Expanded Error - Light",
+            description: "Expanded Error layout with light blur background",
             backgroundStyle: .BlurLight,
             barStyle: .ErrorExpanded,
             duration: .Long))
-        self.styles.append(BarStyle(title: "Expanded Error Dark",
-            description: "Expanded Error Layout with dark background",
+        self.styles.append(BarStyle(title: "Expanded Error - Dark",
+            description: "Expanded Error Layout with dark blur background",
             backgroundStyle: .BlurDark,
             barStyle: .ErrorExpanded,
             duration: .Long))

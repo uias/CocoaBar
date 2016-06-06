@@ -43,14 +43,14 @@
                                                     <rect key="frame" x="20" y="12" width="560" height="36"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="CocoaBar Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qF-9L-KDG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="560" height="10"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="560" height="14"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Style description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jT4-1l-zMx">
-                                                            <rect key="frame" x="0.0" y="16" width="560" height="20"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                            <rect key="frame" x="0.0" y="18" width="560" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                             <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -60,7 +60,7 @@
                                                         <constraint firstItem="3qF-9L-KDG" firstAttribute="leading" secondItem="0wn-Zj-rjO" secondAttribute="leading" id="Bsl-Vm-iRc"/>
                                                         <constraint firstItem="3qF-9L-KDG" firstAttribute="top" secondItem="0wn-Zj-rjO" secondAttribute="top" id="PiZ-Cm-Lri"/>
                                                         <constraint firstItem="jT4-1l-zMx" firstAttribute="leading" secondItem="0wn-Zj-rjO" secondAttribute="leading" id="dIo-rH-e1o"/>
-                                                        <constraint firstItem="jT4-1l-zMx" firstAttribute="top" secondItem="3qF-9L-KDG" secondAttribute="bottom" constant="6" id="iwT-Nc-khy"/>
+                                                        <constraint firstItem="jT4-1l-zMx" firstAttribute="top" secondItem="3qF-9L-KDG" secondAttribute="bottom" constant="4" id="iwT-Nc-khy"/>
                                                         <constraint firstAttribute="trailing" secondItem="3qF-9L-KDG" secondAttribute="trailing" id="on0-zI-Yg9"/>
                                                         <constraint firstAttribute="trailing" secondItem="jT4-1l-zMx" secondAttribute="trailing" id="tWQ-kx-b7T"/>
                                                         <constraint firstAttribute="bottom" secondItem="jT4-1l-zMx" secondAttribute="bottom" id="x7I-Iz-Bc9"/>
