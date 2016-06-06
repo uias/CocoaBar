@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        CocoaBar.showAnimated(false, duration: .Short, layout: nil, populate: { (layout) in
+        CocoaBar.showAnimated(false, duration: .Indeterminate, layout: nil, populate: { (layout) in
             
             }, completion: nil)
     }

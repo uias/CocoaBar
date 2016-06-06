@@ -41,7 +41,6 @@ public class CocoaBarLayout: UIView {
     
     // MARK: Defaults
     
-    let CocoaBarLayoutDefaultHeight: Float = 60.0
     let CocoaBarLayoutDefaultKeylineColor: UIColor = UIColor.lightGrayColor()
     let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
     
@@ -129,12 +128,9 @@ public class CocoaBarLayout: UIView {
      The height required for the layout. Uses CocoaBarLayoutDefaultHeight if custom
      height not specified.
      */
-    public private(set) var height: Float {
+    public private(set) var height: Float? {
         get {
-            guard let height = _height else {
-                return CocoaBarLayoutDefaultHeight
-            }
-            return height
+            return _height
         }
         set {
             _height = height
@@ -293,10 +289,6 @@ public class CocoaBarLayout: UIView {
      height for the cocoa bar layout.
     */
     internal func requiredHeight() -> Float {
-        if let nibView = _nibView {
-            let requiredSize = nibView.requiredSizeWithWidth(self.bounds.size.width, requiredHeight: nil)
-            return Float(requiredSize.height)
-        }
         return 0
     }
     

@@ -233,7 +233,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private func setUpConstraints() {
         let constraints = self.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Top)
         self.heightConstraint = self.autoSetDimension(ALDimension.Height, toSize: CGFloat(0.0))
-        
+        self.heightConstraint?.active = false
         self.bottomMarginConstraint = constraints[1]
     }
     
@@ -261,12 +261,16 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 view.removeFromSuperview()
             }
             
+            // update height if required
+            let requiresHeightConstraint = (layout.height != nil)
+            self.heightConstraint?.active = requiresHeightConstraint
+            if requiresHeightConstraint {
+                self.heightConstraint?.constant = CGFloat(layout.height!)
+            }
+            
             layout.delegate = self
             layoutContainer.addSubview(layout)
             layout.autoPinEdgesToSuperviewEdges()
-            
-            // update height
-            self.heightConstraint?.constant = CGFloat(layout.height)
         }
     }
     
