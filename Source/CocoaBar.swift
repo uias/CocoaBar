@@ -369,11 +369,11 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                             self.isAnimating = false
                             self.setUpDisplayTimer(duration)
                             
-                            if let completion = completion {
-                                completion(animated: animated, completed: completed, visible: self.isShowing)
-                            }
                             if let delegate = self.delegate {
                                 delegate.cocoaBar(self, didShowAnimated: animated)
+                            }
+                            if let completion = completion {
+                                completion(animated: animated, completed: completed, visible: self.isShowing)
                             }
                         }
                     )
@@ -417,11 +417,11 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                             self.isShowing = false
                             self.isAnimating = false
                             
-                            if let completion = completion {
-                                completion(animated: animated, completed: completed, visible: self.isShowing)
-                            }
                             if let delegate = self.delegate {
                                 delegate.cocoaBar(self, didHideAnimated: animated)
+                            }
+                            if let completion = completion {
+                                completion(animated: animated, completed: completed, visible: self.isShowing)
                             }
                         }
                     )

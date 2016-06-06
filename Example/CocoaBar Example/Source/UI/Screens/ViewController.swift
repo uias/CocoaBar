@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CocoaBarDelegate {
 
     // MARK: Properties
     
@@ -24,14 +24,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         self.gradientView?.colors = [UIColor.purpleColor(), UIColor(red: 29, green: 0, blue: 174)]
         
-        self.styles.append(BarStyle(title: "Compressed Error",
-            description: "Compressed Error Layout with ultra light blur background",
-            backgroundStyle: .BlurDark,
-            barStyle: .ErrorExpanded,
+        self.styles.append(BarStyle(title: "Condensed Error",
+            description: "Condensed Error Layout with extra light blur background",
+            backgroundStyle: .BlurExtraLight,
+            barStyle: .ErrorCondensed,
             duration: .Long))
         self.styles.append(BarStyle(title: "Expanded Error - Light",
-            description: "Expanded Error layout with light blur background",
-            backgroundStyle: .BlurLight,
+            description: "Expanded Error layout with extra light blur background",
+            backgroundStyle: .BlurExtraLight,
             barStyle: .ErrorExpanded,
             duration: .Long))
         self.styles.append(BarStyle(title: "Expanded Error - Dark",
@@ -53,9 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        CocoaBar.showAnimated(false, duration: .Indeterminate, layout: nil, populate: { (layout) in
-            
-            }, completion: nil)
+        CocoaBar.keyCocoaBar?.delegate = self
     }
 
     // MARK: UITableViewDataSource
@@ -80,15 +78,52 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             barStyleCell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.15)
         }
         
+        let selectedBackgroundView = UIView()
+        selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        barStyleCell.selectedBackgroundView = selectedBackgroundView
+        
         return barStyleCell
     }
     
     // MARK: UITableViewDelegate
     
-    
-    @IBAction func showButtonPressed(sender: UIButton) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let style = self.styles[indexPath.row]
         
-        CocoaBar.showAnimated(true, duration: .Short, style: .ErrorCondensed, populate: { (layout) in
+        if let keyCocoaBar = CocoaBar.keyCocoaBar {
+            if keyCocoaBar.isShowing {
+                keyCocoaBar.delegate = nil // temporarily ignore cocoa bar delegate
+                keyCocoaBar.hideAnimated(true, completion: { (animated, completed, visible) in
+                    self.showBarWithStyle(style)
+                    keyCocoaBar.delegate = self
+                })
+            } else {
+                self.showBarWithStyle(style)
+            }
+        }
+    }
+    
+    // MARK: CocoaBarDelegate
+    
+    func cocoaBar(cocoaBar: CocoaBar, didShowAnimated animated: Bool) {
+        // did show bar
+    }
+    
+    func cocoaBar(cocoaBar: CocoaBar, didHideAnimated animated: Bool) {
+        if let indexPath = self.tableView?.indexPathForSelectedRow {
+            self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+    }
+    
+    func cocoaBar(cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?) {
+        // Do an action
+    }
+    
+    // MARK: Private
+    
+    private func showBarWithStyle(style: BarStyle) {
+        CocoaBar.showAnimated(true, duration: style.duration, style: style.barStyle, populate: { (layout) in
+            layout.backgroundStyle = style.backgroundStyle
             
             }, completion: nil)
     }
