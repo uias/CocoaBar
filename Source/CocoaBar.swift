@@ -26,6 +26,14 @@ public protocol CocoaBarDelegate: Any {
      */
     func cocoaBar(cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?)
     /**
+     The CocoaBar will show.
+     
+     :param: cocoaBar       The CocoaBar that will show.
+     :param: animated       Whether the show transition will be animated.
+     
+     */
+    func cocoaBar(cocoaBar: CocoaBar, willShowAnimated animated: Bool)
+    /**
      The CocoaBar has shown.
      
      :param: cocoaBar       The CocoaBar that has shown.
@@ -33,6 +41,14 @@ public protocol CocoaBarDelegate: Any {
      
      */
     func cocoaBar(cocoaBar: CocoaBar, didShowAnimated animated: Bool)
+    /**
+     The CocoaBar will hide.
+     
+     :param: cocoaBar       The CocoaBar that will hide.
+     :param: animated       Whether the hide transition will be animated.
+     
+     */
+    func cocoaBar(cocoaBar: CocoaBar, willHideAnimated animated: Bool)
     /**
      The CocoaBar has hidden.
      
@@ -348,6 +364,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             if animated { // animate in
                 if !self.isAnimating {
                     
+                    if let delegate = self.delegate {
+                        delegate.cocoaBar(self, willShowAnimated: animated)
+                    }
+                    
                     // hide layout offscreen initially
                     self.layout.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = (self.layout.height != nil) ? CGFloat(self.layout.height!) : self.layout.bounds.size.height
@@ -379,6 +399,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 }
             } else {
                 
+                if let delegate = self.delegate {
+                    delegate.cocoaBar(self, willShowAnimated: animated)
+                }
+                
                 self.bottomMarginConstraint?.constant = 0.0
                 self.layoutIfNeeded()
                 self.isShowing = true
@@ -401,6 +425,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             
             if animated {
                 if !self.isAnimating { // animate out
+                    
+                    if let delegate = self.delegate {
+                        delegate.cocoaBar(self, willHideAnimated: animated)
+                    }
                     
                     self.bottomMarginConstraint?.constant = self.bounds.size.height
                     self.isAnimating = true
@@ -426,6 +454,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     )
                 }
             } else {
+                
+                if let delegate = self.delegate {
+                    delegate.cocoaBar(self, willHideAnimated: animated)
+                }
                 
                 self.bottomMarginConstraint?.constant = self.bounds.size.height
                 self.layoutIfNeeded()

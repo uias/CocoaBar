@@ -121,14 +121,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: CocoaBarDelegate
     
+    func cocoaBar(cocoaBar: CocoaBar, willShowAnimated animated: Bool) {
+        
+    }
+    
     func cocoaBar(cocoaBar: CocoaBar, didShowAnimated animated: Bool) {
         // did show bar
     }
     
-    func cocoaBar(cocoaBar: CocoaBar, didHideAnimated animated: Bool) {
+    func cocoaBar(cocoaBar: CocoaBar, willHideAnimated animated: Bool) {
         if let indexPath = self.tableView?.indexPathForSelectedRow {
             self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
         }
+    }
+    
+    func cocoaBar(cocoaBar: CocoaBar, didHideAnimated animated: Bool) {
+        
     }
     
     func cocoaBar(cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?) {
