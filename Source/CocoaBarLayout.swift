@@ -107,10 +107,8 @@ public class CocoaBarLayout: UIView {
      The background style to use for the layout. Defaults to BlurExtraLight.
      */
     public var backgroundStyle: BackgroundStyle = .BlurExtraLight {
-        willSet {
-            if newValue != self.backgroundStyle {
-                self.updateBackgroundStyle(newValue)
-            }
+        didSet {
+            self.updateBackgroundStyle(self.backgroundStyle)
         }
     }
     
@@ -278,6 +276,7 @@ public class CocoaBarLayout: UIView {
             default:()
             }
             
+            self.keylineView?.backgroundColor = self.keylineColor
             self.updateLayoutForBackgroundStyle(newStyle, backgroundView: _backgroundView)
         }
     }

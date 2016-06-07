@@ -13,7 +13,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="sYl-mJ-uXG" customClass="CircularImageView" customModule="CocoaBar_Example" customModuleProvider="target">
                     <rect key="frame" x="12" y="12" width="52" height="52"/>
-                    <color key="backgroundColor" red="0.0" green="0.84332051701570676" blue="0.14993797478431103" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="52" id="Qd2-uh-BWJ"/>
                         <constraint firstAttribute="height" constant="52" id="Xpf-fr-rz6"/>
