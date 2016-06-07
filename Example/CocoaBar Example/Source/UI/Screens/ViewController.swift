@@ -151,6 +151,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func cocoaBar(cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?) {
         // Do an action
+        cocoaBar.hideAnimated(true, completion: nil)
     }
     
     // MARK: Private
