@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var gradientView: GradientView?
     @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var separatorView: UIView?
     
     var styles: [BarStyle] = []
     
@@ -103,6 +104,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 })
             } else {
                 self.showBarWithStyle(style)
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 0.0 { // show separator
+            if self.separatorView?.alpha != 1.0 {
+                UIView.animateWithDuration(0.2, animations: {
+                    self.separatorView?.alpha = 1.0
+                })
+            }
+        } else { // hide separator
+            if self.separatorView?.alpha != 0.0 {
+                UIView.animateWithDuration(0.2, animations: {
+                    self.separatorView?.alpha = 0.0
+                })
             }
         }
     }

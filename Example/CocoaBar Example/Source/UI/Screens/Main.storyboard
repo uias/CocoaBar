@@ -86,16 +86,26 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Uzd-kg-Ayc"/>
                                 </connections>
                             </tableView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tuf-I5-DDw">
+                                <rect key="frame" x="0.0" y="131" width="600" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="sNI-u5-Gu1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="B29-RB-kbz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="24" id="2zW-gq-6wW"/>
                             <constraint firstItem="QfE-ER-Zoi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6a4-7v-r1L"/>
+                            <constraint firstAttribute="trailing" secondItem="tuf-I5-DDw" secondAttribute="trailing" id="8oT-m7-DPL"/>
+                            <constraint firstItem="tuf-I5-DDw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CTe-Hc-h5c"/>
                             <constraint firstItem="B29-RB-kbz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="24" id="DZP-X9-SJc"/>
                             <constraint firstItem="5hz-8j-nIY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Gnj-mR-4Ar"/>
                             <constraint firstItem="QfE-ER-Zoi" firstAttribute="top" secondItem="B29-RB-kbz" secondAttribute="bottom" constant="44" id="P2A-wV-hlf"/>
                             <constraint firstItem="5hz-8j-nIY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Rdu-JD-xqH"/>
                             <constraint firstAttribute="trailing" secondItem="5hz-8j-nIY" secondAttribute="trailing" id="Tdb-Wo-8Ib"/>
+                            <constraint firstItem="tuf-I5-DDw" firstAttribute="top" secondItem="QfE-ER-Zoi" secondAttribute="top" id="Uye-vY-tXp"/>
                             <constraint firstAttribute="trailing" secondItem="B29-RB-kbz" secondAttribute="trailing" constant="24" id="ar1-UD-4aj"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5hz-8j-nIY" secondAttribute="bottom" id="bhX-ZN-GJ9"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QfE-ER-Zoi" secondAttribute="bottom" id="hUX-28-9hC"/>
@@ -104,6 +114,7 @@
                     </view>
                     <connections>
                         <outlet property="gradientView" destination="5hz-8j-nIY" id="qKh-6X-mmh"/>
+                        <outlet property="separatorView" destination="tuf-I5-DDw" id="Ghh-b0-SQJ"/>
                         <outlet property="tableView" destination="QfE-ER-Zoi" id="BTZ-8H-Zcg"/>
                     </connections>
                 </viewController>
