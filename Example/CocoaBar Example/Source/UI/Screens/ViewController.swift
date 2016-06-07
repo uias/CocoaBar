@@ -25,20 +25,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         self.gradientView?.colors = [UIColor.purpleColor(), UIColor(red: 29, green: 0, blue: 174)]
         
-        self.styles.append(BarStyle(title: "Condensed Error",
-            description: "Condensed Error Layout with extra light blur background",
+        self.styles.append(BarStyle(title: "Default - Light",
+            description: "Default Layout with extra light blur background",
             backgroundStyle: .BlurExtraLight,
-            barStyle: .ErrorCondensed,
+            barStyle: .Default,
             duration: .Long))
-        self.styles.append(BarStyle(title: "Expanded Error - Light",
-            description: "Expanded Error layout with extra light blur background",
-            backgroundStyle: .BlurExtraLight,
-            barStyle: .ErrorExpanded,
-            duration: .Long))
-        self.styles.append(BarStyle(title: "Expanded Error - Dark",
-            description: "Expanded Error Layout with dark blur background",
+        self.styles.append(BarStyle(title: "Default - Dark",
+            description: "Default layout with dark blur background",
             backgroundStyle: .BlurDark,
-            barStyle: .ErrorExpanded,
+            barStyle: .Default,
             duration: .Long))
         self.styles.append(BarStyle(title: "Custom Layout",
             description: "Custom CocoaBarLayout",
@@ -157,12 +152,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func populateLayout(style: BarStyle, layout: CocoaBarLayout) {
         layout.backgroundStyle = style.backgroundStyle
         
-        if let expandedErrorLayout = layout as? CocoaBarErrorExpandedLayout {
-            expandedErrorLayout.titleLabel?.text = "Expanded Error Layout"
-            expandedErrorLayout.subtitleLabel?.text = "This one lets you have a bit of detail"
-        } else if let condensedErrorLayout = layout as? CocoaBarErrorCondensedLayout {
-            condensedErrorLayout.titleLabel?.text = "A nice simple short error layout"
+        if let defaultLayout = layout as? CocoaBarDefaultLayout {
+            defaultLayout.titleLabel?.text = "This is the default layout"
         }
+        
+//        if let expandedErrorLayout = layout as? CocoaBarErrorExpandedLayout {
+//            expandedErrorLayout.titleLabel?.text = "Expanded Error Layout"
+//            expandedErrorLayout.subtitleLabel?.text = "This one lets you have a bit of detail"
+//        } else if let condensedErrorLayout = layout as? CocoaBarErrorCondensedLayout {
+//            condensedErrorLayout.titleLabel?.text = "A nice simple short error layout"
+//        }
     }
 }
 

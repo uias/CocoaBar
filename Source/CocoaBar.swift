@@ -34,7 +34,7 @@ public protocol CocoaBarDelegate: Any {
      */
     func cocoaBar(cocoaBar: CocoaBar, didShowAnimated animated: Bool)
     /**
-     The CocoaBar has gidden.
+     The CocoaBar has hidden.
      
      :param: cocoaBar       The CocoaBar that has become hidden.
      :param: animated       Whether the hide transition was animated.
@@ -88,14 +88,9 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     public enum Style {
         
         /**
-         Expanded Error style (Default) - uses CocoaBarErrorExpandedLayout
+         Default style - text label with no buttons
          */
-        case ErrorExpanded
-        
-        /**
-          Condensed Error style - uses CocoaBarErrorCondensedLayout
-        */
-        case ErrorCondensed
+        case Default
     }
     
     // MARK: Variables
@@ -108,9 +103,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private var layoutContainer: UIView?
     
     private var _customLayout: CocoaBarLayout?
-    private var _defaultLayout: CocoaBarLayout = CocoaBarErrorExpandedLayout()
-    private var _expandedErrorLayout: CocoaBarErrorExpandedLayout = CocoaBarErrorExpandedLayout()
-    private var _condensedErrorLayout: CocoaBarErrorCondensedLayout = CocoaBarErrorCondensedLayout()
+    private var _defaultLayout: CocoaBarLayout = CocoaBarDefaultLayout()
     
     private var isAnimating: Bool = false
     
@@ -324,15 +317,15 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     private func layoutForStyle(style: Style?) -> CocoaBarLayout? {
         if let style = style {
+            
+            var layout: CocoaBarLayout
             switch style {
                 
-            case .ErrorCondensed:
-                return _condensedErrorLayout
-                
-            case .ErrorExpanded:
-                return _expandedErrorLayout
-                
+            default:
+                layout = CocoaBarDefaultLayout()
+                break
             }
+            return layout
         }
         return nil
     }
