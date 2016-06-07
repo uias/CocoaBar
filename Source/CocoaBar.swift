@@ -104,9 +104,13 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     public enum Style {
         
         /**
-         Default style - text label with no buttons
+         Default style - text label with no buttons.
          */
         case Default
+        /**
+         Action style - text label with right side action button.
+        */
+        case Action
     }
     
     // MARK: Variables
@@ -333,6 +337,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             
             var layout: CocoaBarLayout
             switch style {
+                
+            case .Action:
+                layout = CocoaBarActionLayout()
+                break
                 
             default:
                 layout = CocoaBarDefaultLayout()

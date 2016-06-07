@@ -26,14 +26,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.gradientView?.colors = [UIColor.purpleColor(), UIColor(red: 29, green: 0, blue: 174)]
         
         self.styles.append(BarStyle(title: "Default - Light",
-            description: "Default Layout with extra light blur background",
+            description: "Default text-only layout with extra light blur background",
             backgroundStyle: .BlurExtraLight,
             barStyle: .Default,
             duration: .Long))
         self.styles.append(BarStyle(title: "Default - Dark",
-            description: "Default layout with dark blur background",
+            description: "Default text-only layout with dark blur background",
             backgroundStyle: .BlurDark,
             barStyle: .Default,
+            duration: .Long))
+        self.styles.append(BarStyle(title: "Action - Light",
+            description: "Action layout with extra light blur background",
+            backgroundStyle: .BlurExtraLight,
+            barStyle: .Action,
+            duration: .Long))
+        self.styles.append(BarStyle(title: "Action - Dark",
+            description: "Action layout with dark blur background",
+            backgroundStyle: .BlurDark,
+            barStyle: .Action,
             duration: .Long))
         self.styles.append(BarStyle(title: "Custom Layout",
             description: "Custom CocoaBarLayout",
