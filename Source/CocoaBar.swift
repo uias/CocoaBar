@@ -294,6 +294,9 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             layout.delegate = self
             layoutContainer.addSubview(layout)
             layout.autoPinEdgesToSuperviewEdges()
+            
+            layout.layoutIfNeeded()
+            self.bottomMarginConstraint?.constant = requiresHeightConstraint ? CGFloat(layout.height!) : layout.bounds.size.height
         }
     }
     
