@@ -287,9 +287,6 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             layout.delegate = self
             layoutContainer.addSubview(layout)
             layout.autoPinEdgesToSuperviewEdges()
-            
-            layout.layoutIfNeeded()
-            self.bottomMarginConstraint?.constant = requiresHeightConstraint ? CGFloat(layout.height!) : layout.bounds.size.height
         }
     }
     
@@ -336,6 +333,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                                 populate: CocoaBarPopulationClosure?,
                                 completion: CocoaBarAnimationCompletionClosure?) {
         if !self.isShowing {
+            
+            // update layout
             self.setUpIfRequired()
             self.bringBarToFront()
             if let layout = layout {
@@ -348,6 +347,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             
             if animated { // animate in
                 if !self.isAnimating {
+                    
+                    // hide layout offscreen initially
+                    self.layout.layoutIfNeeded()
+                    self.bottomMarginConstraint?.constant = (self.layout.height != nil) ? CGFloat(self.layout.height!) : self.layout.bounds.size.height
                     
                     self.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = 0.0
