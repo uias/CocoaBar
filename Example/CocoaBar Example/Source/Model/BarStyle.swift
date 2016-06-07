@@ -14,7 +14,8 @@ struct BarStyle: Any {
     var styleDescription: String
     
     var backgroundStyle: CocoaBarLayout.BackgroundStyle
-    var barStyle: CocoaBar.Style
+    var barStyle: CocoaBar.Style?
+    var layout: CocoaBarLayout?
     var duration: CocoaBar.DisplayDuration
     
     init(title: String,
@@ -27,6 +28,19 @@ struct BarStyle: Any {
         self.styleDescription = description
         self.backgroundStyle = backgroundStyle
         self.barStyle = barStyle
+        self.duration = duration
+    }
+    
+    init(title: String,
+         description: String,
+         backgroundStyle: CocoaBarLayout.BackgroundStyle,
+         layout: CocoaBarLayout,
+         duration: CocoaBar.DisplayDuration) {
+        
+        self.title = title
+        self.styleDescription = description
+        self.backgroundStyle = backgroundStyle
+        self.layout = layout
         self.duration = duration
     }
 }

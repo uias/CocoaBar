@@ -23,6 +23,9 @@
 		46EA15711CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46EA156D1CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib */; };
 		46EA15721CF88FF200908E49 /* CocoaBarErrorExpandedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA156E1CF88FF200908E49 /* CocoaBarErrorExpandedLayout.swift */; };
 		46EA15731CF88FF200908E49 /* CocoaBarErrorExpandedLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46EA156F1CF88FF200908E49 /* CocoaBarErrorExpandedLayout.xib */; };
+		D6EF29F11D06C6D900E9F3FE /* CustomCocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */; };
+		D6EF29F31D06C6E200E9F3FE /* CustomCocoaBarLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */; };
+		D6EF29F51D06C91E00E9F3FE /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */; };
 		E7B1B2C500DEE6935A099223 /* Pods_CocoaBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B9031FA0ADAA7B40EA35EF /* Pods_CocoaBar_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,9 @@
 		46EA156F1CF88FF200908E49 /* CocoaBarErrorExpandedLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarErrorExpandedLayout.xib; sourceTree = "<group>"; };
 		79B9031FA0ADAA7B40EA35EF /* Pods_CocoaBar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaBar_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9E09407A49FB0C7A95FB76 /* Pods-CocoaBar Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaBar Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaBar Example/Pods-CocoaBar Example.release.xcconfig"; sourceTree = "<group>"; };
+		D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCocoaBarLayout.swift; sourceTree = "<group>"; };
+		D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCocoaBarLayout.xib; sourceTree = "<group>"; };
+		D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,7 @@
 		4628CF371CF34BF200B4F4A8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D6EF29EF1D06C6CB00E9F3FE /* CocoaBar Layouts */,
 				46CC87321D057DE00001CF71 /* Components */,
 				4628CF381CF34BF200B4F4A8 /* Screens */,
 				46CC87351D05855B0001CF71 /* Utilities */,
@@ -154,6 +161,7 @@
 			children = (
 				46CC87331D057DE70001CF71 /* GradientView.swift */,
 				46CC873B1D058B8B0001CF71 /* BarStyleCell.swift */,
+				D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -200,6 +208,15 @@
 				79B9031FA0ADAA7B40EA35EF /* Pods_CocoaBar_Example.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D6EF29EF1D06C6CB00E9F3FE /* CocoaBar Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */,
+				D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */,
+			);
+			path = "CocoaBar Layouts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6EF29F31D06C6E200E9F3FE /* CustomCocoaBarLayout.xib in Resources */,
 				46EA15711CF88FF200908E49 /* CocoaBarErrorCondensedLayout.xib in Resources */,
 				46EA15731CF88FF200908E49 /* CocoaBarErrorExpandedLayout.xib in Resources */,
 				4628CF3E1CF34BF200B4F4A8 /* Main.storyboard in Resources */,
@@ -330,12 +348,14 @@
 				4656DCDE1CFD94A40007AB62 /* AutoLayoutUtils.swift in Sources */,
 				4628CF411CF34C4E00B4F4A8 /* CocoaBar.swift in Sources */,
 				4628CF3F1CF34BF200B4F4A8 /* ViewController.swift in Sources */,
+				D6EF29F11D06C6D900E9F3FE /* CustomCocoaBarLayout.swift in Sources */,
 				46CC873C1D058B8B0001CF71 /* BarStyleCell.swift in Sources */,
 				4628CF3D1CF34BF200B4F4A8 /* AppDelegate.swift in Sources */,
 				46CC873A1D058A050001CF71 /* BarStyle.swift in Sources */,
 				46B808B41CF45ECD000D7F0E /* CocoaBarLayout.swift in Sources */,
 				46EA15701CF88FF200908E49 /* CocoaBarErrorCondensedLayout.swift in Sources */,
 				46CC87341D057DE70001CF71 /* GradientView.swift in Sources */,
+				D6EF29F51D06C91E00E9F3FE /* CircularImageView.swift in Sources */,
 				46EA15721CF88FF200908E49 /* CocoaBarErrorExpandedLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

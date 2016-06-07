@@ -41,8 +41,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             duration: .Long))
         self.styles.append(BarStyle(title: "Custom Layout",
             description: "Custom CocoaBarLayout",
-            backgroundStyle: .BlurDark,
-            barStyle: .ErrorExpanded,
+            backgroundStyle: .BlurExtraLight,
+            layout: CustomCocoaBarLayout(),
             duration: .Long))
         
         self.tableView?.rowHeight = UITableViewAutomaticDimension
@@ -126,17 +126,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: Private
     
     private func showBarWithStyle(style: BarStyle) {
+        if style.layout != nil {
+            CocoaBar.showAnimated(true, duration: style.duration, layout: style.layout, populate: { (layout) in
+                self.populateLayout(style, layout: layout)
+                }, completion: nil)
+        }
+        
         CocoaBar.showAnimated(true, duration: style.duration, style: style.barStyle, populate: { (layout) in
-            layout.backgroundStyle = style.backgroundStyle
-            
-            if let expandedErrorLayout = layout as? CocoaBarErrorExpandedLayout {
-                expandedErrorLayout.titleLabel?.text = "Expanded Error Layout"
-                expandedErrorLayout.subtitleLabel?.text = "This one lets you have a bit of detail"
-            } else if let condensedErrorLayout = layout as? CocoaBarErrorCondensedLayout {
-                condensedErrorLayout.titleLabel?.text = "A nice simple short error layout"
-            }
-            
+            self.populateLayout(style, layout: layout)
             }, completion: nil)
+    }
+    
+    private func populateLayout(style: BarStyle, layout: CocoaBarLayout) {
+        layout.backgroundStyle = style.backgroundStyle
+        
+        if let expandedErrorLayout = layout as? CocoaBarErrorExpandedLayout {
+            expandedErrorLayout.titleLabel?.text = "Expanded Error Layout"
+            expandedErrorLayout.subtitleLabel?.text = "This one lets you have a bit of detail"
+        } else if let condensedErrorLayout = layout as? CocoaBarErrorCondensedLayout {
+            condensedErrorLayout.titleLabel?.text = "A nice simple short error layout"
+        }
     }
 }
 
