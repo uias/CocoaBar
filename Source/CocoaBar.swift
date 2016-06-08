@@ -121,8 +121,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private var heightConstraint: NSLayoutConstraint?
     private var layoutContainer: UIView?
     
-    private var _customLayout: CocoaBarLayout?
-    private var _defaultLayout: CocoaBarLayout = CocoaBarDefaultLayout()
+    private var customLayout: CocoaBarLayout?
+    private var defaultLayout: CocoaBarLayout = CocoaBarDefaultLayout()
     
     private var isAnimating: Bool = false
     
@@ -136,15 +136,15 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      */
     public var layout: CocoaBarLayout {
         get {
-            guard let customLayout = _customLayout else {
-                return _defaultLayout
+            guard let customLayout = customLayout else {
+                return defaultLayout
             }
             return customLayout
         }
-        set {
-            if (_customLayout != newValue) && (newValue != _defaultLayout) {
-                _customLayout = newValue
-                self.updateLayout(newValue)
+        set (newLayout) {
+            if (customLayout != newLayout) && (newLayout != defaultLayout) {
+                customLayout = newLayout
+                self.updateLayout(newLayout)
             }
         }
     }
