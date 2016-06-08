@@ -45,5 +45,6 @@ Supports iOS 8 and above.
 ## Author
 Merrick Sapsford
 
-[@MerrickSapsford](http://www.twitter.com/MerrickSapsford)
-Mail: [merrick@sapsford.tech](mailto:merrick@sapsford.tech)
+[sapsford.tech](http://www.sapsford.tech)  
+[@MerrickSapsford](http://www.twitter.com/MerrickSapsford)  
+[merrick@sapsford.tech](mailto:merrick@sapsford.tech)
