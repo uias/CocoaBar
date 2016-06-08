@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView {
+internal extension UIView {
     
     internal func autoPinToEdges() -> [NSLayoutConstraint] {
         let views = self.setUpForAutoLayout()
