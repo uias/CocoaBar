@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PureLayout
 
 public class CocoaBarLayout: UIView {
     
@@ -201,13 +200,13 @@ public class CocoaBarLayout: UIView {
         
         let backgroundContainer = UIView()
         self.addSubview(backgroundContainer)
-        backgroundContainer.autoPinEdgesToSuperviewEdges()
+        backgroundContainer.autoPinToEdges()
         self.backgroundContainer = backgroundContainer
         
         let keylineView = UIView()
         self.addSubview(keylineView)
-        keylineView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Bottom)
-        keylineView.autoSetDimension(ALDimension.Height, toSize: 1.0)
+        keylineView.autoPinToSidesAndTop()
+        keylineView.autoSetHeight(1.0)
         self.keylineView = keylineView
     }
     
@@ -222,7 +221,7 @@ public class CocoaBarLayout: UIView {
             _nibView = view
             
             self.addSubview(view)
-            view.autoPinEdgesToSuperviewEdges()
+            view.autoPinToEdges()
             
             // view is transparent
             view.backgroundColor = UIColor.clearColor()
@@ -262,7 +261,7 @@ public class CocoaBarLayout: UIView {
                 let visualEffectView = UIVisualEffectView(effect: blurEffect)
                 
                 backgroundContainer.addSubview(visualEffectView)
-                visualEffectView.autoPinEdgesToSuperviewEdges()
+                visualEffectView.autoPinToEdges()
                 
             case .Custom:
                 self.backgroundColor = UIColor.clearColor()
@@ -270,7 +269,7 @@ public class CocoaBarLayout: UIView {
                 // create custom background view
                 let backgroundView = UIView()
                 backgroundContainer.addSubview(backgroundView)
-                backgroundView.autoPinEdgesToSuperviewEdges()
+                backgroundView.autoPinToEdges()
                 _backgroundView = backgroundView
                 
             default:()

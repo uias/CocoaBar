@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PureLayout
 
 private let CocoaBarHideNotification: String =  "CocoaBarHideNotification"
 private let CocoaBarAnimatedKey: String =       "animated"
@@ -267,10 +266,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
     
     private func setUpConstraints() {
-        let constraints = self.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: ALEdge.Top)
-        self.heightConstraint = self.autoSetDimension(ALDimension.Height, toSize: CGFloat(0.0))
+        let constraints = self.autoPinToSidesAndBottom()
+        self.heightConstraint = self.autoSetHeight(0.0)
         self.heightConstraint?.active = false
-        self.bottomMarginConstraint = constraints[1]
+        self.bottomMarginConstraint = constraints[2]
     }
     
     private func setUpComponents() {
@@ -278,7 +277,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         // set up layout container
         let layoutContainer = UIView()
         self.addSubview(layoutContainer)
-        layoutContainer.autoPinEdgesToSuperviewEdges()
+        layoutContainer.autoPinToEdges()
         self.layoutContainer = layoutContainer
         self.updateLayout(self.layout)
     }
@@ -306,7 +305,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             
             layout.delegate = self
             layoutContainer.addSubview(layout)
-            layout.autoPinEdgesToSuperviewEdges()
+            layout.autoPinToEdges()
         }
     }
     
@@ -378,7 +377,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     
                     // hide layout offscreen initially
                     self.layout.layoutIfNeeded()
-                    self.bottomMarginConstraint?.constant = (self.layout.height != nil) ? CGFloat(self.layout.height!) : self.layout.bounds.size.height
+                    self.bottomMarginConstraint?.constant = -((self.layout.height != nil) ? CGFloat(self.layout.height!) : self.layout.bounds.size.height)
                     
                     self.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = 0.0
@@ -438,7 +437,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                         delegate.cocoaBar(self, willHideAnimated: animated)
                     }
                     
-                    self.bottomMarginConstraint?.constant = self.bounds.size.height
+                    self.bottomMarginConstraint?.constant = -self.bounds.size.height
                     self.isAnimating = true
                     UIView.animateWithDuration(0.2,
                                                delay: 0.0,

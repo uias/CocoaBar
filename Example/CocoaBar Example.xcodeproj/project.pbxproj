@@ -26,11 +26,9 @@
 		D6EF29F91D0704F400E9F3FE /* CocoaBarDefaultLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EF29F81D0704F400E9F3FE /* CocoaBarDefaultLayout.xib */; };
 		D6EF29FB1D07134400E9F3FE /* CocoaBarActionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29FA1D07134400E9F3FE /* CocoaBarActionLayout.swift */; };
 		D6EF29FD1D07135100E9F3FE /* CocoaBarActionLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EF29FC1D07135100E9F3FE /* CocoaBarActionLayout.xib */; };
-		E7B1B2C500DEE6935A099223 /* Pods_CocoaBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B9031FA0ADAA7B40EA35EF /* Pods_CocoaBar_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F4BC428552AF384E5C8B6E7 /* Pods-CocoaBar Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaBar Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaBar Example/Pods-CocoaBar Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4628CF1C1CF34B8F00B4F4A8 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4628CF2B1CF34B8F00B4F4A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		4628CF331CF34BF200B4F4A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,8 +43,6 @@
 		46CC87361D0585650001CF71 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		46CC87391D058A050001CF71 /* BarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarStyle.swift; sourceTree = "<group>"; };
 		46CC873B1D058B8B0001CF71 /* BarStyleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarStyleCell.swift; sourceTree = "<group>"; };
-		79B9031FA0ADAA7B40EA35EF /* Pods_CocoaBar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaBar_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E9E09407A49FB0C7A95FB76 /* Pods-CocoaBar Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaBar Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaBar Example/Pods-CocoaBar Example.release.xcconfig"; sourceTree = "<group>"; };
 		D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCocoaBarLayout.swift; sourceTree = "<group>"; };
 		D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCocoaBarLayout.xib; sourceTree = "<group>"; };
 		D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
@@ -61,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7B1B2C500DEE6935A099223 /* Pods_CocoaBar_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,8 +69,6 @@
 				4628CF1E1CF34B8F00B4F4A8 /* CocoaBar Example */,
 				4628CF311CF34BA500B4F4A8 /* CocoaBar */,
 				4628CF1D1CF34B8F00B4F4A8 /* Products */,
-				CB7C9C01DAC780D4D3139701 /* Pods */,
-				CD1E8785D84FA912225C51E5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,23 +186,6 @@
 			path = Layouts;
 			sourceTree = "<group>";
 		};
-		CB7C9C01DAC780D4D3139701 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1F4BC428552AF384E5C8B6E7 /* Pods-CocoaBar Example.debug.xcconfig */,
-				9E9E09407A49FB0C7A95FB76 /* Pods-CocoaBar Example.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		CD1E8785D84FA912225C51E5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				79B9031FA0ADAA7B40EA35EF /* Pods_CocoaBar_Example.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		D6EF29EF1D06C6CB00E9F3FE /* CocoaBar Layouts */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,12 +202,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4628CF2E1CF34B8F00B4F4A8 /* Build configuration list for PBXNativeTarget "CocoaBar Example" */;
 			buildPhases = (
-				D83362EBC874AC1CC01749D1 /* 📦 Check Pods Manifest.lock */,
 				4628CF181CF34B8F00B4F4A8 /* Sources */,
 				4628CF191CF34B8F00B4F4A8 /* Frameworks */,
 				4628CF1A1CF34B8F00B4F4A8 /* Resources */,
-				80500D2E20726A91A2D2C3A6 /* 📦 Embed Pods Frameworks */,
-				4FB057116FCFD6286559C177 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -290,54 +263,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4FB057116FCFD6286559C177 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaBar Example/Pods-CocoaBar Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		80500D2E20726A91A2D2C3A6 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaBar Example/Pods-CocoaBar Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D83362EBC874AC1CC01749D1 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4628CF181CF34B8F00B4F4A8 /* Sources */ = {
@@ -448,7 +373,6 @@
 		};
 		4628CF2F1CF34B8F00B4F4A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F4BC428552AF384E5C8B6E7 /* Pods-CocoaBar Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "CocoaBar Example/Info.plist";
@@ -460,7 +384,6 @@
 		};
 		4628CF301CF34B8F00B4F4A8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E9E09407A49FB0C7A95FB76 /* Pods-CocoaBar Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "CocoaBar Example/Info.plist";
