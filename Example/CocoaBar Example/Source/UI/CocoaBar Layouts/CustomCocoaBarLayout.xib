@@ -11,9 +11,10 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="76"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="sYl-mJ-uXG" customClass="CircularImageView" customModule="CocoaBar_Example" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="sYl-mJ-uXG" customClass="CircularImageView" customModule="Example" customModuleProvider="target">
                     <rect key="frame" x="12" y="12" width="52" height="52"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.1803921568627451" green="0.0039215686274509803" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="52" id="Qd2-uh-BWJ"/>
                         <constraint firstAttribute="height" constant="52" id="Xpf-fr-rz6"/>

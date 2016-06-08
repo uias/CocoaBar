@@ -174,13 +174,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let defaultLayout = layout as? CocoaBarDefaultLayout {
             defaultLayout.titleLabel?.text = "This is the default layout"
         }
-        
-//        if let expandedErrorLayout = layout as? CocoaBarErrorExpandedLayout {
-//            expandedErrorLayout.titleLabel?.text = "Expanded Error Layout"
-//            expandedErrorLayout.subtitleLabel?.text = "This one lets you have a bit of detail"
-//        } else if let condensedErrorLayout = layout as? CocoaBarErrorCondensedLayout {
-//            condensedErrorLayout.titleLabel?.text = "A nice simple short error layout"
-//        }
+        if let actionLayout = layout as? CocoaBarActionLayout {
+            actionLayout.titleLabel?.text = "This is the action layout"
+        }
     }
 }
 
