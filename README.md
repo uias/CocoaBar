@@ -3,6 +3,7 @@
 </p>
 
 # CocoaBar
+[![Build Status](https://travis-ci.org/MerrickSapsford/CocoaBar.svg?branch=develop)](https://travis-ci.org/MerrickSapsford/CocoaBar)
 
 A flexible and simple to use SnackBar view for iOS.
 
