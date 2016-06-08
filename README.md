@@ -4,6 +4,7 @@
 
 # CocoaBar
 [![Build Status](https://travis-ci.org/MerrickSapsford/CocoaBar.svg?branch=develop)](https://travis-ci.org/MerrickSapsford/CocoaBar)
+[![CocoaPods](https://img.shields.io/cocoapods/v/CocoaBar.svg)]()
 
 A flexible and simple to use SnackBar view for iOS.
 
