@@ -266,13 +266,13 @@ public class CocoaBarLayout: UIView {
         }
     }
     
-    // MARK: Internal
+    // MARK: Public
     
     /**
-     The height required for the bar layout. Override this to manually specify a 
+     The height required for the bar layout. Override this to manually specify a
      height for the cocoa bar layout.
-    */
-    internal func requiredHeight() -> Float {
+     */
+    public func requiredHeight() -> Float {
         return 0
     }
     
@@ -280,12 +280,13 @@ public class CocoaBarLayout: UIView {
      Update the layout when the background style changes.
      
      :param: newStyle           The new background style.
-     :param: backgroundView     The custom background view (only available when 
-                                using .Custom backgroundStyle).
+     :param: backgroundView     The custom background view (only available when
+     using .Custom backgroundStyle).
      */
-    internal func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
+    public func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
         
     }
+    
     
     // MARK: Interaction
     
