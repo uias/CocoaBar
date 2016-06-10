@@ -12,20 +12,20 @@
 		4628CF3D1CF34BF200B4F4A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628CF361CF34BF200B4F4A8 /* AppDelegate.swift */; };
 		4628CF3E1CF34BF200B4F4A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4628CF391CF34BF200B4F4A8 /* Main.storyboard */; };
 		4628CF3F1CF34BF200B4F4A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628CF3A1CF34BF200B4F4A8 /* ViewController.swift */; };
-		4628CF411CF34C4E00B4F4A8 /* CocoaBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628CF401CF34C4E00B4F4A8 /* CocoaBar.swift */; };
-		4656DCDE1CFD94A40007AB62 /* AutoLayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656DCDD1CFD94A40007AB62 /* AutoLayoutUtils.swift */; };
-		46B808B41CF45ECD000D7F0E /* CocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B808B31CF45ECD000D7F0E /* CocoaBarLayout.swift */; };
 		46CC87341D057DE70001CF71 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CC87331D057DE70001CF71 /* GradientView.swift */; };
 		46CC87371D0585650001CF71 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CC87361D0585650001CF71 /* ColorUtils.swift */; };
 		46CC873A1D058A050001CF71 /* BarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CC87391D058A050001CF71 /* BarStyle.swift */; };
 		46CC873C1D058B8B0001CF71 /* BarStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CC873B1D058B8B0001CF71 /* BarStyleCell.swift */; };
+		D612E41E1D0B009800B13348 /* CocoaBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E4151D0B009800B13348 /* CocoaBar.swift */; };
+		D612E41F1D0B009800B13348 /* CocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E4161D0B009800B13348 /* CocoaBarLayout.swift */; };
+		D612E4201D0B009800B13348 /* CocoaBarActionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */; };
+		D612E4211D0B009800B13348 /* CocoaBarActionLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */; };
+		D612E4221D0B009800B13348 /* CocoaBarDefaultLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */; };
+		D612E4231D0B009800B13348 /* CocoaBarDefaultLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */; };
+		D612E4241D0B009800B13348 /* AutoLayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E41D1D0B009800B13348 /* AutoLayoutUtils.swift */; };
 		D6EF29F11D06C6D900E9F3FE /* CustomCocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */; };
 		D6EF29F31D06C6E200E9F3FE /* CustomCocoaBarLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */; };
 		D6EF29F51D06C91E00E9F3FE /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */; };
-		D6EF29F71D0704E200E9F3FE /* CocoaBarDefaultLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29F61D0704E200E9F3FE /* CocoaBarDefaultLayout.swift */; };
-		D6EF29F91D0704F400E9F3FE /* CocoaBarDefaultLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EF29F81D0704F400E9F3FE /* CocoaBarDefaultLayout.xib */; };
-		D6EF29FB1D07134400E9F3FE /* CocoaBarActionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29FA1D07134400E9F3FE /* CocoaBarActionLayout.swift */; };
-		D6EF29FD1D07135100E9F3FE /* CocoaBarActionLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EF29FC1D07135100E9F3FE /* CocoaBarActionLayout.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,20 +36,20 @@
 		4628CF361CF34BF200B4F4A8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4628CF391CF34BF200B4F4A8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4628CF3A1CF34BF200B4F4A8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4628CF401CF34C4E00B4F4A8 /* CocoaBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBar.swift; sourceTree = "<group>"; };
-		4656DCDD1CFD94A40007AB62 /* AutoLayoutUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutUtils.swift; sourceTree = "<group>"; };
-		46B808B31CF45ECD000D7F0E /* CocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarLayout.swift; sourceTree = "<group>"; };
 		46CC87331D057DE70001CF71 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		46CC87361D0585650001CF71 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		46CC87391D058A050001CF71 /* BarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarStyle.swift; sourceTree = "<group>"; };
 		46CC873B1D058B8B0001CF71 /* BarStyleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarStyleCell.swift; sourceTree = "<group>"; };
+		D612E4151D0B009800B13348 /* CocoaBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBar.swift; sourceTree = "<group>"; };
+		D612E4161D0B009800B13348 /* CocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarLayout.swift; sourceTree = "<group>"; };
+		D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarActionLayout.swift; sourceTree = "<group>"; };
+		D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarActionLayout.xib; sourceTree = "<group>"; };
+		D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarDefaultLayout.swift; sourceTree = "<group>"; };
+		D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarDefaultLayout.xib; sourceTree = "<group>"; };
+		D612E41D1D0B009800B13348 /* AutoLayoutUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutUtils.swift; sourceTree = "<group>"; };
 		D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCocoaBarLayout.swift; sourceTree = "<group>"; };
 		D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCocoaBarLayout.xib; sourceTree = "<group>"; };
 		D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
-		D6EF29F61D0704E200E9F3FE /* CocoaBarDefaultLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarDefaultLayout.swift; sourceTree = "<group>"; };
-		D6EF29F81D0704F400E9F3FE /* CocoaBarDefaultLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarDefaultLayout.xib; sourceTree = "<group>"; };
-		D6EF29FA1D07134400E9F3FE /* CocoaBarActionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarActionLayout.swift; sourceTree = "<group>"; };
-		D6EF29FC1D07135100E9F3FE /* CocoaBarActionLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarActionLayout.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				4628CF1E1CF34B8F00B4F4A8 /* CocoaBar Example */,
-				4628CF311CF34BA500B4F4A8 /* CocoaBar */,
+				D612E4141D0B009800B13348 /* CocoaBar */,
 				4628CF1D1CF34B8F00B4F4A8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,18 +87,6 @@
 				4628CF321CF34BF200B4F4A8 /* Resource */,
 			);
 			path = "CocoaBar Example";
-			sourceTree = "<group>";
-		};
-		4628CF311CF34BA500B4F4A8 /* CocoaBar */ = {
-			isa = PBXGroup;
-			children = (
-				4628CF401CF34C4E00B4F4A8 /* CocoaBar.swift */,
-				46B808B31CF45ECD000D7F0E /* CocoaBarLayout.swift */,
-				46EA156B1CF88FF200908E49 /* Layouts */,
-				4656DCDA1CFD94800007AB62 /* Utilities */,
-			);
-			name = CocoaBar;
-			path = ../Source;
 			sourceTree = "<group>";
 		};
 		4628CF321CF34BF200B4F4A8 /* Resource */ = {
@@ -141,14 +129,6 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		4656DCDA1CFD94800007AB62 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				4656DCDD1CFD94A40007AB62 /* AutoLayoutUtils.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
 		46CC87321D057DE00001CF71 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,15 +155,35 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		46EA156B1CF88FF200908E49 /* Layouts */ = {
+		D612E4141D0B009800B13348 /* CocoaBar */ = {
 			isa = PBXGroup;
 			children = (
-				D6EF29F61D0704E200E9F3FE /* CocoaBarDefaultLayout.swift */,
-				D6EF29F81D0704F400E9F3FE /* CocoaBarDefaultLayout.xib */,
-				D6EF29FA1D07134400E9F3FE /* CocoaBarActionLayout.swift */,
-				D6EF29FC1D07135100E9F3FE /* CocoaBarActionLayout.xib */,
+				D612E4151D0B009800B13348 /* CocoaBar.swift */,
+				D612E4161D0B009800B13348 /* CocoaBarLayout.swift */,
+				D612E4171D0B009800B13348 /* Layouts */,
+				D612E41C1D0B009800B13348 /* Utilities */,
+			);
+			name = CocoaBar;
+			path = ../Sources;
+			sourceTree = "<group>";
+		};
+		D612E4171D0B009800B13348 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */,
+				D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */,
+				D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */,
+				D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */,
 			);
 			path = Layouts;
+			sourceTree = "<group>";
+		};
+		D612E41C1D0B009800B13348 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D612E41D1D0B009800B13348 /* AutoLayoutUtils.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		D6EF29EF1D06C6CB00E9F3FE /* CocoaBar Layouts */ = {
@@ -254,10 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6EF29F31D06C6E200E9F3FE /* CustomCocoaBarLayout.xib in Resources */,
+				D612E4231D0B009800B13348 /* CocoaBarDefaultLayout.xib in Resources */,
 				4628CF3E1CF34BF200B4F4A8 /* Main.storyboard in Resources */,
+				D612E4211D0B009800B13348 /* CocoaBarActionLayout.xib in Resources */,
 				4628CF3B1CF34BF200B4F4A8 /* Assets.xcassets in Resources */,
-				D6EF29FD1D07135100E9F3FE /* CocoaBarActionLayout.xib in Resources */,
-				D6EF29F91D0704F400E9F3FE /* CocoaBarDefaultLayout.xib in Resources */,
 				4628CF3C1CF34BF200B4F4A8 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,19 +269,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D612E41E1D0B009800B13348 /* CocoaBar.swift in Sources */,
 				46CC87371D0585650001CF71 /* ColorUtils.swift in Sources */,
-				4656DCDE1CFD94A40007AB62 /* AutoLayoutUtils.swift in Sources */,
-				4628CF411CF34C4E00B4F4A8 /* CocoaBar.swift in Sources */,
+				D612E4201D0B009800B13348 /* CocoaBarActionLayout.swift in Sources */,
+				D612E4241D0B009800B13348 /* AutoLayoutUtils.swift in Sources */,
 				4628CF3F1CF34BF200B4F4A8 /* ViewController.swift in Sources */,
 				D6EF29F11D06C6D900E9F3FE /* CustomCocoaBarLayout.swift in Sources */,
-				D6EF29F71D0704E200E9F3FE /* CocoaBarDefaultLayout.swift in Sources */,
 				46CC873C1D058B8B0001CF71 /* BarStyleCell.swift in Sources */,
 				4628CF3D1CF34BF200B4F4A8 /* AppDelegate.swift in Sources */,
-				D6EF29FB1D07134400E9F3FE /* CocoaBarActionLayout.swift in Sources */,
 				46CC873A1D058A050001CF71 /* BarStyle.swift in Sources */,
-				46B808B41CF45ECD000D7F0E /* CocoaBarLayout.swift in Sources */,
 				46CC87341D057DE70001CF71 /* GradientView.swift in Sources */,
 				D6EF29F51D06C91E00E9F3FE /* CircularImageView.swift in Sources */,
+				D612E41F1D0B009800B13348 /* CocoaBarLayout.swift in Sources */,
+				D612E4221D0B009800B13348 /* CocoaBarDefaultLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
