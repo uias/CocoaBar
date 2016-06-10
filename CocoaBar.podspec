@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/Merrick Sapsford"
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/MerrickSapsford/CocoaBar.git", :tag => s.version.to_s }
-  s.source_files  = "CocoaBar", "Source/**/*.{h,m}"
-  s.resources = ['Source/**/*.{xib}']
+  s.source_files  = "CocoaBar", "Sources/**/*.{h,m}"
+  s.resources = ['Sources/**/*.{xib}']
 
 end
