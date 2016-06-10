@@ -41,30 +41,27 @@ public class CocoaBarLayout: UIView {
     // MARK: Defaults
     
     let CocoaBarLayoutDefaultKeylineColor: UIColor = UIColor.lightGrayColor()
-    let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+    let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
     
     // MARK: Variables
     
-    private var _nibName: String?
-    private var _nibView: UIView?
-    
-    private var _height: Float?
+    private var customNibName: String?
+    private var nibView: UIView?
     
     private var backgroundContainer: UIView?
-    private var _backgroundView: UIView?
     
     private var keylineView: UIView?
-    private var _keylineColor: UIColor?
+    private var customKeylineColor: UIColor?
     
     private var nibName: String {
         get {
-            guard let nibName = _nibName else {
+            guard let nibName = customNibName else {
                 return String(self.classForCoder)
             }
             return nibName
         }
         set {
-            _nibName = newValue
+            customNibName = newValue
         }
     }
     
@@ -115,31 +112,20 @@ public class CocoaBarLayout: UIView {
      The background view in the layout. This is only available when using .Custom
      for the backgroundStyle.
      */
-    public var backgroundView: UIView? {
-        get {
-            return _backgroundView
-        }
-    }
+    public private(set) var backgroundView: UIView?
     
     /**
      The height required for the layout. Uses CocoaBarLayoutDefaultHeight if custom
      height not specified.
      */
-    public private(set) var height: Float? {
-        get {
-            return _height
-        }
-        set {
-            _height = height
-        }
-    }
+    public private(set) var height: Float?
     
     /**
      The color of the keyline at the top of the layout.
      */
     public var keylineColor: UIColor {
         get {
-            guard let keylineColor = _keylineColor else {
+            guard let keylineColor = customKeylineColor else {
                 switch self.backgroundStyle {
                 case .BlurDark:
                     return CocoaBarLayoutDefaultKeylineColorDark
@@ -150,9 +136,9 @@ public class CocoaBarLayout: UIView {
             }
             return keylineColor
         }
-        set {
-            _keylineColor = newValue
-            self.keylineView?.backgroundColor = newValue
+        set (newColor) {
+            customKeylineColor = newColor
+            self.keylineView?.backgroundColor = newColor
         }
     }
     
@@ -172,7 +158,7 @@ public class CocoaBarLayout: UIView {
      :param: nibName    The name of the nib to inflate for the layout.
     */
     public init(nibName: String?, height: Float?) {
-        _nibName = nibName
+        self.customNibName = nibName
         
         super.init(frame: CGRectZero)
         
@@ -181,9 +167,9 @@ public class CocoaBarLayout: UIView {
         self.setUpAppearance()
         
         if let height = height {
-            _height = height
+            self.height = height
         } else if self.requiredHeight() > 0 {
-            _height = self.requiredHeight()
+            self.height = self.requiredHeight()
         }
     }
     
@@ -218,7 +204,7 @@ public class CocoaBarLayout: UIView {
             
             let nib = UINib(nibName: self.nibName, bundle: bundle)
             let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
-            _nibView = view
+            self.nibView = view
             
             self.addSubview(view)
             view.autoPinToEdges()
@@ -242,7 +228,7 @@ public class CocoaBarLayout: UIView {
             for view in backgroundContainer.subviews{
                 view.removeFromSuperview()
             }
-            _backgroundView = nil
+            self.backgroundView = nil
             
             switch newStyle {
                 
@@ -270,13 +256,13 @@ public class CocoaBarLayout: UIView {
                 let backgroundView = UIView()
                 backgroundContainer.addSubview(backgroundView)
                 backgroundView.autoPinToEdges()
-                _backgroundView = backgroundView
+                self.backgroundView = backgroundView
                 
             default:()
             }
             
             self.keylineView?.backgroundColor = self.keylineColor
-            self.updateLayoutForBackgroundStyle(newStyle, backgroundView: _backgroundView)
+            self.updateLayoutForBackgroundStyle(newStyle, backgroundView: self.backgroundView)
         }
     }
     

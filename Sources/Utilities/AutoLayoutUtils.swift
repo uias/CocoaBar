@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView {
+internal extension UIView {
     
     internal func autoPinToEdges() -> [NSLayoutConstraint] {
         let views = self.setUpForAutoLayout()
@@ -72,7 +72,12 @@ extension UIView {
     
     internal func autoSetHeight(height: Float) -> NSLayoutConstraint {
         
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.superview, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: CGFloat(height))
+        let constraint = NSLayoutConstraint(item: self,
+                                            attribute: NSLayoutAttribute.Height,
+                                            relatedBy: NSLayoutRelation.Equal,
+                                            toItem: nil,
+                                            attribute: NSLayoutAttribute.NotAnAttribute,
+                                            multiplier: 1.0, constant: CGFloat(height))
         self.superview?.addConstraint(constraint)
         
         return constraint
