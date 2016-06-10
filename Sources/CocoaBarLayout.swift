@@ -60,7 +60,7 @@ public class CocoaBarLayout: UIView {
     private var customKeylineColor: UIColor?
     
     private var dropShadowContainer: UIView?
-    private var dropShadowView: UIView?
+    private var dropShadowView: DropShadowView?
     
     private var nibName: String {
         get {
