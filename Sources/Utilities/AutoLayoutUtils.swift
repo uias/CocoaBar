@@ -11,10 +11,14 @@ import UIKit
 internal extension UIView {
     
     internal func autoPinToEdges() -> [NSLayoutConstraint] {
+        return self.autoPinToEdges(UIEdgeInsetsZero)
+    }
+    
+    internal func autoPinToEdges(insets: UIEdgeInsets) -> [NSLayoutConstraint] {
         let views = self.setUpForAutoLayout()
         
-        let verticalConstraints = "V:|[view]|"
-        let horizontalConstraints = "H:|[view]|"
+        let verticalConstraints = String(format: "V:|-(%f)-[view]-(%f)-|", insets.top, insets.bottom)
+        let horizontalConstraints = String(format: "H:|-(%f)-[view]-(%f)-|", insets.left, insets.right)
         
         var constraints = [NSLayoutConstraint]()
         constraints.appendContentsOf(NSLayoutConstraint.constraintsWithVisualFormat(horizontalConstraints,

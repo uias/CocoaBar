@@ -387,6 +387,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                                                options: UIViewAnimationOptions.CurveEaseOut,
                                                animations:
                         {
+                            self.layout.updateLayoutForShowing()
                             self.layoutIfNeeded()
                         },
                                                completion:
@@ -411,6 +412,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 }
                 
                 self.bottomMarginConstraint?.constant = 0.0
+                self.layout.updateLayoutForShowing()
                 self.layoutIfNeeded()
                 self.isShowing = true
                 self.setUpDisplayTimer(duration)
@@ -444,6 +446,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                                                options: UIViewAnimationOptions.CurveEaseIn,
                                                animations:
                         {
+                            self.layout.updateLayoutForHiding()
                             self.layoutIfNeeded()
                         },
                                                completion:
@@ -467,6 +470,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 }
                 
                 self.bottomMarginConstraint?.constant = self.bounds.size.height
+                self.layout.updateLayoutForHiding()
                 self.layoutIfNeeded()
                 self.isShowing = false
                 
