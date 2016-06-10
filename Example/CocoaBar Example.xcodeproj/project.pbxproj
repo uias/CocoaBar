@@ -23,6 +23,7 @@
 		D612E4221D0B009800B13348 /* CocoaBarDefaultLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */; };
 		D612E4231D0B009800B13348 /* CocoaBarDefaultLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */; };
 		D612E4241D0B009800B13348 /* AutoLayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E41D1D0B009800B13348 /* AutoLayoutUtils.swift */; };
+		D612E4261D0B103A00B13348 /* DropShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E4251D0B103A00B13348 /* DropShadowView.swift */; };
 		D6EF29F11D06C6D900E9F3FE /* CustomCocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */; };
 		D6EF29F31D06C6E200E9F3FE /* CustomCocoaBarLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */; };
 		D6EF29F51D06C91E00E9F3FE /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */; };
@@ -47,6 +48,7 @@
 		D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarDefaultLayout.swift; sourceTree = "<group>"; };
 		D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarDefaultLayout.xib; sourceTree = "<group>"; };
 		D612E41D1D0B009800B13348 /* AutoLayoutUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutUtils.swift; sourceTree = "<group>"; };
+		D612E4251D0B103A00B13348 /* DropShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadowView.swift; sourceTree = "<group>"; };
 		D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCocoaBarLayout.swift; sourceTree = "<group>"; };
 		D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCocoaBarLayout.xib; sourceTree = "<group>"; };
 		D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				D612E41D1D0B009800B13348 /* AutoLayoutUtils.swift */,
+				D612E4251D0B103A00B13348 /* DropShadowView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				D612E41E1D0B009800B13348 /* CocoaBar.swift in Sources */,
 				46CC87371D0585650001CF71 /* ColorUtils.swift in Sources */,
 				D612E4201D0B009800B13348 /* CocoaBarActionLayout.swift in Sources */,
+				D612E4261D0B103A00B13348 /* DropShadowView.swift in Sources */,
 				D612E4241D0B009800B13348 /* AutoLayoutUtils.swift in Sources */,
 				4628CF3F1CF34BF200B4F4A8 /* ViewController.swift in Sources */,
 				D6EF29F11D06C6D900E9F3FE /* CustomCocoaBarLayout.swift in Sources */,
