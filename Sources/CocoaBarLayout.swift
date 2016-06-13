@@ -40,12 +40,12 @@ public class CocoaBarLayout: UIView {
     
     // MARK: Defaults
     
-    let CocoaBarLayoutDefaultKeylineColor: UIColor = UIColor.lightGrayColor()
-    let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
+    public let CocoaBarLayoutDefaultKeylineColor: UIColor = UIColor.lightGrayColor()
+    public let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
     
     // MARK: Constants
     
-    let CocoaBarDropShadowHeight: Float = 24.0
+    internal let CocoaBarLayoutDropShadowHeight: Float = 24.0
     
     // MARK: Variables
     
@@ -204,13 +204,13 @@ public class CocoaBarLayout: UIView {
         
         let dropShadowContainer = UIView()
         self.addSubview(dropShadowContainer)
-        dropShadowContainer.autoPinToEdges(UIEdgeInsets(top: -CGFloat(CocoaBarDropShadowHeight), left: 0.0, bottom: 0.0, right: 0.0))
+        dropShadowContainer.autoPinToEdges(UIEdgeInsets(top: -CGFloat(CocoaBarLayoutDropShadowHeight), left: 0.0, bottom: 0.0, right: 0.0))
         self.dropShadowContainer = dropShadowContainer
         
         let dropShadowView = DropShadowView()
         dropShadowContainer.addSubview(dropShadowView)
         dropShadowView.autoPinToSidesAndTop()
-        dropShadowView.autoSetHeight(CocoaBarDropShadowHeight)
+        dropShadowView.autoSetHeight(CocoaBarLayoutDropShadowHeight)
         dropShadowView.alpha = 0.0
         self.dropShadowView = dropShadowView
         

@@ -112,6 +112,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         case Action
     }
     
+    // MARK: Constants
+    
+    internal let CocoaBarWidthIpad: Float = 400.0
+    
     // MARK: Variables
     
     private var displayWindow: UIWindow?
@@ -119,6 +123,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
 
     private var bottomMarginConstraint: NSLayoutConstraint?
     private var heightConstraint: NSLayoutConstraint?
+    private var widthConstraint: NSLayoutConstraint?
     private var layoutContainer: UIView?
     
     private var customLayout: CocoaBarLayout?
@@ -278,7 +283,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             if let constraints = self.autoPinToBottomAndCenter() {
                 self.bottomMarginConstraint = constraints[0]
             }
-            self.autoSetWidth(400)
+            self.widthConstraint = self.autoSetWidth(CocoaBarWidthIpad)
         }
     }
     
