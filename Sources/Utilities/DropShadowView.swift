@@ -18,6 +18,12 @@ public class DropShadowView: UIView {
         }
     }
     
+    public var visibleOpacity: Float = 0.7 {
+        didSet {
+            self.updateShadow(self.showDropShadow)
+        }
+    }
+    
     // MARK: Init
     
     public override init(frame: CGRect) {
@@ -33,25 +39,19 @@ public class DropShadowView: UIView {
     private func baseInit() {
         
         self.layer.masksToBounds = false
+        
+        self.layer.shadowOffset = CGSizeMake(0, 0)
+        self.layer.shadowRadius = 8
     }
     
     // MARK: Private
     
     private func updateShadow(enabled: Bool) {
-        if enabled {
-            self.layer.shadowOffset = CGSizeMake(0, 0)
-            self.layer.shadowRadius = 4
-            self.layer.shadowOpacity = 0.6
-        } else {
-            self.layer.shadowOffset = CGSizeZero
-            self.layer.shadowRadius = 0.0
-            self.layer.shadowOpacity = 0.0
-        }
-        self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
+        self.layer.shadowOpacity = enabled ? self.visibleOpacity : 0.0
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        self.updateShadow(self.showDropShadow)
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
     }
 }

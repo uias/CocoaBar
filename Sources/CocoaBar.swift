@@ -394,6 +394,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     self.layout.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = -((self.layout.height != nil) ? CGFloat(self.layout.height!) : self.layout.bounds.size.height)
                     
+                    self.layout.showShadowAnimated(animated)
                     self.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = 0.0
                     self.isAnimating = true
@@ -427,6 +428,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 }
                 
                 self.bottomMarginConstraint?.constant = 0.0
+                self.layout.showShadowAnimated(animated)
                 self.layout.updateLayoutForShowing()
                 self.layoutIfNeeded()
                 self.isShowing = true
@@ -456,6 +458,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     
                     self.bottomMarginConstraint?.constant = -self.bounds.size.height
                     self.isAnimating = true
+                    
+                    self.layout.hideShadowAnimated(animated)
                     UIView.animateWithDuration(0.2,
                                                delay: 0.0,
                                                options: UIViewAnimationOptions.CurveEaseIn,
@@ -485,6 +489,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 }
                 
                 self.bottomMarginConstraint?.constant = self.bounds.size.height
+                self.layout.hideShadowAnimated(animated)
                 self.layout.updateLayoutForHiding()
                 self.layoutIfNeeded()
                 self.isShowing = false
@@ -744,6 +749,35 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     func cocoaBarLayoutActionButtonPressed(actionButton: UIButton?) {
         if let delegate = self.delegate {
             delegate.cocoaBar(self, actionButtonPressed: actionButton)
+        }
+    }
+}
+
+private extension CocoaBarLayout {
+    
+    private func showShadowAnimated(animated: Bool) {
+        if self.showDropShadow {
+            self.layer.shadowOpacity = self.visibleOpacity
+            if animated {
+                let animation = CABasicAnimation(keyPath: "shadowOpacity")
+                animation.duration = 0.2
+                animation.fromValue = 0.0
+                animation.toValue = self.visibleOpacity
+                self.layer.addAnimation(animation, forKey: "shadowOpacity")
+            }
+        }
+    }
+    
+    private func hideShadowAnimated(animated: Bool) {
+        if self.showDropShadow {
+            self.layer.shadowOpacity = 0.0
+            if animated {
+                let animation = CABasicAnimation(keyPath: "shadowOpacity")
+                animation.duration = 0.2
+                animation.fromValue = self.visibleOpacity
+                animation.toValue = 0.0
+                self.layer.addAnimation(animation, forKey: "shadowOpacity")
+            }
         }
     }
 }
