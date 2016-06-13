@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CocoaBarLayout: UIView {
+public class CocoaBarLayout: DropShadowView {
     
     /**
      BackgroundStyle dictates the appearance of the background view
@@ -43,10 +43,6 @@ public class CocoaBarLayout: UIView {
     public let CocoaBarLayoutDefaultKeylineColor: UIColor = UIColor.lightGrayColor()
     public let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
     
-    // MARK: Constants
-    
-    internal let CocoaBarLayoutDropShadowHeight: Float = 24.0
-    
     // MARK: Variables
     
     private var isShown: Bool = false
@@ -58,9 +54,6 @@ public class CocoaBarLayout: UIView {
     
     private var keylineView: UIView?
     private var customKeylineColor: UIColor?
-    
-    private var dropShadowContainer: UIView?
-    private var dropShadowView: DropShadowView?
     
     private var nibName: String {
         get {
@@ -151,15 +144,6 @@ public class CocoaBarLayout: UIView {
         }
     }
     
-    /**
-     Whether to display a drop shadow at the top of the layout.
-     */
-    public var showDropShadow: Bool = false {
-        didSet {
-            self.updateDropShadow(self.showDropShadow)
-        }
-    }
-    
     // MARK: Init
     
     /**
@@ -201,18 +185,6 @@ public class CocoaBarLayout: UIView {
     // MARK: Private
     
     private func setUpBackgroundView() {
-        
-        let dropShadowContainer = UIView()
-        self.addSubview(dropShadowContainer)
-        dropShadowContainer.autoPinToEdges(UIEdgeInsets(top: -CGFloat(CocoaBarLayoutDropShadowHeight), left: 0.0, bottom: 0.0, right: 0.0))
-        self.dropShadowContainer = dropShadowContainer
-        
-        let dropShadowView = DropShadowView()
-        dropShadowContainer.addSubview(dropShadowView)
-        dropShadowView.autoPinToSidesAndTop()
-        dropShadowView.autoSetHeight(CocoaBarLayoutDropShadowHeight)
-        dropShadowView.alpha = 0.0
-        self.dropShadowView = dropShadowView
         
         let backgroundContainer = UIView()
         self.addSubview(backgroundContainer)
@@ -296,14 +268,6 @@ public class CocoaBarLayout: UIView {
         }
     }
     
-    private func updateDropShadow(visible: Bool) {
-        if visible && self.isShown {
-            self.dropShadowView?.alpha = 1.0
-        } else {
-            self.dropShadowView?.alpha = 0.0
-        }
-    }
-    
     // MARK: Public
     
     /**
@@ -329,16 +293,10 @@ public class CocoaBarLayout: UIView {
     
     internal func updateLayoutForShowing() {
         self.isShown = true
-        if self.showDropShadow {
-            self.dropShadowView?.alpha = 1.0
-        }
     }
     
     internal func updateLayoutForHiding() {
         self.isShown = false
-        if self.showDropShadow {
-            self.dropShadowView?.alpha = 0.0
-        }
     }
     
     // MARK: Interaction

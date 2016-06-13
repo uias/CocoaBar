@@ -8,36 +8,50 @@
 
 import UIKit
 
-internal class DropShadowView: UIView {
+public class DropShadowView: UIView {
     
-    // MARK: Variables
+    // MARK: Properties
     
-    private var shadowLayer = CAGradientLayer()
+    public var showDropShadow: Bool = false {
+        didSet {
+            self.updateShadow(self.showDropShadow)
+        }
+    }
     
     // MARK: Init
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.baseInit()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.baseInit()
     }
     
     private func baseInit() {
         
-        shadowLayer.frame = self.bounds
-        shadowLayer.colors = [UIColor.clearColor().CGColor, UIColor.blackColor().colorWithAlphaComponent(0.2).CGColor]
-        self.layer.addSublayer(shadowLayer)
+        self.layer.masksToBounds = false
     }
     
-    // MARK: Lifecycle
+    // MARK: Private
     
-    override func layoutSubviews() {
+    private func updateShadow(enabled: Bool) {
+        if enabled {
+            self.layer.shadowOffset = CGSizeMake(0, 0)
+            self.layer.shadowRadius = 4
+            self.layer.shadowOpacity = 0.6
+        } else {
+            self.layer.shadowOffset = CGSizeZero
+            self.layer.shadowRadius = 0.0
+            self.layer.shadowOpacity = 0.0
+        }
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
+    }
+    
+    public override func layoutSubviews() {
         super.layoutSubviews()
-        
-        shadowLayer.frame = self.bounds
+        self.updateShadow(self.showDropShadow)
     }
 }
