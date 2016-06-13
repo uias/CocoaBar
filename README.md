@@ -4,7 +4,7 @@
 
 # CocoaBar
 [![Build Status](https://travis-ci.org/MerrickSapsford/CocoaBar.svg?branch=develop)](https://travis-ci.org/MerrickSapsford/CocoaBar)
-![](https://img.shields.io/cocoapods/v/CocoaBar.svg) 
+![](https://img.shields.io/cocoapods/v/CocoaBar.svg)
 ![](https://img.shields.io/badge/Swift-2.2-orange.svg)
 
 A flexible and simple to use SnackBar view for iOS.
@@ -22,7 +22,7 @@ CocoaBar can be attached to a view or window.
 	public init(window: UIWindow?)
 	public init(view: UIView?)
 
-The CocoaBar can then be shown or hidden using the `showAnimated` or `hideAnimated` functions. There are numerous convenience functions available for showing the CoocaBar to allow for easy customisation. They provide the following: 
+The CocoaBar can then be shown or hidden using the `showAnimated` or `hideAnimated` functions. There are numerous convenience functions available for showing the CocoaBar to allow for easy customisation. They provide the following:
 
 - **Duration** - either a `Double` or `DisplayDuration`; which provides a preset time period to display the bar for.
 - **Layout** - provide a custom `CocoaBarLayout` layout to display.
