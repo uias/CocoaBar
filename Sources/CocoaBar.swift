@@ -266,10 +266,20 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
     
     private func setUpConstraints() {
-        let constraints = self.autoPinToSidesAndBottom()
         self.heightConstraint = self.autoSetHeight(0.0)
         self.heightConstraint?.active = false
-        self.bottomMarginConstraint = constraints[2]
+        
+        if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone { // iPhone - fill screen
+            if let constraints = self.autoPinToSidesAndBottom() {
+                self.bottomMarginConstraint = constraints[2]
+            }
+        } else { // iPad - center on bottom
+            
+            if let constraints = self.autoPinToBottomAndCenter() {
+                self.bottomMarginConstraint = constraints[0]
+            }
+            self.autoSetWidth(400)
+        }
     }
     
     private func setUpComponents() {

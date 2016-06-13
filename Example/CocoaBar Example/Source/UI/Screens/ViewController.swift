@@ -86,6 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             barStyleCell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.15)
             selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
         } else {
+            barStyleCell.backgroundColor = UIColor.clearColor()
             selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         }
         
