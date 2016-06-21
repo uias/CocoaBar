@@ -14,7 +14,7 @@ private let CocoaBarAnimatedKey: String =       "animated"
 public typealias CocoaBarPopulationClosure = (layout: CocoaBarLayout) -> Void
 public typealias CocoaBarAnimationCompletionClosure = (animated: Bool, completed: Bool, visible: Bool) -> Void
 
-public protocol CocoaBarDelegate: Any {
+public protocol CocoaBarDelegate: class {
     
     /**
      The action button on the CocoaBar has been pressed.
@@ -168,7 +168,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     /**
      The object that acts as a delegate to the CocoaBar
      */
-    public var delegate: CocoaBarDelegate?
+    public weak var delegate: CocoaBarDelegate?
     
     /**
      The CocoaBar that is attached to the key window.
