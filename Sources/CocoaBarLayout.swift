@@ -73,7 +73,7 @@ public class CocoaBarLayout: DropShadowView {
      The object that acts as a delegate to the layout.
      This should always be the CocoaBar
     */
-    internal var delegate: CocoaBarLayoutDelegate?
+    internal weak var delegate: CocoaBarLayoutDelegate?
     
     /**
      The dismiss button on the layout
@@ -314,7 +314,7 @@ public class CocoaBarLayout: DropShadowView {
     }
 }
 
-internal protocol CocoaBarLayoutDelegate: Any {
+internal protocol CocoaBarLayoutDelegate: class {
     
     /**
      The dismiss button has been pressed on the layout.
