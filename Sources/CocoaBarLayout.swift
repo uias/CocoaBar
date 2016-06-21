@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ The layout view that is displayed within the CocoaBar. 
+ Available to subclass to create custom layouts.
+ */
 public class CocoaBarLayout: DropShadowView {
     
     /**
@@ -40,7 +44,13 @@ public class CocoaBarLayout: DropShadowView {
     
     // MARK: Defaults
     
+    /**
+     Default key line color when using light background style (lightGray)
+     */
     public let CocoaBarLayoutDefaultKeylineColor: UIColor = UIColor.lightGrayColor()
+    /**
+     Default key line color when using dark background style (black with 0.3 alpha)
+     */
     public let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
     
     // MARK: Variables
