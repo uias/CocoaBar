@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ A view that provides a drop shadow around its perimeter.
+ */
 public class DropShadowView: UIView {
     
     // MARK: Properties

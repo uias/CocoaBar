@@ -14,6 +14,9 @@ private let CocoaBarAnimatedKey: String =       "animated"
 public typealias CocoaBarPopulationClosure = (layout: CocoaBarLayout) -> Void
 public typealias CocoaBarAnimationCompletionClosure = (animated: Bool, completed: Bool, visible: Bool) -> Void
 
+/**
+ The delegate for CocoaBar updates and action responses.
+ */
 public protocol CocoaBarDelegate: class {
     
     /**
@@ -58,6 +61,10 @@ public protocol CocoaBarDelegate: class {
     func cocoaBar(cocoaBar: CocoaBar, didHideAnimated animated: Bool)
 }
 
+/**
+ CocoaBar is a view that appears from the bottom of a window or view, to display some
+ contextually important information in an inobtrusive manner.
+ */
 public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     /**
@@ -611,7 +618,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                             completion: completion)
     }
     
-    // MARK: Class
+    // MARK: KeyCocoaBar
     
     /**
      Shows the keyCocoaBar if it exists. The keyCocoaBar is the CocoaBar attached to the keyWindow.
