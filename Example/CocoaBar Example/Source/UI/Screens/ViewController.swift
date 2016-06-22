@@ -177,6 +177,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         if let actionLayout = layout as? CocoaBarActionLayout {
             actionLayout.titleLabel?.text = "This is the action layout"
+            actionLayout.startLoading()
         }
     }
 }

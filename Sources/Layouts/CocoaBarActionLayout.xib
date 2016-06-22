@@ -5,9 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CocoaBarActionLayout" customModule="CocoaBar_Example" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CocoaBarActionLayout" customModule="Example" customModuleProvider="target">
             <connections>
                 <outlet property="actionButton" destination="zRv-82-Ep3" id="SqR-Zz-04H"/>
+                <outlet property="activityIndicator" destination="Bgd-cg-y8v" id="ViI-hL-occ"/>
                 <outlet property="titleLabel" destination="PuX-Kb-5wR" id="kXw-b7-IW8"/>
             </connections>
         </placeholder>
@@ -27,12 +28,17 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="Action"/>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Bgd-cg-y8v">
+                    <rect key="frame" x="349" y="21" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Bgd-cg-y8v" firstAttribute="centerY" secondItem="zRv-82-Ep3" secondAttribute="centerY" id="09F-n6-LP3"/>
                 <constraint firstAttribute="trailing" secondItem="zRv-82-Ep3" secondAttribute="trailing" constant="16" id="JA0-6J-OSc"/>
                 <constraint firstItem="zRv-82-Ep3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Zeb-Qt-b2E"/>
                 <constraint firstItem="PuX-Kb-5wR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="aZU-EK-pKV"/>
+                <constraint firstItem="Bgd-cg-y8v" firstAttribute="centerX" secondItem="zRv-82-Ep3" secondAttribute="centerX" id="b5R-6W-4id"/>
                 <constraint firstItem="zRv-82-Ep3" firstAttribute="leading" secondItem="PuX-Kb-5wR" secondAttribute="trailing" constant="16" id="fbY-SB-554"/>
                 <constraint firstItem="PuX-Kb-5wR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="rRX-M8-N8u"/>
                 <constraint firstAttribute="bottom" secondItem="PuX-Kb-5wR" secondAttribute="bottom" constant="20" id="uhw-u5-PAu"/>
