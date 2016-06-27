@@ -36,12 +36,18 @@ public class CocoaBarActionLayout: CocoaBarLayout {
 
     // MARK: Public
     
+    /**
+     Display an activity indicator in place of the action button.
+     */
     public func startLoading() {
         self.activityIndicator?.startAnimating()
         self.activityIndicator?.hidden = false
         self.actionButton?.hidden = true
     }
     
+    /**
+     Hide the activity indicator.
+     */
     public func stopLoading() {
         self.activityIndicator?.stopAnimating()
         self.activityIndicator?.hidden = true
