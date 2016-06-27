@@ -8,19 +8,49 @@
 
 import UIKit
 
-class CocoaBarActionLayout: CocoaBarLayout {
+public class CocoaBarActionLayout: CocoaBarLayout {
     
     @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
     
-    override func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
+    // MARK: Lifecycle
+    
+    override public func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
         switch newStyle {
         case .BlurDark:
             self.titleLabel?.textColor = UIColor.whiteColor()
-            self.dismissButton?.setTitleColor(UIColor.lightTextColor(), forState: UIControlState.Normal)
+            self.actionButton?.setTitleColor(UIColor.lightTextColor(), forState: UIControlState.Normal)
+            self.activityIndicator?.color = UIColor.whiteColor()
         default:
             self.titleLabel?.textColor = UIColor.blackColor()
-            self.dismissButton?.setTitleColor(self.tintColor, forState: UIControlState.Normal)
+            self.actionButton?.setTitleColor(self.tintColor, forState: UIControlState.Normal)
+            self.activityIndicator?.color = UIColor.darkGrayColor()
         }
     }
     
+    public override func prepareLayoutForShowing() {
+        super.prepareLayoutForShowing()
+        
+        self.stopLoading() // stop loading
+    }
+
+    // MARK: Public
+    
+    /**
+     Display an activity indicator in place of the action button.
+     */
+    public func startLoading() {
+        self.activityIndicator?.startAnimating()
+        self.activityIndicator?.hidden = false
+        self.actionButton?.hidden = true
+    }
+    
+    /**
+     Hide the activity indicator.
+     */
+    public func stopLoading() {
+        self.activityIndicator?.stopAnimating()
+        self.activityIndicator?.hidden = true
+        self.actionButton?.hidden = false
+    }
 }
