@@ -177,6 +177,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private func populateLayout(style: BarStyle, layout: CocoaBarLayout) {
         layout.backgroundStyle = style.backgroundStyle
+        layout.displayStyle = CocoaBarLayout.DisplayStyle.RoundRectangle
         
         if let defaultLayout = layout as? CocoaBarDefaultLayout {
             defaultLayout.titleLabel?.text = "This is the default layout"
