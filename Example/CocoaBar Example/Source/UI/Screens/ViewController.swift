@@ -28,26 +28,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.styles.append(BarStyle(title: "Default - Light",
             description: "Default text-only layout with light blur background",
             backgroundStyle: .BlurLight,
+            displayStyle: .Standard,
             barStyle: .Default,
             duration: .Long))
         self.styles.append(BarStyle(title: "Default - Dark",
             description: "Default text-only layout with dark blur background",
             backgroundStyle: .BlurDark,
+            displayStyle: .Standard,
             barStyle: .Default,
             duration: .Long))
         self.styles.append(BarStyle(title: "Action - Light",
             description: "Action layout with light blur background",
             backgroundStyle: .BlurLight,
+            displayStyle: .Standard,
             barStyle: .Action,
             duration: .Indeterminate))
-        self.styles.append(BarStyle(title: "Action - Dark",
-            description: "Action layout with dark blur background",
+        self.styles.append(BarStyle(title: "Action - Round Rect Dark",
+            description: "Action layout with dark blur background and rounded rectangular display",
             backgroundStyle: .BlurDark,
+            displayStyle: .RoundRectangle,
             barStyle: .Action,
             duration: .Indeterminate))
         self.styles.append(BarStyle(title: "Custom Layout",
             description: "Custom CocoaBarLayout",
             backgroundStyle: .BlurLight,
+            displayStyle: .Standard,
             layout: CustomCocoaBarLayout(),
             duration: .Long))
         
@@ -177,7 +182,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private func populateLayout(style: BarStyle, layout: CocoaBarLayout) {
         layout.backgroundStyle = style.backgroundStyle
-        layout.displayStyle = CocoaBarLayout.DisplayStyle.RoundRectangle
+        layout.displayStyle = style.displayStyle
         
         if let defaultLayout = layout as? CocoaBarDefaultLayout {
             defaultLayout.titleLabel?.text = "This is the default layout"
