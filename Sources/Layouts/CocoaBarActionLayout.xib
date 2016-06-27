@@ -28,7 +28,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="Action"/>
                 </button>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Bgd-cg-y8v">
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Bgd-cg-y8v">
                     <rect key="frame" x="349" y="21" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>

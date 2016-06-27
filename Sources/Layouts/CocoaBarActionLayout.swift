@@ -20,14 +20,20 @@ public class CocoaBarActionLayout: CocoaBarLayout {
         case .BlurDark:
             self.titleLabel?.textColor = UIColor.whiteColor()
             self.actionButton?.setTitleColor(UIColor.lightTextColor(), forState: UIControlState.Normal)
-            self.activityIndicator?.tintColor = UIColor.whiteColor()
+            self.activityIndicator?.color = UIColor.whiteColor()
         default:
             self.titleLabel?.textColor = UIColor.blackColor()
             self.actionButton?.setTitleColor(self.tintColor, forState: UIControlState.Normal)
-            self.activityIndicator?.tintColor = UIColor.darkGrayColor()
+            self.activityIndicator?.color = UIColor.darkGrayColor()
         }
     }
     
+    public override func prepareLayoutForShowing() {
+        super.prepareLayoutForShowing()
+        
+        self.stopLoading() // stop loading
+    }
+
     // MARK: Public
     
     public func startLoading() {

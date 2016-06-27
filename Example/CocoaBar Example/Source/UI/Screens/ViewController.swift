@@ -39,12 +39,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             description: "Action layout with extra light blur background",
             backgroundStyle: .BlurExtraLight,
             barStyle: .Action,
-            duration: .Long))
+            duration: .Indeterminate))
         self.styles.append(BarStyle(title: "Action - Dark",
             description: "Action layout with dark blur background",
             backgroundStyle: .BlurDark,
             barStyle: .Action,
-            duration: .Long))
+            duration: .Indeterminate))
         self.styles.append(BarStyle(title: "Custom Layout",
             description: "Custom CocoaBarLayout",
             backgroundStyle: .BlurExtraLight,
@@ -152,7 +152,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func cocoaBar(cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?) {
         // Do an action
-        cocoaBar.hideAnimated(true, completion: nil)
+        if let actionLayout = cocoaBar.layout as? CocoaBarActionLayout { // action layout - show spinner
+            actionLayout.startLoading()
+            
+            delay(4.0, closure: { 
+                cocoaBar.hideAnimated(true, completion: nil)
+            })
+        }
     }
     
     // MARK: Private
@@ -177,8 +183,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         if let actionLayout = layout as? CocoaBarActionLayout {
             actionLayout.titleLabel?.text = "This is the action layout"
-            actionLayout.startLoading()
         }
+    }
+    
+    private func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
 }
 

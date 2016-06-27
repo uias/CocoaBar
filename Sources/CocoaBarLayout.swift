@@ -55,8 +55,6 @@ public class CocoaBarLayout: DropShadowView {
     
     // MARK: Variables
     
-    private var isShown: Bool = false
-    
     private var customNibName: String?
     private var nibView: UIView?
     
@@ -299,14 +297,34 @@ public class CocoaBarLayout: DropShadowView {
         
     }
     
-    // MARK: Internal
-    
-    internal func updateLayoutForShowing() {
-        self.isShown = true
+    /**
+     Prepare the layout prior to it being shown in the CocoaBar.
+     */
+    public func prepareLayoutForShowing() {
+        
     }
     
-    internal func updateLayoutForHiding() {
-        self.isShown = false
+    /**
+     Prepare the layout prior to it being hidden in the CocoaBar.
+     */
+    public func prepareLayoutForHiding() {
+        
+    }
+    
+    // MARK: Internal
+    
+    /**
+     Internally prepare the layout for showing.
+     */
+    internal func prepareForShow() {
+        self.prepareLayoutForShowing()
+    }
+    
+    /**
+     Internally prepare the layout for hiding.
+     */
+    internal func prepareForHide() {
+        self.prepareLayoutForHiding()
     }
     
     // MARK: Interaction
