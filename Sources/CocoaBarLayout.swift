@@ -42,6 +42,11 @@ public class CocoaBarLayout: DropShadowView {
         case Custom
     }
     
+    public enum DisplayStyle {
+        case Standard
+        case RoundRectangle
+    }
+    
     // MARK: Defaults
     
     /**
@@ -149,6 +154,17 @@ public class CocoaBarLayout: DropShadowView {
         set (newColor) {
             customKeylineColor = newColor
             self.keylineView?.backgroundColor = newColor
+        }
+    }
+    
+    /**
+     The display style to use for the layout. Defaults to Standard.
+     */
+    public var displayStyle: DisplayStyle = DisplayStyle.Standard {
+        willSet (newDisplayStyle) {
+            if newDisplayStyle != self.displayStyle {
+                self.updateDisplayStyle(newDisplayStyle)
+            }
         }
     }
     
@@ -273,6 +289,17 @@ public class CocoaBarLayout: DropShadowView {
             
             self.keylineView?.backgroundColor = self.keylineColor
             self.updateLayoutForBackgroundStyle(newStyle, backgroundView: self.backgroundView)
+        }
+    }
+    
+    private func updateDisplayStyle(displayStyle: DisplayStyle) {
+        
+        switch displayStyle {
+        case .RoundRectangle:
+            return
+            
+        default:
+            return
         }
     }
     
