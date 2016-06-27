@@ -26,10 +26,6 @@ public class CocoaBarLayout: DropShadowView {
         /**
          BlurExtraLight displays a blur view with UIBlurEffectStyle.ExtraLight
          */
-        case BlurExtraLight
-        /**
-         BlurLight displays a blur view with UIBlurEffectStyle.Light
-         */
         case BlurLight
         /**
          BlurDark displays a blur view with UIBlurEffectStyle.Dark
@@ -138,7 +134,7 @@ public class CocoaBarLayout: DropShadowView {
     /**
      The background style to use for the layout. Defaults to BlurExtraLight.
      */
-    public var backgroundStyle: BackgroundStyle = .BlurExtraLight {
+    public var backgroundStyle: BackgroundStyle = .BlurLight {
         didSet {
             self.updateBackgroundStyle(self.backgroundStyle)
         }
@@ -288,14 +284,13 @@ public class CocoaBarLayout: DropShadowView {
             
             switch newStyle {
                 
-            case .BlurExtraLight, .BlurLight, .BlurDark:
+            case .BlurLight, .BlurDark:
                 self.backgroundColor = UIColor.clearColor()
                 
                 var style: UIBlurEffectStyle
                 switch newStyle {
-                case .BlurExtraLight: style = UIBlurEffectStyle.ExtraLight
                 case .BlurDark: style = UIBlurEffectStyle.Dark
-                default: style = UIBlurEffectStyle.Light
+                default: style = UIBlurEffectStyle.ExtraLight
                 }
                 
                 // add blur view
