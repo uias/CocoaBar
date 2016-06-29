@@ -8,16 +8,25 @@
 
 import UIKit
 
+/**
+ A view that provides a drop shadow around its perimeter.
+ */
 public class DropShadowView: UIView {
     
     // MARK: Properties
     
+    /**
+     Whether to show the drop shadow (Default: false)
+    */
     public var showDropShadow: Bool = false {
         didSet {
             self.updateShadow(self.showDropShadow)
         }
     }
     
+    /**
+     The opacity of the drop shadow (Default 0.7)
+     */
     public var visibleOpacity: Float = 0.7 {
         didSet {
             self.updateShadow(self.showDropShadow)

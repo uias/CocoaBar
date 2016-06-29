@@ -14,7 +14,10 @@ private let CocoaBarAnimatedKey: String =       "animated"
 public typealias CocoaBarPopulationClosure = (layout: CocoaBarLayout) -> Void
 public typealias CocoaBarAnimationCompletionClosure = (animated: Bool, completed: Bool, visible: Bool) -> Void
 
-public protocol CocoaBarDelegate: Any {
+/**
+ The delegate for CocoaBar updates and action responses.
+ */
+public protocol CocoaBarDelegate: class {
     
     /**
      The action button on the CocoaBar has been pressed.
@@ -58,6 +61,10 @@ public protocol CocoaBarDelegate: Any {
     func cocoaBar(cocoaBar: CocoaBar, didHideAnimated animated: Bool)
 }
 
+/**
+ CocoaBar is a view that appears from the bottom of a window or view, to display some
+ contextually important information in an inobtrusive manner.
+ */
 public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     /**
@@ -168,7 +175,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     /**
      The object that acts as a delegate to the CocoaBar
      */
-    public var delegate: CocoaBarDelegate?
+    public weak var delegate: CocoaBarDelegate?
     
     /**
      The CocoaBar that is attached to the key window.
@@ -394,6 +401,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     self.layout.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = -((self.layout.height != nil) ? CGFloat(self.layout.height!) : self.layout.bounds.size.height)
                     
+                    self.layout.prepareForShow()
                     self.layout.showShadowAnimated(animated)
                     self.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = 0.0
@@ -403,7 +411,6 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                                                options: UIViewAnimationOptions.CurveEaseOut,
                                                animations:
                         {
-                            self.layout.updateLayoutForShowing()
                             self.layoutIfNeeded()
                         },
                                                completion:
@@ -428,8 +435,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 }
                 
                 self.bottomMarginConstraint?.constant = 0.0
+                self.layout.prepareForShow()
                 self.layout.showShadowAnimated(animated)
-                self.layout.updateLayoutForShowing()
                 self.layoutIfNeeded()
                 self.isShowing = true
                 self.setUpDisplayTimer(duration)
@@ -459,13 +466,13 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     self.bottomMarginConstraint?.constant = -self.bounds.size.height
                     self.isAnimating = true
                     
+                    self.layout.prepareForHide()
                     self.layout.hideShadowAnimated(animated)
                     UIView.animateWithDuration(0.2,
                                                delay: 0.0,
                                                options: UIViewAnimationOptions.CurveEaseIn,
                                                animations:
                         {
-                            self.layout.updateLayoutForHiding()
                             self.layoutIfNeeded()
                         },
                                                completion:
@@ -489,8 +496,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 }
                 
                 self.bottomMarginConstraint?.constant = self.bounds.size.height
+                self.layout.prepareForHide()
                 self.layout.hideShadowAnimated(animated)
-                self.layout.updateLayoutForHiding()
                 self.layoutIfNeeded()
                 self.isShowing = false
                 
@@ -611,7 +618,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                             completion: completion)
     }
     
-    // MARK: Class
+    // MARK: KeyCocoaBar
     
     /**
      Shows the keyCocoaBar if it exists. The keyCocoaBar is the CocoaBar attached to the keyWindow.

@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ The layout view that is displayed within the CocoaBar. 
+ Available to subclass to create custom layouts.
+ */
 public class CocoaBarLayout: DropShadowView {
     
     /**
@@ -22,10 +26,6 @@ public class CocoaBarLayout: DropShadowView {
         /**
          BlurExtraLight displays a blur view with UIBlurEffectStyle.ExtraLight
          */
-        case BlurExtraLight
-        /**
-         BlurLight displays a blur view with UIBlurEffectStyle.Light
-         */
         case BlurLight
         /**
          BlurDark displays a blur view with UIBlurEffectStyle.Dark
@@ -38,15 +38,45 @@ public class CocoaBarLayout: DropShadowView {
         case Custom
     }
     
+    public enum DisplayStyle {
+        /**
+         Standard rectangular display. Full width of screen on iPhone.
+         */
+        case Standard
+        /**
+         Rounded Rectangle display.
+         */
+        case RoundRectangle
+    }
+    
     // MARK: Defaults
     
-    public let CocoaBarLayoutDefaultKeylineColor: UIColor = UIColor.lightGrayColor()
-    public let CocoaBarLayoutDefaultKeylineColorDark: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
+    public struct Colors {
+        /**
+         Default key line color when using light background style (lightGray)
+         */
+        public static let KeylineColor: UIColor = UIColor.lightGrayColor()
+        /**
+         Default key line color when using dark background style (black with 0.3 alpha)
+         */
+        public static let KeylineColorDark: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
+    }
+    
+    internal struct Dimensions {
+        
+        struct RoundRectangle {
+            static let CornerRadius: CGFloat = 10.0
+            static let ExternalPadding: CGFloat = 6.0
+        }
+    }
     
     // MARK: Variables
     
-    private var isShown: Bool = false
-    
+    private var contentView: UIView?
+    private var contentViewLeftMargin: NSLayoutConstraint?
+    private var contentViewRightMargin: NSLayoutConstraint?
+    private var contentViewBottomMargin: NSLayoutConstraint?
+
     private var customNibName: String?
     private var nibView: UIView?
     
@@ -73,7 +103,7 @@ public class CocoaBarLayout: DropShadowView {
      The object that acts as a delegate to the layout.
      This should always be the CocoaBar
     */
-    internal var delegate: CocoaBarLayoutDelegate?
+    internal weak var delegate: CocoaBarLayoutDelegate?
     
     /**
      The dismiss button on the layout
@@ -104,7 +134,7 @@ public class CocoaBarLayout: DropShadowView {
     /**
      The background style to use for the layout. Defaults to BlurExtraLight.
      */
-    public var backgroundStyle: BackgroundStyle = .BlurExtraLight {
+    public var backgroundStyle: BackgroundStyle = .BlurLight {
         didSet {
             self.updateBackgroundStyle(self.backgroundStyle)
         }
@@ -130,9 +160,9 @@ public class CocoaBarLayout: DropShadowView {
             guard let keylineColor = customKeylineColor else {
                 switch self.backgroundStyle {
                 case .BlurDark:
-                    return CocoaBarLayoutDefaultKeylineColorDark
+                    return Colors.KeylineColorDark
                 default:
-                    return CocoaBarLayoutDefaultKeylineColor
+                    return Colors.KeylineColor
 
                 }
             }
@@ -141,6 +171,17 @@ public class CocoaBarLayout: DropShadowView {
         set (newColor) {
             customKeylineColor = newColor
             self.keylineView?.backgroundColor = newColor
+        }
+    }
+    
+    /**
+     The display style to use for the layout. Defaults to Standard.
+     */
+    public var displayStyle: DisplayStyle = DisplayStyle.Standard {
+        willSet (newDisplayStyle) {
+            if newDisplayStyle != self.displayStyle {
+                self.updateDisplayStyle(newDisplayStyle)
+            }
         }
     }
     
@@ -186,13 +227,22 @@ public class CocoaBarLayout: DropShadowView {
     
     private func setUpBackgroundView() {
         
+        let contentView = UIView()
+        self.addSubview(contentView)
+        let constraints = contentView.autoPinToEdges()
+        contentView.clipsToBounds = true
+        self.contentView = contentView
+        self.contentViewLeftMargin = constraints?.first
+        self.contentViewRightMargin = constraints?[1]
+        self.contentViewBottomMargin = constraints?[3]
+        
         let backgroundContainer = UIView()
-        self.addSubview(backgroundContainer)
+        contentView.addSubview(backgroundContainer)
         backgroundContainer.autoPinToEdges()
         self.backgroundContainer = backgroundContainer
         
         let keylineView = UIView()
-        self.addSubview(keylineView)
+        contentView.addSubview(keylineView)
         keylineView.autoPinToSidesAndTop()
         keylineView.autoSetHeight(1.0)
         self.keylineView = keylineView
@@ -208,7 +258,7 @@ public class CocoaBarLayout: DropShadowView {
             let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
             self.nibView = view
             
-            self.addSubview(view)
+            self.contentView?.addSubview(view)
             view.autoPinToEdges()
             
             // view is transparent
@@ -234,14 +284,13 @@ public class CocoaBarLayout: DropShadowView {
             
             switch newStyle {
                 
-            case .BlurExtraLight, .BlurLight, .BlurDark:
+            case .BlurLight, .BlurDark:
                 self.backgroundColor = UIColor.clearColor()
                 
                 var style: UIBlurEffectStyle
                 switch newStyle {
-                case .BlurExtraLight: style = UIBlurEffectStyle.ExtraLight
                 case .BlurDark: style = UIBlurEffectStyle.Dark
-                default: style = UIBlurEffectStyle.Light
+                default: style = UIBlurEffectStyle.ExtraLight
                 }
                 
                 // add blur view
@@ -268,6 +317,25 @@ public class CocoaBarLayout: DropShadowView {
         }
     }
     
+    private func updateDisplayStyle(displayStyle: DisplayStyle) {
+        
+        switch displayStyle {
+        case .RoundRectangle:
+            self.contentView?.layer.cornerRadius = Dimensions.RoundRectangle.CornerRadius
+            self.keylineView?.hidden = true
+            self.contentViewLeftMargin?.constant = Dimensions.RoundRectangle.ExternalPadding
+            self.contentViewRightMargin?.constant = Dimensions.RoundRectangle.ExternalPadding
+            self.contentViewBottomMargin?.constant = Dimensions.RoundRectangle.ExternalPadding
+            
+        default:
+            self.contentView?.layer.cornerRadius = 0.0
+            self.keylineView?.hidden = false
+            self.contentViewLeftMargin?.constant = 0.0
+            self.contentViewRightMargin?.constant = 0.0
+            self.contentViewBottomMargin?.constant = 0.0
+        }
+    }
+    
     // MARK: Public
     
     /**
@@ -289,14 +357,34 @@ public class CocoaBarLayout: DropShadowView {
         
     }
     
-    // MARK: Internal
-    
-    internal func updateLayoutForShowing() {
-        self.isShown = true
+    /**
+     Prepare the layout prior to it being shown in the CocoaBar.
+     */
+    public func prepareLayoutForShowing() {
+        
     }
     
-    internal func updateLayoutForHiding() {
-        self.isShown = false
+    /**
+     Prepare the layout prior to it being hidden in the CocoaBar.
+     */
+    public func prepareLayoutForHiding() {
+        
+    }
+    
+    // MARK: Internal
+    
+    /**
+     Internally prepare the layout for showing.
+     */
+    internal func prepareForShow() {
+        self.prepareLayoutForShowing()
+    }
+    
+    /**
+     Internally prepare the layout for hiding.
+     */
+    internal func prepareForHide() {
+        self.prepareLayoutForHiding()
     }
     
     // MARK: Interaction
@@ -314,7 +402,7 @@ public class CocoaBarLayout: DropShadowView {
     }
 }
 
-internal protocol CocoaBarLayoutDelegate: Any {
+internal protocol CocoaBarLayoutDelegate: class {
     
     /**
      The dismiss button has been pressed on the layout.

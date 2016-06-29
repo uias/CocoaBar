@@ -38,9 +38,10 @@ Custom layouts can be displayed in a CocoaBar with the use of a `CocoaBarLayout`
 The following properties are available to customise on a CocoaBarLayout:
 
 - **backgroundStyle** - customise the appearance of the layout background.
+- **displayStyle** - customise the display appearance of the layout.
 - **keylineColor** - the colour of the 1pt keyline at the top of the layout.
 - **dismissButton** - attach to a button that serves purely for dismissal of the CocoaBar.
-- **actionButton** - attach to a button that serves as an action button for the layout. Interaction will result in the `cocoaBar(cocoaBar: actionButtonPressed actionButton:)` `CocoaBarDelegate` method being called.
+- **actionButton** - attach to a button that serves as an action button for the layout. Interaction will result in the `cocoaBar(cocoaBar: actionButtonPressed actionButton:)` being called for the `CocoaBarDelegate`.
 
 ## Requirements
 Supports iOS 8 and above.
