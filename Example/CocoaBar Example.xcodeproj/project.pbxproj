@@ -16,18 +16,40 @@
 		46CC87371D0585650001CF71 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CC87361D0585650001CF71 /* ColorUtils.swift */; };
 		46CC873A1D058A050001CF71 /* BarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CC87391D058A050001CF71 /* BarStyle.swift */; };
 		46CC873C1D058B8B0001CF71 /* BarStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CC873B1D058B8B0001CF71 /* BarStyleCell.swift */; };
-		D612E41E1D0B009800B13348 /* CocoaBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E4151D0B009800B13348 /* CocoaBar.swift */; };
-		D612E41F1D0B009800B13348 /* CocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E4161D0B009800B13348 /* CocoaBarLayout.swift */; };
-		D612E4201D0B009800B13348 /* CocoaBarActionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */; };
-		D612E4211D0B009800B13348 /* CocoaBarActionLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */; };
-		D612E4221D0B009800B13348 /* CocoaBarDefaultLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */; };
-		D612E4231D0B009800B13348 /* CocoaBarDefaultLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */; };
-		D612E4241D0B009800B13348 /* AutoLayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E41D1D0B009800B13348 /* AutoLayoutUtils.swift */; };
-		D612E4261D0B103A00B13348 /* DropShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D612E4251D0B103A00B13348 /* DropShadowView.swift */; };
+		D63884A91D240546008DFC9E /* CocoaBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884A81D240546008DFC9E /* CocoaBarTests.swift */; };
+		D63884B11D240620008DFC9E /* CocoaBarLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884B01D240620008DFC9E /* CocoaBarLayoutTests.swift */; };
+		D63884BD1D2406A8008DFC9E /* CocoaBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884B31D2406A8008DFC9E /* CocoaBar.swift */; };
+		D63884BE1D2406A8008DFC9E /* CocoaBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884B31D2406A8008DFC9E /* CocoaBar.swift */; };
+		D63884BF1D2406A8008DFC9E /* CocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884B41D2406A8008DFC9E /* CocoaBarLayout.swift */; };
+		D63884C01D2406A8008DFC9E /* CocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884B41D2406A8008DFC9E /* CocoaBarLayout.swift */; };
+		D63884C11D2406A8008DFC9E /* CocoaBarActionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884B61D2406A8008DFC9E /* CocoaBarActionLayout.swift */; };
+		D63884C21D2406A8008DFC9E /* CocoaBarActionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884B61D2406A8008DFC9E /* CocoaBarActionLayout.swift */; };
+		D63884C31D2406A8008DFC9E /* CocoaBarActionLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63884B71D2406A8008DFC9E /* CocoaBarActionLayout.xib */; };
+		D63884C41D2406A8008DFC9E /* CocoaBarActionLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63884B71D2406A8008DFC9E /* CocoaBarActionLayout.xib */; };
+		D63884C51D2406A8008DFC9E /* CocoaBarDefaultLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884B81D2406A8008DFC9E /* CocoaBarDefaultLayout.swift */; };
+		D63884C61D2406A8008DFC9E /* CocoaBarDefaultLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884B81D2406A8008DFC9E /* CocoaBarDefaultLayout.swift */; };
+		D63884C71D2406A8008DFC9E /* CocoaBarDefaultLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63884B91D2406A8008DFC9E /* CocoaBarDefaultLayout.xib */; };
+		D63884C81D2406A8008DFC9E /* CocoaBarDefaultLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63884B91D2406A8008DFC9E /* CocoaBarDefaultLayout.xib */; };
+		D63884C91D2406A8008DFC9E /* AutoLayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884BB1D2406A8008DFC9E /* AutoLayoutUtils.swift */; };
+		D63884CA1D2406A8008DFC9E /* AutoLayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884BB1D2406A8008DFC9E /* AutoLayoutUtils.swift */; };
+		D63884CB1D2406A8008DFC9E /* DropShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884BC1D2406A8008DFC9E /* DropShadowView.swift */; };
+		D63884CC1D2406A8008DFC9E /* DropShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884BC1D2406A8008DFC9E /* DropShadowView.swift */; };
+		D63884D11D241E71008DFC9E /* CustomCocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63884CF1D241E71008DFC9E /* CustomCocoaBarLayout.swift */; };
+		D63884D21D241E71008DFC9E /* CustomCocoaBarLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63884D01D241E71008DFC9E /* CustomCocoaBarLayout.xib */; };
 		D6EF29F11D06C6D900E9F3FE /* CustomCocoaBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */; };
 		D6EF29F31D06C6E200E9F3FE /* CustomCocoaBarLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */; };
 		D6EF29F51D06C91E00E9F3FE /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D63884AB1D240546008DFC9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4628CF141CF34B8F00B4F4A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4628CF1B1CF34B8F00B4F4A8;
+			remoteInfo = "CocoaBar Example";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4628CF1C1CF34B8F00B4F4A8 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,14 +63,20 @@
 		46CC87361D0585650001CF71 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		46CC87391D058A050001CF71 /* BarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarStyle.swift; sourceTree = "<group>"; };
 		46CC873B1D058B8B0001CF71 /* BarStyleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarStyleCell.swift; sourceTree = "<group>"; };
-		D612E4151D0B009800B13348 /* CocoaBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBar.swift; sourceTree = "<group>"; };
-		D612E4161D0B009800B13348 /* CocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarLayout.swift; sourceTree = "<group>"; };
-		D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarActionLayout.swift; sourceTree = "<group>"; };
-		D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarActionLayout.xib; sourceTree = "<group>"; };
-		D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarDefaultLayout.swift; sourceTree = "<group>"; };
-		D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarDefaultLayout.xib; sourceTree = "<group>"; };
-		D612E41D1D0B009800B13348 /* AutoLayoutUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutUtils.swift; sourceTree = "<group>"; };
-		D612E4251D0B103A00B13348 /* DropShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadowView.swift; sourceTree = "<group>"; };
+		D63884A61D240546008DFC9E /* CocoaBar Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CocoaBar Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D63884A81D240546008DFC9E /* CocoaBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoaBarTests.swift; sourceTree = "<group>"; };
+		D63884AA1D240546008DFC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D63884B01D240620008DFC9E /* CocoaBarLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarLayoutTests.swift; sourceTree = "<group>"; };
+		D63884B31D2406A8008DFC9E /* CocoaBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBar.swift; sourceTree = "<group>"; };
+		D63884B41D2406A8008DFC9E /* CocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarLayout.swift; sourceTree = "<group>"; };
+		D63884B61D2406A8008DFC9E /* CocoaBarActionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarActionLayout.swift; sourceTree = "<group>"; };
+		D63884B71D2406A8008DFC9E /* CocoaBarActionLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarActionLayout.xib; sourceTree = "<group>"; };
+		D63884B81D2406A8008DFC9E /* CocoaBarDefaultLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarDefaultLayout.swift; sourceTree = "<group>"; };
+		D63884B91D2406A8008DFC9E /* CocoaBarDefaultLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarDefaultLayout.xib; sourceTree = "<group>"; };
+		D63884BB1D2406A8008DFC9E /* AutoLayoutUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLayoutUtils.swift; sourceTree = "<group>"; };
+		D63884BC1D2406A8008DFC9E /* DropShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadowView.swift; sourceTree = "<group>"; };
+		D63884CF1D241E71008DFC9E /* CustomCocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCocoaBarLayout.swift; sourceTree = "<group>"; };
+		D63884D01D241E71008DFC9E /* CustomCocoaBarLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCocoaBarLayout.xib; sourceTree = "<group>"; };
 		D6EF29F01D06C6D900E9F3FE /* CustomCocoaBarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCocoaBarLayout.swift; sourceTree = "<group>"; };
 		D6EF29F21D06C6E200E9F3FE /* CustomCocoaBarLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCocoaBarLayout.xib; sourceTree = "<group>"; };
 		D6EF29F41D06C91E00E9F3FE /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
@@ -62,6 +90,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D63884A31D240546008DFC9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -69,7 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				4628CF1E1CF34B8F00B4F4A8 /* CocoaBar Example */,
-				D612E4141D0B009800B13348 /* CocoaBar */,
+				D63884A71D240546008DFC9E /* CocoaBar Tests */,
+				D63884B21D2406A8008DFC9E /* CocoaBar */,
 				4628CF1D1CF34B8F00B4F4A8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				4628CF1C1CF34B8F00B4F4A8 /* Example.app */,
+				D63884A61D240546008DFC9E /* CocoaBar Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,37 +194,66 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		D612E4141D0B009800B13348 /* CocoaBar */ = {
+		D63884A71D240546008DFC9E /* CocoaBar Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D612E4151D0B009800B13348 /* CocoaBar.swift */,
-				D612E4161D0B009800B13348 /* CocoaBarLayout.swift */,
-				D612E4171D0B009800B13348 /* Layouts */,
-				D612E41C1D0B009800B13348 /* Utilities */,
+				D63884A81D240546008DFC9E /* CocoaBarTests.swift */,
+				D63884B01D240620008DFC9E /* CocoaBarLayoutTests.swift */,
+				D63884CD1D241E5D008DFC9E /* Resources */,
+				D63884AA1D240546008DFC9E /* Info.plist */,
+			);
+			path = "CocoaBar Tests";
+			sourceTree = "<group>";
+		};
+		D63884B21D2406A8008DFC9E /* CocoaBar */ = {
+			isa = PBXGroup;
+			children = (
+				D63884B31D2406A8008DFC9E /* CocoaBar.swift */,
+				D63884B41D2406A8008DFC9E /* CocoaBarLayout.swift */,
+				D63884B51D2406A8008DFC9E /* Layouts */,
+				D63884BA1D2406A8008DFC9E /* Utilities */,
 			);
 			name = CocoaBar;
 			path = ../Sources;
 			sourceTree = "<group>";
 		};
-		D612E4171D0B009800B13348 /* Layouts */ = {
+		D63884B51D2406A8008DFC9E /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */,
-				D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */,
-				D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */,
-				D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */,
+				D63884B61D2406A8008DFC9E /* CocoaBarActionLayout.swift */,
+				D63884B71D2406A8008DFC9E /* CocoaBarActionLayout.xib */,
+				D63884B81D2406A8008DFC9E /* CocoaBarDefaultLayout.swift */,
+				D63884B91D2406A8008DFC9E /* CocoaBarDefaultLayout.xib */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
 		};
-		D612E41C1D0B009800B13348 /* Utilities */ = {
+		D63884BA1D2406A8008DFC9E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				D612E41D1D0B009800B13348 /* AutoLayoutUtils.swift */,
-				D612E4251D0B103A00B13348 /* DropShadowView.swift */,
+				D63884BB1D2406A8008DFC9E /* AutoLayoutUtils.swift */,
+				D63884BC1D2406A8008DFC9E /* DropShadowView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
+		};
+		D63884CD1D241E5D008DFC9E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D63884CE1D241E71008DFC9E /* CocoaBar Layouts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D63884CE1D241E71008DFC9E /* CocoaBar Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				D63884CF1D241E71008DFC9E /* CustomCocoaBarLayout.swift */,
+				D63884D01D241E71008DFC9E /* CustomCocoaBarLayout.xib */,
+			);
+			name = "CocoaBar Layouts";
+			path = "CocoaBar Example/Source/UI/CocoaBar Layouts";
+			sourceTree = SOURCE_ROOT;
 		};
 		D6EF29EF1D06C6CB00E9F3FE /* CocoaBar Layouts */ = {
 			isa = PBXGroup;
@@ -218,6 +284,24 @@
 			productReference = 4628CF1C1CF34B8F00B4F4A8 /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D63884A51D240546008DFC9E /* CocoaBar Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D63884AF1D240546008DFC9E /* Build configuration list for PBXNativeTarget "CocoaBar Tests" */;
+			buildPhases = (
+				D63884A21D240546008DFC9E /* Sources */,
+				D63884A31D240546008DFC9E /* Frameworks */,
+				D63884A41D240546008DFC9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D63884AC1D240546008DFC9E /* PBXTargetDependency */,
+			);
+			name = "CocoaBar Tests";
+			productName = "CocoaBar Tests";
+			productReference = D63884A61D240546008DFC9E /* CocoaBar Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -230,6 +314,10 @@
 				TargetAttributes = {
 					4628CF1B1CF34B8F00B4F4A8 = {
 						CreatedOnToolsVersion = 7.3.1;
+					};
+					D63884A51D240546008DFC9E = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 4628CF1B1CF34B8F00B4F4A8;
 					};
 				};
 			};
@@ -247,6 +335,7 @@
 			projectRoot = "";
 			targets = (
 				4628CF1B1CF34B8F00B4F4A8 /* CocoaBar Example */,
+				D63884A51D240546008DFC9E /* CocoaBar Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -257,11 +346,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6EF29F31D06C6E200E9F3FE /* CustomCocoaBarLayout.xib in Resources */,
-				D612E4231D0B009800B13348 /* CocoaBarDefaultLayout.xib in Resources */,
+				D63884C71D2406A8008DFC9E /* CocoaBarDefaultLayout.xib in Resources */,
 				4628CF3E1CF34BF200B4F4A8 /* Main.storyboard in Resources */,
-				D612E4211D0B009800B13348 /* CocoaBarActionLayout.xib in Resources */,
+				D63884C31D2406A8008DFC9E /* CocoaBarActionLayout.xib in Resources */,
 				4628CF3B1CF34BF200B4F4A8 /* Assets.xcassets in Resources */,
 				4628CF3C1CF34BF200B4F4A8 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D63884A41D240546008DFC9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D63884D21D241E71008DFC9E /* CustomCocoaBarLayout.xib in Resources */,
+				D63884C41D2406A8008DFC9E /* CocoaBarActionLayout.xib in Resources */,
+				D63884C81D2406A8008DFC9E /* CocoaBarDefaultLayout.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,11 +371,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D612E41E1D0B009800B13348 /* CocoaBar.swift in Sources */,
+				D63884BD1D2406A8008DFC9E /* CocoaBar.swift in Sources */,
 				46CC87371D0585650001CF71 /* ColorUtils.swift in Sources */,
-				D612E4201D0B009800B13348 /* CocoaBarActionLayout.swift in Sources */,
-				D612E4261D0B103A00B13348 /* DropShadowView.swift in Sources */,
-				D612E4241D0B009800B13348 /* AutoLayoutUtils.swift in Sources */,
+				D63884C11D2406A8008DFC9E /* CocoaBarActionLayout.swift in Sources */,
+				D63884CB1D2406A8008DFC9E /* DropShadowView.swift in Sources */,
+				D63884C91D2406A8008DFC9E /* AutoLayoutUtils.swift in Sources */,
 				4628CF3F1CF34BF200B4F4A8 /* ViewController.swift in Sources */,
 				D6EF29F11D06C6D900E9F3FE /* CustomCocoaBarLayout.swift in Sources */,
 				46CC873C1D058B8B0001CF71 /* BarStyleCell.swift in Sources */,
@@ -284,12 +383,36 @@
 				46CC873A1D058A050001CF71 /* BarStyle.swift in Sources */,
 				46CC87341D057DE70001CF71 /* GradientView.swift in Sources */,
 				D6EF29F51D06C91E00E9F3FE /* CircularImageView.swift in Sources */,
-				D612E41F1D0B009800B13348 /* CocoaBarLayout.swift in Sources */,
-				D612E4221D0B009800B13348 /* CocoaBarDefaultLayout.swift in Sources */,
+				D63884BF1D2406A8008DFC9E /* CocoaBarLayout.swift in Sources */,
+				D63884C51D2406A8008DFC9E /* CocoaBarDefaultLayout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D63884A21D240546008DFC9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D63884BE1D2406A8008DFC9E /* CocoaBar.swift in Sources */,
+				D63884A91D240546008DFC9E /* CocoaBarTests.swift in Sources */,
+				D63884CA1D2406A8008DFC9E /* AutoLayoutUtils.swift in Sources */,
+				D63884C21D2406A8008DFC9E /* CocoaBarActionLayout.swift in Sources */,
+				D63884D11D241E71008DFC9E /* CustomCocoaBarLayout.swift in Sources */,
+				D63884B11D240620008DFC9E /* CocoaBarLayoutTests.swift in Sources */,
+				D63884CC1D2406A8008DFC9E /* DropShadowView.swift in Sources */,
+				D63884C01D2406A8008DFC9E /* CocoaBarLayout.swift in Sources */,
+				D63884C61D2406A8008DFC9E /* CocoaBarDefaultLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D63884AC1D240546008DFC9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4628CF1B1CF34B8F00B4F4A8 /* CocoaBar Example */;
+			targetProxy = D63884AB1D240546008DFC9E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4628CF2C1CF34B8F00B4F4A8 /* Debug */ = {
@@ -399,6 +522,30 @@
 			};
 			name = Release;
 		};
+		D63884AD1D240546008DFC9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "CocoaBar Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.msapsford.CocoaBar-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
+			};
+			name = Debug;
+		};
+		D63884AE1D240546008DFC9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "CocoaBar Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.msapsford.CocoaBar-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -419,6 +566,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D63884AF1D240546008DFC9E /* Build configuration list for PBXNativeTarget "CocoaBar Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D63884AD1D240546008DFC9E /* Debug */,
+				D63884AE1D240546008DFC9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
