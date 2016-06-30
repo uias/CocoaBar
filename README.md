@@ -12,7 +12,7 @@ A flexible and simple to use SnackBar view for iOS.
 ## Installation
 CocoaBar is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
-    pod CocoaBar
+    pod 'CocoaBar'
 
 And run `pod install`.
 
