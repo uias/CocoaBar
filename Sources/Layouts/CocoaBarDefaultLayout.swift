@@ -8,11 +8,11 @@
 
 import UIKit
 
-class CocoaBarDefaultLayout: CocoaBarLayout {
+public class CocoaBarDefaultLayout: CocoaBarLayout {
     
-    @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet public weak var titleLabel: UILabel?
 
-    override func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
+    public override func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
         switch newStyle {
         case .BlurDark:
             self.titleLabel?.textColor = UIColor.whiteColor()

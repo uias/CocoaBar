@@ -108,7 +108,7 @@ public class CocoaBarLayout: DropShadowView {
     /**
      The dismiss button on the layout
      */
-    @IBOutlet weak var dismissButton: UIButton? {
+    @IBOutlet public weak var dismissButton: UIButton? {
         willSet {
             if let dismissButton = newValue {
                 dismissButton.addTarget(self,
@@ -121,7 +121,7 @@ public class CocoaBarLayout: DropShadowView {
     /**
      The action button on the layout
      */
-    @IBOutlet weak var actionButton: UIButton? {
+    @IBOutlet public weak var actionButton: UIButton? {
         willSet {
             if let actionButton = newValue {
                 actionButton.addTarget(self,
