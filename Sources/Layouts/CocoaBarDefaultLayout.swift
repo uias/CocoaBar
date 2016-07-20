@@ -8,11 +8,17 @@
 
 import UIKit
 
-class CocoaBarDefaultLayout: CocoaBarLayout {
+public class CocoaBarDefaultLayout: CocoaBarLayout {
     
-    @IBOutlet weak var titleLabel: UILabel?
+    // MARK: Properties
+    
+    @IBOutlet public weak var titleLabel: UILabel?
 
-    override func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle, backgroundView: UIView?) {
+    // MARK: Lifecycle
+    
+    public override func updateLayoutForBackgroundStyle(newStyle: BackgroundStyle,
+                                                        backgroundView: UIView?) {
+        
         switch newStyle {
         case .BlurDark:
             self.titleLabel?.textColor = UIColor.whiteColor()
@@ -21,5 +27,17 @@ class CocoaBarDefaultLayout: CocoaBarLayout {
             self.titleLabel?.textColor = UIColor.blackColor()
             self.dismissButton?.setTitleColor(self.tintColor, forState: UIControlState.Normal)
         }
+    }
+    
+    public override func prepareLayoutForShowing() {
+        super.prepareLayoutForShowing()
+        
+        // prepare the layout for being shown in a CocoaBar
+    }
+    
+    public override func prepareLayoutForHiding() {
+        super.prepareLayoutForHiding()
+        
+        // prepare the layout for being hidden from a CocoaBar
     }
 }

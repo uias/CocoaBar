@@ -10,8 +10,10 @@ import UIKit
 
 public class CocoaBarActionLayout: CocoaBarLayout {
     
-    @IBOutlet weak var titleLabel: UILabel?
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+    // MARK: Properties
+    
+    @IBOutlet public weak var titleLabel: UILabel?
+    @IBOutlet public weak var activityIndicator: UIActivityIndicatorView?
     
     // MARK: Lifecycle
     
