@@ -139,6 +139,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     private var isAnimating: Bool = false
     
     private var displayTimer: NSTimer?
+    private var currentDisplayDuration: Double = -1.0
     
     // MARK: Properties
     
@@ -331,18 +332,26 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    private func setUpDisplayTimer(duration: Double) {
-        if self.displayTimer == nil {
-            self.displayTimer = NSTimer.scheduledTimerWithTimeInterval(duration,
-                                                                       target: self,
-                                                                       selector: #selector(displayTimerElapsed),
-                                                                       userInfo: nil,
-                                                                       repeats: false)
+    private func setUpDisplayTimer(duration: Double, destroyCurrentTimer: Bool) {
+        if !self.isAnimating {
+            
+            if destroyCurrentTimer {
+                self.destroyDisplayTimer()
+            }
+            if self.displayTimer == nil {
+                self.currentDisplayDuration = duration
+                self.displayTimer = NSTimer.scheduledTimerWithTimeInterval(duration,
+                                                                           target: self,
+                                                                           selector: #selector(displayTimerElapsed),
+                                                                           userInfo: nil,
+                                                                           repeats: false)
+            }
         }
     }
     
     private func destroyDisplayTimer() {
         if let displayTimer = self.displayTimer {
+            self.currentDisplayDuration = -1.0
             displayTimer.invalidate()
             self.displayTimer = nil
         }
@@ -417,7 +426,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                         { (completed) in
                             self.isShowing = true
                             self.isAnimating = false
-                            self.setUpDisplayTimer(duration)
+                            self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
                             
                             if let delegate = self.delegate {
                                 delegate.cocoaBar(self, didShowAnimated: animated)
@@ -439,7 +448,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 self.layout.showShadowAnimated(animated)
                 self.layoutIfNeeded()
                 self.isShowing = true
-                self.setUpDisplayTimer(duration)
+                self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
                 
                 if let completion = completion {
                     completion(animated: animated, completed: true, visible: self.isShowing)
@@ -616,6 +625,35 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                              completion: CocoaBarAnimationCompletionClosure?) {
         self.doHideAnimated(animated,
                             completion: completion)
+    }
+    
+    /**
+     Reset the current display timer if it exists with the current display duration.
+     */
+    public func resetDisplayTimer() {
+        if self.currentDisplayDuration > 0.0 {
+            self.resetDisplayTimer(self.currentDisplayDuration)
+        }
+    }
+    
+    /**
+     Reset the current display timer if it exists.
+     
+     :param: duration       The display duration to reset the timer with.
+     */
+    public func resetDisplayTimer(duration: DisplayDuration) {
+        self.resetDisplayTimer(duration.value)
+    }
+    
+    /**
+     Reset the current display timer if it exists.
+     
+     :param: duration       The display duration to reset the timer with.
+     */
+    public func resetDisplayTimer(duration: Double) {
+        if self.displayTimer != nil {
+            self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
+        }
     }
     
     // MARK: KeyCocoaBar
