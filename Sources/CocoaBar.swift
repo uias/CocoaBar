@@ -11,8 +11,8 @@ import UIKit
 private let CocoaBarHideNotification: String =  "CocoaBarHideNotification"
 private let CocoaBarAnimatedKey: String =       "animated"
 
-public typealias CocoaBarPopulationClosure = (layout: CocoaBarLayout) -> Void
-public typealias CocoaBarAnimationCompletionClosure = (animated: Bool, completed: Bool, visible: Bool) -> Void
+public typealias CocoaBarPopulationClosure = (_ layout: CocoaBarLayout) -> Void
+public typealias CocoaBarAnimationCompletionClosure = (_ animated: Bool, _ completed: Bool, _ visible: Bool) -> Void
 
 /**
  The delegate for CocoaBar updates and action responses.
@@ -26,7 +26,7 @@ public protocol CocoaBarDelegate: class {
      :param: actionButton   The action button that was pressed.
      
      */
-    func cocoaBar(cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?)
+    func cocoaBar(_ cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?)
     /**
      The CocoaBar will show.
      
@@ -34,7 +34,7 @@ public protocol CocoaBarDelegate: class {
      :param: animated       Whether the show transition will be animated.
      
      */
-    func cocoaBar(cocoaBar: CocoaBar, willShowAnimated animated: Bool)
+    func cocoaBar(_ cocoaBar: CocoaBar, willShowAnimated animated: Bool)
     /**
      The CocoaBar has shown.
      
@@ -42,7 +42,7 @@ public protocol CocoaBarDelegate: class {
      :param: animated       Whether the show transition was animated.
      
      */
-    func cocoaBar(cocoaBar: CocoaBar, didShowAnimated animated: Bool)
+    func cocoaBar(_ cocoaBar: CocoaBar, didShowAnimated animated: Bool)
     /**
      The CocoaBar will hide.
      
@@ -50,7 +50,7 @@ public protocol CocoaBarDelegate: class {
      :param: animated       Whether the hide transition will be animated.
      
      */
-    func cocoaBar(cocoaBar: CocoaBar, willHideAnimated animated: Bool)
+    func cocoaBar(_ cocoaBar: CocoaBar, willHideAnimated animated: Bool)
     /**
      The CocoaBar has hidden.
      
@@ -58,14 +58,14 @@ public protocol CocoaBarDelegate: class {
      :param: animated       Whether the hide transition was animated.
      
      */
-    func cocoaBar(cocoaBar: CocoaBar, didHideAnimated animated: Bool)
+    func cocoaBar(_ cocoaBar: CocoaBar, didHideAnimated animated: Bool)
 }
 
 /**
  CocoaBar is a view that appears from the bottom of a window or view, to display some
  contextually important information in an inobtrusive manner.
  */
-public class CocoaBar: UIView, CocoaBarLayoutDelegate {
+open class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     /**
      The duration to display the CocoaBar for when shown.
@@ -75,27 +75,27 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         /**
          Display the bar for 2 seconds before auto-dismissal.
          */
-        case Short
+        case short
         /**
          Display the bar for 4 seconds before auto-dismissal.
          */
-        case Long
+        case long
         /**
          Display the bar for 8 seconds before auto-dismissal.
          */
-        case ExtraLong
+        case extraLong
         /**
          Display the bar indeterminately.
          */
-        case Indeterminate
+        case indeterminate
         
         var value: Double {
             switch self {
-            case .Short:
+            case .short:
                 return 2.0
-            case .Long:
+            case .long:
                 return 4.0
-            case .ExtraLong:
+            case .extraLong:
                 return 8.0
                 
             default:
@@ -112,11 +112,11 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         /**
          Default style - text label with no buttons.
          */
-        case Default
+        case `default`
         /**
          Action style - text label with right side action button.
         */
-        case Action
+        case action
     }
     
     // MARK: Constants
@@ -125,21 +125,21 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Variables
     
-    private var displayWindow: UIWindow?
-    private var displayView: UIView?
+    fileprivate var displayWindow: UIWindow?
+    fileprivate var displayView: UIView?
 
-    private var bottomMarginConstraint: NSLayoutConstraint?
-    private var heightConstraint: NSLayoutConstraint?
-    private var widthConstraint: NSLayoutConstraint?
-    private var layoutContainer: UIView?
+    fileprivate var bottomMarginConstraint: NSLayoutConstraint?
+    fileprivate var heightConstraint: NSLayoutConstraint?
+    fileprivate var widthConstraint: NSLayoutConstraint?
+    fileprivate var layoutContainer: UIView?
     
-    private var customLayout: CocoaBarLayout?
-    private var defaultLayout: CocoaBarLayout = CocoaBarDefaultLayout()
+    fileprivate var customLayout: CocoaBarLayout?
+    fileprivate var defaultLayout: CocoaBarLayout = CocoaBarDefaultLayout()
     
-    private var isAnimating: Bool = false
+    fileprivate var isAnimating: Bool = false
     
-    private var displayTimer: NSTimer?
-    private var currentDisplayDuration: Double = -1.0
+    fileprivate var displayTimer: Timer?
+    fileprivate var currentDisplayDuration: Double = -1.0
     
     // MARK: Properties
     
@@ -147,7 +147,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      The layout for the Cocoabar to use when displaying. The bar will use 
      CocoaBarDefaultLayout if a custom layout is not specified.
      */
-    public var layout: CocoaBarLayout {
+    open var layout: CocoaBarLayout {
         get {
             guard let customLayout = customLayout else {
                 return defaultLayout
@@ -165,23 +165,23 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     /**
      Whether the CocoaBar is currently showing
      */
-    public private(set) var isShowing: Bool = false
+    open fileprivate(set) var isShowing: Bool = false
     
     /**
      Whether the CocoaBar has tap to dismiss enabled. If enabled, the CocoaBar
      will dismiss when tapped while it is showing.
      */
-    public var tapToDismiss: Bool = false
+    open var tapToDismiss: Bool = false
     
     /**
      The object that acts as a delegate to the CocoaBar
      */
-    public weak var delegate: CocoaBarDelegate?
+    open weak var delegate: CocoaBarDelegate?
     
     /**
      The CocoaBar that is attached to the key window.
      */
-    public private(set) static var keyCocoaBar: CocoaBar?
+    open fileprivate(set) static var keyCocoaBar: CocoaBar?
     
     // MARK: Init
     
@@ -194,17 +194,17 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         
         self.displayWindow = window
         
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
         // set key bar to the one initialised on key window
         if let window = window {
             
             // if keyCocoaBar does not exist - assume that this is key window
             if CocoaBar.keyCocoaBar == nil {
-                window.becomeKeyWindow()
+                window.becomeKey()
             }
             
-            if window.keyWindow == true {
+            if window.isKeyWindow == true {
                 CocoaBar.keyCocoaBar = self
             }
         }
@@ -218,7 +218,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         
         self.displayView = view
         
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
         self.registerForNotifications()
     }
@@ -231,17 +231,17 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: Lifecycle
     
-    override public func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-        let hitView = super.hitTest(point, withEvent: event)
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let hitView = super.hitTest(point, with: event)
         
         // hide if tap to dismiss enabled
-        let point = self.convertPoint(point, toView: self)
-        if self.isShowing && CGRectContainsPoint(self.bounds, point) && tapToDismiss {
+        let point = self.convert(point, to: self)
+        if self.isShowing && self.bounds.contains(point) && tapToDismiss {
             self.hideAnimated(true, completion: nil)
         }
         return hitView
@@ -249,14 +249,14 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Private
     
-    private func registerForNotifications() {
+    fileprivate func registerForNotifications() {
         
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(hideNotificationReceived), name: CocoaBarHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(windowDidBecomeVisible), name: UIWindowDidBecomeVisibleNotification, object: nil)
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(hideNotificationReceived), name: NSNotification.Name(rawValue: CocoaBarHideNotification), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(windowDidBecomeVisible), name: NSNotification.Name.UIWindowDidBecomeVisible, object: nil)
     }
     
-    private func setUpIfRequired() {
+    fileprivate func setUpIfRequired() {
         if let displayWindow = self.displayWindow { // if we have a display window
             if self.superview == nil {
                 
@@ -278,11 +278,11 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    private func setUpConstraints() {
+    fileprivate func setUpConstraints() {
         self.heightConstraint = self.autoSetHeight(0.0)
-        self.heightConstraint?.active = false
+        self.heightConstraint?.isActive = false
         
-        if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone { // iPhone - fill screen
+        if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone { // iPhone - fill screen
             if let constraints = self.autoPinToSidesAndBottom() {
                 self.bottomMarginConstraint = constraints[2]
             }
@@ -295,7 +295,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    private func setUpComponents() {
+    fileprivate func setUpComponents() {
         
         // set up layout container
         let layoutContainer = UIView()
@@ -305,13 +305,13 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         self.updateLayout(self.layout)
     }
     
-    private func bringBarToFront() {
+    fileprivate func bringBarToFront() {
         if let displayWindow = self.displayWindow {
-            displayWindow.bringSubviewToFront(self)
+            displayWindow.bringSubview(toFront: self)
         }
     }
     
-    private func updateLayout(layout: CocoaBarLayout) {
+    fileprivate func updateLayout(_ layout: CocoaBarLayout) {
         if let layoutContainer = self.layoutContainer {
             
             // clear layout container
@@ -321,7 +321,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             
             // update height if required
             let requiresHeightConstraint = (layout.height != nil)
-            self.heightConstraint?.active = requiresHeightConstraint
+            self.heightConstraint?.isActive = requiresHeightConstraint
             if requiresHeightConstraint {
                 self.heightConstraint?.constant = CGFloat(layout.height!)
             }
@@ -332,7 +332,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    private func setUpDisplayTimer(duration: Double, destroyCurrentTimer: Bool) {
+    fileprivate func setUpDisplayTimer(_ duration: Double, destroyCurrentTimer: Bool) {
         if !self.isAnimating {
             
             if destroyCurrentTimer {
@@ -340,7 +340,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             }
             if self.displayTimer == nil {
                 self.currentDisplayDuration = duration
-                self.displayTimer = NSTimer.scheduledTimerWithTimeInterval(duration,
+                self.displayTimer = Timer.scheduledTimer(timeInterval: duration,
                                                                            target: self,
                                                                            selector: #selector(displayTimerElapsed),
                                                                            userInfo: nil,
@@ -349,7 +349,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    private func destroyDisplayTimer() {
+    fileprivate func destroyDisplayTimer() {
         if let displayTimer = self.displayTimer {
             self.currentDisplayDuration = -1.0
             displayTimer.invalidate()
@@ -357,18 +357,18 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    @objc private func displayTimerElapsed(timer: NSTimer?) {
+    @objc fileprivate func displayTimerElapsed(_ timer: Timer?) {
         self.destroyDisplayTimer()
         self.hideAnimated(true, completion: nil)
     }
     
-    private func layoutForStyle(style: Style?) -> CocoaBarLayout? {
+    fileprivate func layoutForStyle(_ style: Style?) -> CocoaBarLayout? {
         if let style = style {
             
             var layout: CocoaBarLayout
             switch style {
                 
-            case .Action:
+            case .action:
                 layout = CocoaBarActionLayout()
                 break
                 
@@ -381,7 +381,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         return nil
     }
     
-    private func doShowAnimated(animated: Bool,
+    fileprivate func doShowAnimated(_ animated: Bool,
                                 duration: Double,
                                 layout: CocoaBarLayout?,
                                 populate: CocoaBarPopulationClosure?,
@@ -396,7 +396,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
             }
             
             if let populate = populate {
-                populate(layout: self.layout)
+                populate(self.layout)
             }
             
             if animated { // animate in
@@ -415,9 +415,9 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     self.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = 0.0
                     self.isAnimating = true
-                    UIView.animateWithDuration(0.2,
+                    UIView.animate(withDuration: 0.2,
                                                delay: 0.0,
-                                               options: UIViewAnimationOptions.CurveEaseOut,
+                                               options: UIViewAnimationOptions.curveEaseOut,
                                                animations:
                         {
                             self.layoutIfNeeded()
@@ -429,7 +429,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                             self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
                             
                             if let completion = completion {
-                                completion(animated: animated, completed: completed, visible: self.isShowing)
+                                completion(animated, completed, self.isShowing)
                             }
                             if let delegate = self.delegate {
                                 delegate.cocoaBar(self, didShowAnimated: animated)
@@ -451,7 +451,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
                 
                 if let completion = completion {
-                    completion(animated: animated, completed: true, visible: self.isShowing)
+                    completion(animated, true, self.isShowing)
                 }
                 if let delegate = self.delegate {
                     delegate.cocoaBar(self, didShowAnimated: animated)
@@ -460,7 +460,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    private func doHideAnimated(animated: Bool,
+    fileprivate func doHideAnimated(_ animated: Bool,
                                 completion: CocoaBarAnimationCompletionClosure?) {
         if self.isShowing && !self.isAnimating {
             self.destroyDisplayTimer()
@@ -477,9 +477,9 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     
                     self.layout.prepareForHide()
                     self.layout.hideShadowAnimated(animated)
-                    UIView.animateWithDuration(0.2,
+                    UIView.animate(withDuration: 0.2,
                                                delay: 0.0,
-                                               options: UIViewAnimationOptions.CurveEaseIn,
+                                               options: UIViewAnimationOptions.curveEaseIn,
                                                animations:
                         {
                             self.layoutIfNeeded()
@@ -490,7 +490,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                             self.isAnimating = false
                             
                             if let completion = completion {
-                                completion(animated: animated, completed: completed, visible: self.isShowing)
+                                completion(animated, completed, self.isShowing)
                             }
                             if let delegate = self.delegate {
                                 delegate.cocoaBar(self, didHideAnimated: animated)
@@ -511,7 +511,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 self.isShowing = false
                 
                 if let completion = completion {
-                    completion(animated: animated, completed: true, visible: self.isShowing)
+                    completion(animated, true, self.isShowing)
                 }
                 if let delegate = self.delegate {
                     delegate.cocoaBar(self, didHideAnimated: animated)
@@ -533,7 +533,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    public func showAnimated(animated: Bool,
+    open func showAnimated(_ animated: Bool,
                              duration: DisplayDuration,
                              layout: CocoaBarLayout?,
                              populate: CocoaBarPopulationClosure?,
@@ -556,7 +556,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    public func showAnimated(animated: Bool,
+    open func showAnimated(_ animated: Bool,
                              duration: DisplayDuration,
                              style: Style?,
                              populate: CocoaBarPopulationClosure?,
@@ -579,7 +579,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    public func showAnimated(animated: Bool,
+    open func showAnimated(_ animated: Bool,
                              duration: Double,
                              layout: CocoaBarLayout?,
                              populate: CocoaBarPopulationClosure?,
@@ -601,7 +601,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    public func showAnimated(animated: Bool,
+    open func showAnimated(_ animated: Bool,
                              duration: Double,
                              style: Style?,
                              populate: CocoaBarPopulationClosure?,
@@ -621,7 +621,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the hide transition.
      
      */
-    public func hideAnimated(animated: Bool,
+    open func hideAnimated(_ animated: Bool,
                              completion: CocoaBarAnimationCompletionClosure?) {
         self.doHideAnimated(animated,
                             completion: completion)
@@ -630,7 +630,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     /**
      Reset the current display timer if it exists with the current display duration.
      */
-    public func resetDisplayTimer() {
+    open func resetDisplayTimer() {
         if self.currentDisplayDuration > 0.0 {
             self.resetDisplayTimer(self.currentDisplayDuration)
         }
@@ -641,7 +641,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      
      :param: duration       The display duration to reset the timer with.
      */
-    public func resetDisplayTimer(duration: DisplayDuration) {
+    open func resetDisplayTimer(_ duration: DisplayDuration) {
         self.resetDisplayTimer(duration.value)
     }
     
@@ -650,7 +650,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      
      :param: duration       The display duration to reset the timer with.
      */
-    public func resetDisplayTimer(duration: Double) {
+    open func resetDisplayTimer(_ duration: Double) {
         if self.displayTimer != nil {
             self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
         }
@@ -668,7 +668,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    public class func showAnimated(animated: Bool,
+    open class func showAnimated(_ animated: Bool,
                                    duration: DisplayDuration,
                                    layout: CocoaBarLayout?,
                                    populate: CocoaBarPopulationClosure?,
@@ -691,7 +691,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    public class func showAnimated(animated: Bool,
+    open class func showAnimated(_ animated: Bool,
                                    duration: DisplayDuration,
                                    style: Style?,
                                    populate: CocoaBarPopulationClosure?,
@@ -713,7 +713,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    public class func showAnimated(animated: Bool,
+    open class func showAnimated(_ animated: Bool,
                                    duration: Double,
                                    layout: CocoaBarLayout?,
                                    populate: CocoaBarPopulationClosure?,
@@ -740,7 +740,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    public class func showAnimated(animated: Bool,
+    open class func showAnimated(_ animated: Bool,
                                    duration: Double,
                                    style: Style?,
                                    populate: CocoaBarPopulationClosure?,
@@ -760,7 +760,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the hide transition.
      
      */
-    public class func hideAnimated(animated: Bool,
+    open class func hideAnimated(_ animated: Bool,
                                    completion: CocoaBarAnimationCompletionClosure?) {
         
         if let keyBar = self.keyCocoaBar {
@@ -773,25 +773,25 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Notifications
     
-    @objc func hideNotificationReceived(notification: NSNotification) {
+    @objc func hideNotificationReceived(_ notification: Notification) {
         var animated = true
-        if let userInfo = notification.userInfo {
+        if let userInfo = (notification as NSNotification).userInfo {
             animated = userInfo[CocoaBarAnimatedKey] as! Bool
         }
         self.hideAnimated(animated, completion: nil)
     }
     
-    @objc func windowDidBecomeVisible(notification: NSNotification) {
+    @objc func windowDidBecomeVisible(_ notification: Notification) {
         self.bringBarToFront()
     }
     
     // MARK: CocoaBarLayoutDelegate
     
-    func cocoaBarLayoutDismissButtonPressed(dismissButton: UIButton?) {
+    func cocoaBarLayoutDismissButtonPressed(_ dismissButton: UIButton?) {
         self.hideAnimated(true, completion: nil)
     }
     
-    func cocoaBarLayoutActionButtonPressed(actionButton: UIButton?) {
+    func cocoaBarLayoutActionButtonPressed(_ actionButton: UIButton?) {
         if let delegate = self.delegate {
             delegate.cocoaBar(self, actionButtonPressed: actionButton)
         }
@@ -800,7 +800,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
 
 private extension CocoaBarLayout {
     
-    private func showShadowAnimated(animated: Bool) {
+    func showShadowAnimated(_ animated: Bool) {
         if self.showDropShadow {
             self.layer.shadowOpacity = self.visibleOpacity
             if animated {
@@ -808,12 +808,12 @@ private extension CocoaBarLayout {
                 animation.duration = 0.2
                 animation.fromValue = 0.0
                 animation.toValue = self.visibleOpacity
-                self.layer.addAnimation(animation, forKey: "shadowOpacity")
+                self.layer.add(animation, forKey: "shadowOpacity")
             }
         }
     }
     
-    private func hideShadowAnimated(animated: Bool) {
+    func hideShadowAnimated(_ animated: Bool) {
         if self.showDropShadow {
             self.layer.shadowOpacity = 0.0
             if animated {
@@ -821,7 +821,7 @@ private extension CocoaBarLayout {
                 animation.duration = 0.2
                 animation.fromValue = self.visibleOpacity
                 animation.toValue = 0.0
-                self.layer.addAnimation(animation, forKey: "shadowOpacity")
+                self.layer.add(animation, forKey: "shadowOpacity")
             }
         }
     }

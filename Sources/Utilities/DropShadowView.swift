@@ -11,14 +11,14 @@ import UIKit
 /**
  A view that provides a drop shadow around its perimeter.
  */
-public class DropShadowView: UIView {
+open class DropShadowView: UIView {
     
     // MARK: Properties
     
     /**
      Whether to show the drop shadow (Default: false)
     */
-    public var showDropShadow: Bool = false {
+    open var showDropShadow: Bool = false {
         didSet {
             self.updateShadow(self.showDropShadow)
         }
@@ -27,7 +27,7 @@ public class DropShadowView: UIView {
     /**
      The opacity of the drop shadow (Default 0.7)
      */
-    public var visibleOpacity: Float = 0.7 {
+    open var visibleOpacity: Float = 0.7 {
         didSet {
             self.updateShadow(self.showDropShadow)
         }
@@ -45,22 +45,22 @@ public class DropShadowView: UIView {
         self.baseInit()
     }
     
-    private func baseInit() {
+    fileprivate func baseInit() {
         
         self.layer.masksToBounds = false
         
-        self.layer.shadowOffset = CGSizeMake(0, 0)
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = 8
     }
     
     // MARK: Private
     
-    private func updateShadow(enabled: Bool) {
+    fileprivate func updateShadow(_ enabled: Bool) {
         self.layer.shadowOpacity = enabled ? self.visibleOpacity : 0.0
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
     }
 }
