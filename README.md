@@ -14,6 +14,10 @@ CocoaBar is available through [CocoaPods](http://cocoapods.org). To install it, 
 
     pod 'CocoaBar'
 
+Swift 3 support is currently available in version 0.2.0 in beta:
+
+    pod 'CocoaBar', '~> 0.2.0-beta'
+
 And run `pod install`.
 
 ## Usage
