@@ -656,7 +656,38 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    // MARK: KeyCocoaBar
+    
+    // MARK: Notifications
+    
+    @objc func hideNotificationReceived(_ notification: Notification) {
+        var animated = true
+        if let userInfo = (notification as NSNotification).userInfo {
+            animated = userInfo[CocoaBarAnimatedKey] as! Bool
+        }
+        self.hideAnimated(animated, completion: nil)
+    }
+    
+    @objc func windowDidBecomeVisible(_ notification: Notification) {
+        self.bringBarToFront()
+    }
+    
+    // MARK: CocoaBarLayoutDelegate
+    
+    func cocoaBarLayoutDismissButtonPressed(_ dismissButton: UIButton?) {
+        self.hideAnimated(true, completion: nil)
+    }
+    
+    func cocoaBarLayoutActionButtonPressed(_ actionButton: UIButton?) {
+        if let delegate = self.delegate {
+            delegate.cocoaBar(self, actionButtonPressed: actionButton)
+        }
+    }
+}
+
+/**
+ Class functions when keyCocoaBar is available.
+ */
+public extension CocoaBar {
     
     /**
      Shows the keyCocoaBar if it exists. The keyCocoaBar is the CocoaBar attached to the keyWindow.
@@ -768,32 +799,6 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                                 completion: completion)
         } else {
             print("Could not hide as no CocoaBar is currently attached to the keyWindow")
-        }
-    }
-    
-    // MARK: Notifications
-    
-    @objc func hideNotificationReceived(_ notification: Notification) {
-        var animated = true
-        if let userInfo = (notification as NSNotification).userInfo {
-            animated = userInfo[CocoaBarAnimatedKey] as! Bool
-        }
-        self.hideAnimated(animated, completion: nil)
-    }
-    
-    @objc func windowDidBecomeVisible(_ notification: Notification) {
-        self.bringBarToFront()
-    }
-    
-    // MARK: CocoaBarLayoutDelegate
-    
-    func cocoaBarLayoutDismissButtonPressed(_ dismissButton: UIButton?) {
-        self.hideAnimated(true, completion: nil)
-    }
-    
-    func cocoaBarLayoutActionButtonPressed(_ actionButton: UIButton?) {
-        if let delegate = self.delegate {
-            delegate.cocoaBar(self, actionButtonPressed: actionButton)
         }
     }
 }
