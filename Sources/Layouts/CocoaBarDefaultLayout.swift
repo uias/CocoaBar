@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class CocoaBarDefaultLayout: CocoaBarLayout {
+public class CocoaBarDefaultLayout: CocoaBarLayout {
     
     // MARK: Properties
     
