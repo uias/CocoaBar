@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CocoaBar"
-  s.version      = "0.1.7"
+  s.version      = "0.2.0-beta1"
   s.summary      = "A flexible and simple to use SnackBar view for iOS"
   s.description  = <<-DESC
                     A flexible and simple to use SnackBar view for iOS. Written in Swift 2.2.
