@@ -412,7 +412,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     
                     self.layout.prepareForShow()
                     self.layout.showShadowAnimated(animated)
-                    self.layoutIfNeeded()
+                    self.superview?.layoutIfNeeded()
                     self.bottomMarginConstraint?.constant = 0.0
                     self.isAnimating = true
                     UIView.animate(withDuration: 0.2,
@@ -420,7 +420,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
                                                options: UIViewAnimationOptions.curveEaseOut,
                                                animations:
                         {
-                            self.layoutIfNeeded()
+                            self.superview?.layoutIfNeeded()
                         },
                                                completion:
                         { (completed) in
@@ -446,7 +446,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 self.bottomMarginConstraint?.constant = 0.0
                 self.layout.prepareForShow()
                 self.layout.showShadowAnimated(animated)
-                self.layoutIfNeeded()
+                self.superview?.layoutIfNeeded()
                 self.isShowing = true
                 self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
                 
@@ -482,7 +482,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
                                                options: UIViewAnimationOptions.curveEaseIn,
                                                animations:
                         {
-                            self.layoutIfNeeded()
+                            self.superview?.layoutIfNeeded()
                         },
                                                completion:
                         { (completed) in
@@ -507,7 +507,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 self.bottomMarginConstraint?.constant = self.bounds.size.height
                 self.layout.prepareForHide()
                 self.layout.hideShadowAnimated(animated)
-                self.layoutIfNeeded()
+                self.superview?.layoutIfNeeded()
                 self.isShowing = false
                 
                 if let completion = completion {
