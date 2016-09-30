@@ -229,7 +229,7 @@ open class CocoaBarLayout: DropShadowView {
         
         let contentView = UIView()
         self.addSubview(contentView)
-        let constraints = contentView.autoPinToEdges()
+        let constraints = contentView.cb_autoPinToEdges()
         contentView.clipsToBounds = true
         self.contentView = contentView
         self.contentViewLeftMargin = constraints?.first
@@ -238,13 +238,13 @@ open class CocoaBarLayout: DropShadowView {
         
         let backgroundContainer = UIView()
         contentView.addSubview(backgroundContainer)
-        backgroundContainer.autoPinToEdges()
+        backgroundContainer.cb_autoPinToEdges()
         self.backgroundContainer = backgroundContainer
         
         let keylineView = UIView()
         contentView.addSubview(keylineView)
-        keylineView.autoPinToSidesAndTop()
-        keylineView.autoSetHeight(1.0)
+        keylineView.cb_autoPinToSidesAndTop()
+        keylineView.cb_autoSetHeight(1.0)
         self.keylineView = keylineView
     }
     
@@ -259,7 +259,7 @@ open class CocoaBarLayout: DropShadowView {
             self.nibView = view
             
             self.contentView?.addSubview(view)
-            view.autoPinToEdges()
+            view.cb_autoPinToEdges()
             
             // view is transparent
             view.backgroundColor = UIColor.clear
@@ -298,7 +298,7 @@ open class CocoaBarLayout: DropShadowView {
                 let visualEffectView = UIVisualEffectView(effect: blurEffect)
                 
                 backgroundContainer.addSubview(visualEffectView)
-                visualEffectView.autoPinToEdges()
+                visualEffectView.cb_autoPinToEdges()
                 
             case .custom:
                 self.backgroundColor = UIColor.clear
@@ -306,7 +306,7 @@ open class CocoaBarLayout: DropShadowView {
                 // create custom background view
                 let backgroundView = UIView()
                 backgroundContainer.addSubview(backgroundView)
-                backgroundView.autoPinToEdges()
+                backgroundView.cb_autoPinToEdges()
                 self.backgroundView = backgroundView
                 
             default:()

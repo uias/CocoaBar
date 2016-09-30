@@ -279,19 +279,19 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
     }
     
     fileprivate func setUpConstraints() {
-        self.heightConstraint = self.autoSetHeight(0.0)
+        self.heightConstraint = self.cb_autoSetHeight(0.0)
         self.heightConstraint?.isActive = false
         
         if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone { // iPhone - fill screen
-            if let constraints = self.autoPinToSidesAndBottom() {
+            if let constraints = self.cb_autoPinToSidesAndBottom() {
                 self.bottomMarginConstraint = constraints[2]
             }
         } else { // iPad - center on bottom
             
-            if let constraints = self.autoPinToBottomAndCenter() {
+            if let constraints = self.cb_autoPinToBottomAndCenter() {
                 self.bottomMarginConstraint = constraints[0]
             }
-            self.widthConstraint = self.autoSetWidth(CocoaBarWidthIpad)
+            self.widthConstraint = self.cb_autoSetWidth(CocoaBarWidthIpad)
         }
     }
     
@@ -300,7 +300,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
         // set up layout container
         let layoutContainer = UIView()
         self.addSubview(layoutContainer)
-        layoutContainer.autoPinToEdges()
+        layoutContainer.cb_autoPinToEdges()
         self.layoutContainer = layoutContainer
         self.updateLayout(self.layout)
     }
@@ -328,7 +328,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
             
             layout.delegate = self
             layoutContainer.addSubview(layout)
-            layout.autoPinToEdges()
+            layout.cb_autoPinToEdges()
         }
     }
     

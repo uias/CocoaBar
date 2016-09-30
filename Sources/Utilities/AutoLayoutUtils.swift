@@ -10,11 +10,11 @@ import UIKit
 
 internal extension UIView {
     
-    internal func autoPinToEdges() -> [NSLayoutConstraint]? {
-        return self.autoPinToEdges(UIEdgeInsets.zero)
+    @discardableResult internal func cb_autoPinToEdges() -> [NSLayoutConstraint]? {
+        return self.cb_autoPinToEdges(UIEdgeInsets.zero)
     }
     
-    internal func autoPinToEdges(_ insets: UIEdgeInsets) -> [NSLayoutConstraint]? {
+    @discardableResult internal func cb_autoPinToEdges(_ insets: UIEdgeInsets) -> [NSLayoutConstraint]? {
         if let views = self.setUpForAutoLayout() {
             
             let verticalConstraints = String(format: "V:|-(%f)-[view]-(%f)-|", insets.top, insets.bottom)
@@ -36,7 +36,7 @@ internal extension UIView {
         return nil
     }
     
-    internal func autoPinToSidesAndBottom() -> [NSLayoutConstraint]? {
+    @discardableResult internal func cb_autoPinToSidesAndBottom() -> [NSLayoutConstraint]? {
         if let views = self.setUpForAutoLayout() {
         
             let verticalConstraints = "V:[view]|"
@@ -58,7 +58,7 @@ internal extension UIView {
         return nil
     }
     
-    internal func autoPinToSidesAndTop() -> [NSLayoutConstraint]? {
+    @discardableResult internal func cb_autoPinToSidesAndTop() -> [NSLayoutConstraint]? {
         if let views = self.setUpForAutoLayout() {
             
             let verticalConstraints = "V:|[view]"
@@ -81,7 +81,7 @@ internal extension UIView {
         return nil
     }
     
-    internal func autoPinToBottomAndCenter() -> [NSLayoutConstraint]? {
+    @discardableResult internal func cb_autoPinToBottomAndCenter() -> [NSLayoutConstraint]? {
         if let views = self.setUpForAutoLayout() {
             
             let verticalConstraints = "V:[view]|"
@@ -104,7 +104,7 @@ internal extension UIView {
         return nil
     }
     
-    internal func autoSetHeight(_ height: Float) -> NSLayoutConstraint? {
+    @discardableResult internal func cb_autoSetHeight(_ height: Float) -> NSLayoutConstraint? {
         if self.setUpForAutoLayout() != nil {
             let constraint = NSLayoutConstraint(item: self,
                                                 attribute: NSLayoutAttribute.height,
@@ -119,7 +119,7 @@ internal extension UIView {
         return nil
     }
     
-    internal func autoSetWidth(_ width: Float) -> NSLayoutConstraint? {
+    @discardableResult internal func cb_autoSetWidth(_ width: Float) -> NSLayoutConstraint? {
         if self.setUpForAutoLayout() != nil {
             let constraint = NSLayoutConstraint(item: self,
                                                 attribute: NSLayoutAttribute.width,
