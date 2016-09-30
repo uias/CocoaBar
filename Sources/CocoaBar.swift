@@ -65,7 +65,7 @@ public protocol CocoaBarDelegate: class {
  CocoaBar is a view that appears from the bottom of a window or view, to display some
  contextually important information in an inobtrusive manner.
  */
-open class CocoaBar: UIView, CocoaBarLayoutDelegate {
+public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     /**
      The duration to display the CocoaBar for when shown.
@@ -147,7 +147,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      The layout for the Cocoabar to use when displaying. The bar will use 
      CocoaBarDefaultLayout if a custom layout is not specified.
      */
-    open var layout: CocoaBarLayout {
+    public var layout: CocoaBarLayout {
         get {
             guard let customLayout = customLayout else {
                 return defaultLayout
@@ -171,17 +171,17 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      Whether the CocoaBar has tap to dismiss enabled. If enabled, the CocoaBar
      will dismiss when tapped while it is showing.
      */
-    open var tapToDismiss: Bool = false
+    public var tapToDismiss: Bool = false
     
     /**
      The object that acts as a delegate to the CocoaBar
      */
-    open weak var delegate: CocoaBarDelegate?
+    public weak var delegate: CocoaBarDelegate?
     
     /**
      The CocoaBar that is attached to the key window.
      */
-    open fileprivate(set) static var keyCocoaBar: CocoaBar?
+    public fileprivate(set) static var keyCocoaBar: CocoaBar?
     
     // MARK: Init
     
@@ -533,7 +533,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    open func showAnimated(_ animated: Bool,
+    public func showAnimated(_ animated: Bool,
                              duration: DisplayDuration,
                              layout: CocoaBarLayout?,
                              populate: CocoaBarPopulationClosure?,
@@ -556,7 +556,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    open func showAnimated(_ animated: Bool,
+    public func showAnimated(_ animated: Bool,
                              duration: DisplayDuration,
                              style: Style?,
                              populate: CocoaBarPopulationClosure?,
@@ -579,7 +579,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    open func showAnimated(_ animated: Bool,
+    public func showAnimated(_ animated: Bool,
                              duration: Double,
                              layout: CocoaBarLayout?,
                              populate: CocoaBarPopulationClosure?,
@@ -601,7 +601,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    open func showAnimated(_ animated: Bool,
+    public func showAnimated(_ animated: Bool,
                              duration: Double,
                              style: Style?,
                              populate: CocoaBarPopulationClosure?,
@@ -621,7 +621,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the hide transition.
      
      */
-    open func hideAnimated(_ animated: Bool,
+    public func hideAnimated(_ animated: Bool,
                              completion: CocoaBarAnimationCompletionClosure?) {
         self.doHideAnimated(animated,
                             completion: completion)
@@ -630,7 +630,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
     /**
      Reset the current display timer if it exists with the current display duration.
      */
-    open func resetDisplayTimer() {
+    public func resetDisplayTimer() {
         if self.currentDisplayDuration > 0.0 {
             self.resetDisplayTimer(self.currentDisplayDuration)
         }
@@ -641,7 +641,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      
      :param: duration       The display duration to reset the timer with.
      */
-    open func resetDisplayTimer(_ duration: DisplayDuration) {
+    public func resetDisplayTimer(_ duration: DisplayDuration) {
         self.resetDisplayTimer(duration.value)
     }
     
@@ -650,7 +650,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      
      :param: duration       The display duration to reset the timer with.
      */
-    open func resetDisplayTimer(_ duration: Double) {
+    public func resetDisplayTimer(_ duration: Double) {
         if self.displayTimer != nil {
             self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
         }
@@ -668,7 +668,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    open class func showAnimated(_ animated: Bool,
+    public class func showAnimated(_ animated: Bool,
                                    duration: DisplayDuration,
                                    layout: CocoaBarLayout?,
                                    populate: CocoaBarPopulationClosure?,
@@ -691,7 +691,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    open class func showAnimated(_ animated: Bool,
+    public class func showAnimated(_ animated: Bool,
                                    duration: DisplayDuration,
                                    style: Style?,
                                    populate: CocoaBarPopulationClosure?,
@@ -713,7 +713,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    open class func showAnimated(_ animated: Bool,
+    public class func showAnimated(_ animated: Bool,
                                    duration: Double,
                                    layout: CocoaBarLayout?,
                                    populate: CocoaBarPopulationClosure?,
@@ -740,7 +740,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the show transition.
      
      */
-    open class func showAnimated(_ animated: Bool,
+    public class func showAnimated(_ animated: Bool,
                                    duration: Double,
                                    style: Style?,
                                    populate: CocoaBarPopulationClosure?,
@@ -760,7 +760,7 @@ open class CocoaBar: UIView, CocoaBarLayoutDelegate {
      :param: completion     Closure for completion of the hide transition.
      
      */
-    open class func hideAnimated(_ animated: Bool,
+    public class func hideAnimated(_ animated: Bool,
                                    completion: CocoaBarAnimationCompletionClosure?) {
         
         if let keyBar = self.keyCocoaBar {
