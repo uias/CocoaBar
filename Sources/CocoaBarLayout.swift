@@ -70,21 +70,19 @@ open class CocoaBarLayout: DropShadowView {
         }
     }
     
-    // MARK: Variables
+    // MARK: Properties
     
-    fileprivate var contentView: UIView?
-    fileprivate var contentViewLeftMargin: NSLayoutConstraint?
-    fileprivate var contentViewRightMargin: NSLayoutConstraint?
-    fileprivate var contentViewBottomMargin: NSLayoutConstraint?
-
-    fileprivate var customNibName: String?
-    fileprivate var nibView: UIView?
+    private var contentView: UIView?
+    private var contentViewLeftMargin: NSLayoutConstraint?
+    private var contentViewRightMargin: NSLayoutConstraint?
+    private var contentViewBottomMargin: NSLayoutConstraint?
     
-    fileprivate var backgroundContainer: UIView?
+    private var backgroundContainer: UIView?
     
-    fileprivate var keylineView: UIView?
-    fileprivate var customKeylineColor: UIColor?
+    private var keylineView: UIView?
+    private var customKeylineColor: UIColor?
     
+    private var customNibName: String?
     fileprivate var nibName: String {
         get {
             guard let nibName = customNibName else {
@@ -96,8 +94,7 @@ open class CocoaBarLayout: DropShadowView {
             customNibName = newValue
         }
     }
-    
-    // MARK: Properties
+    fileprivate var nibView: UIView?
     
     /**
      The object that acts as a delegate to the layout.
@@ -108,7 +105,7 @@ open class CocoaBarLayout: DropShadowView {
     /**
      The dismiss button on the layout
      */
-    @IBOutlet open weak var dismissButton: UIButton? {
+    @IBOutlet public weak var dismissButton: UIButton? {
         willSet {
             if let dismissButton = newValue {
                 dismissButton.addTarget(self,
@@ -121,7 +118,7 @@ open class CocoaBarLayout: DropShadowView {
     /**
      The action button on the layout
      */
-    @IBOutlet open weak var actionButton: UIButton? {
+    @IBOutlet public weak var actionButton: UIButton? {
         willSet {
             if let actionButton = newValue {
                 actionButton.addTarget(self,
@@ -144,13 +141,13 @@ open class CocoaBarLayout: DropShadowView {
      The background view in the layout. This is only available when using .Custom
      for the backgroundStyle.
      */
-    open fileprivate(set) var backgroundView: UIView?
+    public fileprivate(set) var backgroundView: UIView?
     
     /**
      The height required for the layout. Uses CocoaBarLayoutDefaultHeight if custom
      height not specified.
      */
-    open fileprivate(set) var height: Float?
+    public fileprivate(set) var height: Float?
     
     /**
      The color of the keyline at the top of the layout.
@@ -223,9 +220,9 @@ open class CocoaBarLayout: DropShadowView {
         self.setUpNibView()
     }
 
-    // MARK: Private
+    // MARK: Appearance
     
-    fileprivate func setUpBackgroundView() {
+    private func setUpBackgroundView() {
         
         let contentView = UIView()
         self.addSubview(contentView)
@@ -248,7 +245,7 @@ open class CocoaBarLayout: DropShadowView {
         self.keylineView = keylineView
     }
     
-    fileprivate func setUpNibView() {
+    private func setUpNibView() {
         
         // check if nib exists
         let bundle = Bundle(for: self.classForCoder)
@@ -266,14 +263,14 @@ open class CocoaBarLayout: DropShadowView {
         }
     }
     
-    fileprivate func setUpAppearance() {
+    private func setUpAppearance() {
         
         self.keylineView?.backgroundColor = self.keylineColor
         
         self.updateBackgroundStyle(self.backgroundStyle)
     }
     
-    fileprivate func updateBackgroundStyle(_ newStyle: BackgroundStyle) {
+    private func updateBackgroundStyle(_ newStyle: BackgroundStyle) {
         if let backgroundContainer = self.backgroundContainer {
             
             // clear subviews
@@ -317,7 +314,7 @@ open class CocoaBarLayout: DropShadowView {
         }
     }
     
-    fileprivate func updateDisplayStyle(_ displayStyle: DisplayStyle) {
+    private func updateDisplayStyle(_ displayStyle: DisplayStyle) {
         
         switch displayStyle {
         case .roundRectangle:
@@ -336,7 +333,7 @@ open class CocoaBarLayout: DropShadowView {
         }
     }
     
-    // MARK: Public
+    // MARK: Layout
     
     /**
      The height required for the bar layout. Override this to manually specify a
@@ -370,8 +367,6 @@ open class CocoaBarLayout: DropShadowView {
     open func prepareLayoutForHiding() {
         
     }
-    
-    // MARK: Internal
     
     /**
      Internally prepare the layout for showing.
