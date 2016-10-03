@@ -12,8 +12,8 @@ public class CocoaBarActionLayout: CocoaBarLayout {
     
     // MARK: Properties
     
-    @IBOutlet open weak var titleLabel: UILabel?
-    @IBOutlet open weak var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet public weak var titleLabel: UILabel?
+    @IBOutlet public weak var activityIndicator: UIActivityIndicatorView?
     
     // MARK: Lifecycle
     
@@ -36,12 +36,12 @@ public class CocoaBarActionLayout: CocoaBarLayout {
         self.stopLoading() // stop loading
     }
 
-    // MARK: Public
+    // MARK: Loading
     
     /**
      Display an activity indicator in place of the action button.
      */
-    open func startLoading() {
+    public func startLoading() {
         self.activityIndicator?.startAnimating()
         self.activityIndicator?.isHidden = false
         self.actionButton?.isHidden = true
@@ -50,7 +50,7 @@ public class CocoaBarActionLayout: CocoaBarLayout {
     /**
      Hide the activity indicator.
      */
-    open func stopLoading() {
+    public func stopLoading() {
         self.activityIndicator?.stopAnimating()
         self.activityIndicator?.isHidden = true
         self.actionButton?.isHidden = false

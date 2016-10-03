@@ -12,7 +12,7 @@ public class CocoaBarDefaultLayout: CocoaBarLayout {
     
     // MARK: Properties
     
-    @IBOutlet open weak var titleLabel: UILabel?
+    @IBOutlet public weak var titleLabel: UILabel?
 
     // MARK: Lifecycle
     

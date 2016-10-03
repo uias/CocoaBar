@@ -247,7 +247,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         return hitView
     }
     
-    // MARK: Private
+    // MARK: Notifications
     
     fileprivate func registerForNotifications() {
         
@@ -256,7 +256,21 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         notificationCenter.addObserver(self, selector: #selector(windowDidBecomeVisible), name: NSNotification.Name.UIWindowDidBecomeVisible, object: nil)
     }
     
-    fileprivate func setUpIfRequired() {
+    @objc func hideNotificationReceived(_ notification: Notification) {
+        var animated = true
+        if let userInfo = (notification as NSNotification).userInfo {
+            animated = userInfo[CocoaBarAnimatedKey] as! Bool
+        }
+        self.hideAnimated(animated, completion: nil)
+    }
+    
+    @objc func windowDidBecomeVisible(_ notification: Notification) {
+        self.bringBarToFront()
+    }
+    
+    // MARK: Layout
+    
+    private func setUpIfRequired() {
         if let displayWindow = self.displayWindow { // if we have a display window
             if self.superview == nil {
                 
@@ -278,7 +292,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    fileprivate func setUpConstraints() {
+    private func setUpConstraints() {
         self.heightConstraint = self.cb_autoSetHeight(0.0)
         self.heightConstraint?.isActive = false
         
@@ -295,7 +309,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    fileprivate func setUpComponents() {
+    private func setUpComponents() {
         
         // set up layout container
         let layoutContainer = UIView()
@@ -305,13 +319,13 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         self.updateLayout(self.layout)
     }
     
-    fileprivate func bringBarToFront() {
+    private func bringBarToFront() {
         if let displayWindow = self.displayWindow {
             displayWindow.bringSubview(toFront: self)
         }
     }
     
-    fileprivate func updateLayout(_ layout: CocoaBarLayout) {
+    private func updateLayout(_ layout: CocoaBarLayout) {
         if let layoutContainer = self.layoutContainer {
             
             // clear layout container
@@ -332,36 +346,6 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
     }
     
-    fileprivate func setUpDisplayTimer(_ duration: Double, destroyCurrentTimer: Bool) {
-        if !self.isAnimating {
-            
-            if destroyCurrentTimer {
-                self.destroyDisplayTimer()
-            }
-            if self.displayTimer == nil {
-                self.currentDisplayDuration = duration
-                self.displayTimer = Timer.scheduledTimer(timeInterval: duration,
-                                                                           target: self,
-                                                                           selector: #selector(displayTimerElapsed),
-                                                                           userInfo: nil,
-                                                                           repeats: false)
-            }
-        }
-    }
-    
-    fileprivate func destroyDisplayTimer() {
-        if let displayTimer = self.displayTimer {
-            self.currentDisplayDuration = -1.0
-            displayTimer.invalidate()
-            self.displayTimer = nil
-        }
-    }
-    
-    @objc fileprivate func displayTimerElapsed(_ timer: Timer?) {
-        self.destroyDisplayTimer()
-        self.hideAnimated(true, completion: nil)
-    }
-    
     fileprivate func layoutForStyle(_ style: Style?) -> CocoaBarLayout? {
         if let style = style {
             
@@ -380,6 +364,69 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         }
         return nil
     }
+    
+    // MARK: Display Timer
+    
+    /**
+     Reset the current display timer if it exists with the current display duration.
+     */
+    public func resetDisplayTimer() {
+        if self.currentDisplayDuration > 0.0 {
+            self.resetDisplayTimer(self.currentDisplayDuration)
+        }
+    }
+    
+    /**
+     Reset the current display timer if it exists.
+     
+     :param: duration       The display duration to reset the timer with.
+     */
+    public func resetDisplayTimer(_ duration: DisplayDuration) {
+        self.resetDisplayTimer(duration.value)
+    }
+    
+    /**
+     Reset the current display timer if it exists.
+     
+     :param: duration       The display duration to reset the timer with.
+     */
+    public func resetDisplayTimer(_ duration: Double) {
+        if self.displayTimer != nil {
+            self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
+        }
+    }
+    
+    private func setUpDisplayTimer(_ duration: Double, destroyCurrentTimer: Bool) {
+        if !self.isAnimating {
+            
+            if destroyCurrentTimer {
+                self.destroyDisplayTimer()
+            }
+            if self.displayTimer == nil {
+                self.currentDisplayDuration = duration
+                self.displayTimer = Timer.scheduledTimer(timeInterval: duration,
+                                                         target: self,
+                                                         selector: #selector(displayTimerElapsed),
+                                                         userInfo: nil,
+                                                         repeats: false)
+            }
+        }
+    }
+    
+    private func destroyDisplayTimer() {
+        if let displayTimer = self.displayTimer {
+            self.currentDisplayDuration = -1.0
+            displayTimer.invalidate()
+            self.displayTimer = nil
+        }
+    }
+    
+    @objc private func displayTimerElapsed(_ timer: Timer?) {
+        self.destroyDisplayTimer()
+        self.hideAnimated(true, completion: nil)
+    }
+    
+    // MARK: Show / Hide
     
     fileprivate func doShowAnimated(_ animated: Bool,
                                 duration: Double,
@@ -521,7 +568,24 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
 
     }
     
-    // MARK: Public
+    // MARK: CocoaBarLayoutDelegate
+    
+    func cocoaBarLayoutDismissButtonPressed(_ dismissButton: UIButton?) {
+        self.hideAnimated(true, completion: nil)
+    }
+    
+    func cocoaBarLayoutActionButtonPressed(_ actionButton: UIButton?) {
+        if let delegate = self.delegate {
+            delegate.cocoaBar(self, actionButtonPressed: actionButton)
+        }
+    }
+}
+
+
+/**
+ Show & Hide CocoaBar public functions
+ */
+public extension CocoaBar {
     
     /**
      Shows the CocoaBar
@@ -626,63 +690,8 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         self.doHideAnimated(animated,
                             completion: completion)
     }
-    
-    /**
-     Reset the current display timer if it exists with the current display duration.
-     */
-    public func resetDisplayTimer() {
-        if self.currentDisplayDuration > 0.0 {
-            self.resetDisplayTimer(self.currentDisplayDuration)
-        }
-    }
-    
-    /**
-     Reset the current display timer if it exists.
-     
-     :param: duration       The display duration to reset the timer with.
-     */
-    public func resetDisplayTimer(_ duration: DisplayDuration) {
-        self.resetDisplayTimer(duration.value)
-    }
-    
-    /**
-     Reset the current display timer if it exists.
-     
-     :param: duration       The display duration to reset the timer with.
-     */
-    public func resetDisplayTimer(_ duration: Double) {
-        if self.displayTimer != nil {
-            self.setUpDisplayTimer(duration, destroyCurrentTimer: true)
-        }
-    }
-    
-    
-    // MARK: Notifications
-    
-    @objc func hideNotificationReceived(_ notification: Notification) {
-        var animated = true
-        if let userInfo = (notification as NSNotification).userInfo {
-            animated = userInfo[CocoaBarAnimatedKey] as! Bool
-        }
-        self.hideAnimated(animated, completion: nil)
-    }
-    
-    @objc func windowDidBecomeVisible(_ notification: Notification) {
-        self.bringBarToFront()
-    }
-    
-    // MARK: CocoaBarLayoutDelegate
-    
-    func cocoaBarLayoutDismissButtonPressed(_ dismissButton: UIButton?) {
-        self.hideAnimated(true, completion: nil)
-    }
-    
-    func cocoaBarLayoutActionButtonPressed(_ actionButton: UIButton?) {
-        if let delegate = self.delegate {
-            delegate.cocoaBar(self, actionButtonPressed: actionButton)
-        }
-    }
 }
+
 
 /**
  Class functions when keyCocoaBar is available.
