@@ -249,14 +249,20 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Notifications
     
-    fileprivate func registerForNotifications() {
+    private func registerForNotifications() {
         
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(hideNotificationReceived), name: NSNotification.Name(rawValue: CocoaBarHideNotification), object: nil)
-        notificationCenter.addObserver(self, selector: #selector(windowDidBecomeVisible), name: NSNotification.Name.UIWindowDidBecomeVisible, object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(self.hideNotificationReceived(_:)),
+                                       name: NSNotification.Name(rawValue: CocoaBarHideNotification),
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(self.windowDidBecomeVisible(_:)),
+                                       name: NSNotification.Name.UIWindowDidBecomeVisible,
+                                       object: nil)
     }
     
-    @objc func hideNotificationReceived(_ notification: Notification) {
+    @objc private func hideNotificationReceived(_ notification: Notification) {
         var animated = true
         if let userInfo = (notification as NSNotification).userInfo {
             animated = userInfo[CocoaBarAnimatedKey] as! Bool
@@ -264,7 +270,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
         self.hideAnimated(animated, completion: nil)
     }
     
-    @objc func windowDidBecomeVisible(_ notification: Notification) {
+    @objc private func windowDidBecomeVisible(_ notification: Notification) {
         self.bringBarToFront()
     }
     

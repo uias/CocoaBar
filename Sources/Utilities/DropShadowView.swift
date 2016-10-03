@@ -18,7 +18,7 @@ open class DropShadowView: UIView {
     /**
      Whether to show the drop shadow (Default: false)
     */
-    open var showDropShadow: Bool = false {
+    public var showDropShadow: Bool = false {
         didSet {
             self.updateShadow(self.showDropShadow)
         }
@@ -27,7 +27,7 @@ open class DropShadowView: UIView {
     /**
      The opacity of the drop shadow (Default 0.7)
      */
-    open var visibleOpacity: Float = 0.7 {
+    public var visibleOpacity: Float = 0.7 {
         didSet {
             self.updateShadow(self.showDropShadow)
         }
@@ -45,7 +45,7 @@ open class DropShadowView: UIView {
         self.baseInit()
     }
     
-    fileprivate func baseInit() {
+    private func baseInit() {
         
         self.layer.masksToBounds = false
         
@@ -55,7 +55,7 @@ open class DropShadowView: UIView {
     
     // MARK: Private
     
-    fileprivate func updateShadow(_ enabled: Bool) {
+    private func updateShadow(_ enabled: Bool) {
         self.layer.shadowOpacity = enabled ? self.visibleOpacity : 0.0
     }
     
