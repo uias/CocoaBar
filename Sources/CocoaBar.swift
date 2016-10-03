@@ -125,21 +125,21 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     // MARK: Variables
     
-    fileprivate var displayWindow: UIWindow?
-    fileprivate var displayView: UIView?
+    private var displayWindow: UIWindow?
+    private var displayView: UIView?
 
-    fileprivate var bottomMarginConstraint: NSLayoutConstraint?
-    fileprivate var heightConstraint: NSLayoutConstraint?
-    fileprivate var widthConstraint: NSLayoutConstraint?
-    fileprivate var layoutContainer: UIView?
+    private var bottomMarginConstraint: NSLayoutConstraint?
+    private var heightConstraint: NSLayoutConstraint?
+    private var widthConstraint: NSLayoutConstraint?
+    private var layoutContainer: UIView?
     
-    fileprivate var customLayout: CocoaBarLayout?
-    fileprivate var defaultLayout: CocoaBarLayout = CocoaBarDefaultLayout()
+    private var customLayout: CocoaBarLayout?
+    private var defaultLayout: CocoaBarLayout = CocoaBarDefaultLayout()
     
-    fileprivate var isAnimating: Bool = false
+    private var isAnimating: Bool = false
     
-    fileprivate var displayTimer: Timer?
-    fileprivate var currentDisplayDuration: Double = -1.0
+    private var displayTimer: Timer?
+    private var currentDisplayDuration: Double = -1.0
     
     // MARK: Properties
     
@@ -165,7 +165,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     /**
      Whether the CocoaBar is currently showing
      */
-    open fileprivate(set) var isShowing: Bool = false
+    public fileprivate(set) var isShowing: Bool = false
     
     /**
      Whether the CocoaBar has tap to dismiss enabled. If enabled, the CocoaBar
