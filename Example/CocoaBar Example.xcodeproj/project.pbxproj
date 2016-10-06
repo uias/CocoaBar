@@ -176,10 +176,10 @@
 		D612E4171D0B009800B13348 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */,
-				D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */,
 				D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */,
 				D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */,
+				D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */,
+				D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */,
 				4618D28D1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift */,
 				4618D28F1DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib */,
 			);

@@ -8,10 +8,18 @@
 
 import UIKit
 
+/**
+ Default layout
+ 
+ Simply provides a title label which supports multi-line text.
+ */
 public class CocoaBarDefaultLayout: CocoaBarLayout {
     
     // MARK: Properties
     
+    /**
+     Title label
+     */
     @IBOutlet public weak var titleLabel: UILabel?
 
     // MARK: Lifecycle

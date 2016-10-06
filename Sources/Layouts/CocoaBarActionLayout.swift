@@ -8,12 +8,24 @@
 
 import UIKit
 
+/**
+ Action layout 
+ 
+ Title label and action button in horizontal layout.
+ Provides loading states via `startLoading` and `stopLoading`.
+ */
 public class CocoaBarActionLayout: CocoaBarLayout {
     
     // MARK: Properties
     
+    /**
+     Title label.
+     */
     @IBOutlet public weak var titleLabel: UILabel?
-    @IBOutlet public weak var activityIndicator: UIActivityIndicatorView?
+    /**
+     Activity indicator for loading state.
+     */
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView?
     
     // MARK: Lifecycle
     

@@ -12,7 +12,13 @@ public class CocoaBarSubtitleLayout: CocoaBarLayout {
 
     // MARK: Properties
     
+    /**
+     Title label.
+     */
     @IBOutlet public weak var titleLabel: UILabel?
+    /**
+     Subtitle label.
+     */
     @IBOutlet public weak var subtitleLabel: UILabel?
     
     // MARK: Lifecycle
