@@ -65,7 +65,7 @@ open class CocoaBarLayout: DropShadowView {
     internal struct Dimensions {
         
         struct RoundRectangle {
-            static let CornerRadius: CGFloat = 10.0
+            static let CornerRadius: CGFloat = 12.0
             static let ExternalPadding: CGFloat = 6.0
         }
     }
