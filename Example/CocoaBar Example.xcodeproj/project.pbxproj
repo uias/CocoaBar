@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4618D28E1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4618D28D1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift */; };
+		4618D2901DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4618D28F1DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib */; };
 		4628CF3B1CF34BF200B4F4A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4628CF331CF34BF200B4F4A8 /* Assets.xcassets */; };
 		4628CF3C1CF34BF200B4F4A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4628CF341CF34BF200B4F4A8 /* LaunchScreen.storyboard */; };
 		4628CF3D1CF34BF200B4F4A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628CF361CF34BF200B4F4A8 /* AppDelegate.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4618D28D1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarSubtitleLayout.swift; sourceTree = "<group>"; };
+		4618D28F1DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarSubtitleLayout.xib; sourceTree = "<group>"; };
 		4628CF1C1CF34B8F00B4F4A8 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4628CF2B1CF34B8F00B4F4A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		4628CF331CF34BF200B4F4A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -172,10 +176,12 @@
 		D612E4171D0B009800B13348 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */,
-				D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */,
 				D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */,
 				D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */,
+				D612E4181D0B009800B13348 /* CocoaBarActionLayout.swift */,
+				D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */,
+				4618D28D1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift */,
+				4618D28F1DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -225,11 +231,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Merrick Sapsford";
 				TargetAttributes = {
 					4628CF1B1CF34B8F00B4F4A8 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -258,6 +265,7 @@
 			files = (
 				D6EF29F31D06C6E200E9F3FE /* CustomCocoaBarLayout.xib in Resources */,
 				D612E4231D0B009800B13348 /* CocoaBarDefaultLayout.xib in Resources */,
+				4618D2901DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib in Resources */,
 				4628CF3E1CF34BF200B4F4A8 /* Main.storyboard in Resources */,
 				D612E4211D0B009800B13348 /* CocoaBarActionLayout.xib in Resources */,
 				4628CF3B1CF34BF200B4F4A8 /* Assets.xcassets in Resources */,
@@ -272,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4618D28E1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift in Sources */,
 				D612E41E1D0B009800B13348 /* CocoaBar.swift in Sources */,
 				46CC87371D0585650001CF71 /* ColorUtils.swift in Sources */,
 				D612E4201D0B009800B13348 /* CocoaBarActionLayout.swift in Sources */,
@@ -306,8 +315,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -334,6 +345,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -351,8 +363,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -371,6 +385,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -383,6 +399,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.msapsford.CocoaBar-Example";
 				PRODUCT_NAME = Example;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -395,6 +412,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.msapsford.CocoaBar-Example";
 				PRODUCT_NAME = Example;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

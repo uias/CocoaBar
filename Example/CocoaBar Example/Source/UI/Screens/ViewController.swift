@@ -16,52 +16,62 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var separatorView: UIView?
     
-    var styles: [BarStyle] = []
+    let styles: [BarStyle] = [BarStyle(title: "Default - Light",
+                                       description: "Default text-only layout with light blur background",
+                                       backgroundStyle: .blurLight,
+                                       displayStyle: .standard,
+                                       barStyle: .default,
+                                       duration: .long),
+                              BarStyle(title: "Default - Dark",
+                                       description: "Default text-only layout with dark blur background",
+                                       backgroundStyle: .blurDark,
+                                       displayStyle: .standard,
+                                       barStyle: .default,
+                                       duration: .long),
+                              BarStyle(title: "Action - Light",
+                                       description: "Action layout with light blur background",
+                                       backgroundStyle: .blurLight,
+                                       displayStyle: .standard,
+                                       barStyle: .action,
+                                       duration: .indeterminate),
+                              BarStyle(title: "Action - Round Rect Dark",
+                                       description: "Action layout with dark blur background and rounded rectangular display",
+                                       backgroundStyle: .blurDark,
+                                       displayStyle: .roundRectangle,
+                                       barStyle: .action,
+                                       duration: .indeterminate),
+                              BarStyle(title: "Action - Round Rect Dark",
+                                       description: "Action layout with dark blur background and rounded rectangular display",
+                                       backgroundStyle: .blurDark,
+                                       displayStyle: .roundRectangle,
+                                       barStyle: .action,
+                                       duration: .indeterminate),
+                              BarStyle(title: "Subtitle - Light",
+                                       description: "Subtitle layout with light blur background",
+                                       backgroundStyle: .blurLight,
+                                       displayStyle: .standard,
+                                       barStyle: .subtitle,
+                                       duration: .long),
+                              BarStyle(title: "Custom Layout",
+                                       description: "Custom CocoaBarLayout",
+                                       backgroundStyle: .blurLight,
+                                       displayStyle: .standard,
+                                       layout: CustomCocoaBarLayout(),
+                                       duration: .long)]
     
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.gradientView?.colors = [UIColor.purpleColor(), UIColor(red: 29, green: 0, blue: 174)]
-        
-        self.styles.append(BarStyle(title: "Default - Light",
-            description: "Default text-only layout with light blur background",
-            backgroundStyle: .BlurLight,
-            displayStyle: .Standard,
-            barStyle: .Default,
-            duration: .Long))
-        self.styles.append(BarStyle(title: "Default - Dark",
-            description: "Default text-only layout with dark blur background",
-            backgroundStyle: .BlurDark,
-            displayStyle: .Standard,
-            barStyle: .Default,
-            duration: .Long))
-        self.styles.append(BarStyle(title: "Action - Light",
-            description: "Action layout with light blur background",
-            backgroundStyle: .BlurLight,
-            displayStyle: .Standard,
-            barStyle: .Action,
-            duration: .Indeterminate))
-        self.styles.append(BarStyle(title: "Action - Round Rect Dark",
-            description: "Action layout with dark blur background and rounded rectangular display",
-            backgroundStyle: .BlurDark,
-            displayStyle: .RoundRectangle,
-            barStyle: .Action,
-            duration: .Indeterminate))
-        self.styles.append(BarStyle(title: "Custom Layout",
-            description: "Custom CocoaBarLayout",
-            backgroundStyle: .BlurLight,
-            displayStyle: .Standard,
-            layout: CustomCocoaBarLayout(),
-            duration: .Long))
+        self.gradientView?.colors = [UIColor.purple, UIColor(red: 29, green: 0, blue: 174)]
         
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.tableView?.estimatedRowHeight = 96.0
         self.tableView?.reloadData()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         CocoaBar.keyCocoaBar?.delegate = self
@@ -69,17 +79,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     // MARK: UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.styles.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let barStyleCell = tableView.dequeueReusableCellWithIdentifier("BarStyleCell") as! BarStyleCell
-        let style = self.styles[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let barStyleCell = tableView.dequeueReusableCell(withIdentifier: "BarStyleCell") as! BarStyleCell
+        let style = self.styles[(indexPath as NSIndexPath).row]
         
         barStyleCell.titleLabel?.text = style.title
         barStyleCell.descriptionLabel?.text = style.styleDescription
@@ -87,12 +97,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let selectedBackgroundView = UIView()
         
         // alternate row colours
-        if indexPath.row % 2 != 0 {
-            barStyleCell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.15)
-            selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        if (indexPath as NSIndexPath).row % 2 != 0 {
+            barStyleCell.backgroundColor = UIColor.white.withAlphaComponent(0.15)
+            selectedBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         } else {
-            barStyleCell.backgroundColor = UIColor.clearColor()
-            selectedBackgroundView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+            barStyleCell.backgroundColor = UIColor.clear
+            selectedBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         }
         
         
@@ -103,8 +113,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let style = self.styles[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let style = self.styles[(indexPath as NSIndexPath).row]
         
         if let keyCocoaBar = CocoaBar.keyCocoaBar {
             if keyCocoaBar.isShowing {
@@ -119,16 +129,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > 0.0 { // show separator
             if self.separatorView?.alpha != 1.0 {
-                UIView.animateWithDuration(0.2, animations: {
+                UIView.animate(withDuration: 0.2, animations: {
                     self.separatorView?.alpha = 1.0
                 })
             }
         } else { // hide separator
             if self.separatorView?.alpha != 0.0 {
-                UIView.animateWithDuration(0.2, animations: {
+                UIView.animate(withDuration: 0.2, animations: {
                     self.separatorView?.alpha = 0.0
                 })
             }
@@ -137,25 +147,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: CocoaBarDelegate
     
-    func cocoaBar(cocoaBar: CocoaBar, willShowAnimated animated: Bool) {
+    func cocoaBar(_ cocoaBar: CocoaBar, willShowAnimated animated: Bool) {
         
     }
     
-    func cocoaBar(cocoaBar: CocoaBar, didShowAnimated animated: Bool) {
+    func cocoaBar(_ cocoaBar: CocoaBar, didShowAnimated animated: Bool) {
         // did show bar
     }
     
-    func cocoaBar(cocoaBar: CocoaBar, willHideAnimated animated: Bool) {
+    func cocoaBar(_ cocoaBar: CocoaBar, willHideAnimated animated: Bool) {
         if let indexPath = self.tableView?.indexPathForSelectedRow {
-            self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
+            self.tableView?.deselectRow(at: indexPath, animated: true)
         }
     }
     
-    func cocoaBar(cocoaBar: CocoaBar, didHideAnimated animated: Bool) {
+    func cocoaBar(_ cocoaBar: CocoaBar, didHideAnimated animated: Bool) {
         
     }
     
-    func cocoaBar(cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?) {
+    func cocoaBar(_ cocoaBar: CocoaBar, actionButtonPressed actionButton: UIButton?) {
         // Do an action
         if let actionLayout = cocoaBar.layout as? CocoaBarActionLayout { // action layout - show spinner
             actionLayout.startLoading()
@@ -168,7 +178,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: Private
     
-    private func showBarWithStyle(style: BarStyle) {
+    fileprivate func showBarWithStyle(_ style: BarStyle) {
         if style.layout != nil {
             CocoaBar.showAnimated(true, duration: style.duration, layout: style.layout, populate: { (layout) in
                 self.populateLayout(style, layout: layout)
@@ -180,7 +190,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }, completion: nil)
     }
     
-    private func populateLayout(style: BarStyle, layout: CocoaBarLayout) {
+    fileprivate func populateLayout(_ style: BarStyle, layout: CocoaBarLayout) {
         layout.backgroundStyle = style.backgroundStyle
         layout.displayStyle = style.displayStyle
         
@@ -192,13 +202,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    private func delay(delay:Double, closure:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure)
+    fileprivate func delay(_ delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
 }
 
