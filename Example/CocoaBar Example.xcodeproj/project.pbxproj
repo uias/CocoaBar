@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4618D28E1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4618D28D1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift */; };
+		4618D2901DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4618D28F1DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib */; };
 		4628CF3B1CF34BF200B4F4A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4628CF331CF34BF200B4F4A8 /* Assets.xcassets */; };
 		4628CF3C1CF34BF200B4F4A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4628CF341CF34BF200B4F4A8 /* LaunchScreen.storyboard */; };
 		4628CF3D1CF34BF200B4F4A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628CF361CF34BF200B4F4A8 /* AppDelegate.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4618D28D1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaBarSubtitleLayout.swift; sourceTree = "<group>"; };
+		4618D28F1DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CocoaBarSubtitleLayout.xib; sourceTree = "<group>"; };
 		4628CF1C1CF34B8F00B4F4A8 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4628CF2B1CF34B8F00B4F4A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		4628CF331CF34BF200B4F4A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				D612E4191D0B009800B13348 /* CocoaBarActionLayout.xib */,
 				D612E41A1D0B009800B13348 /* CocoaBarDefaultLayout.swift */,
 				D612E41B1D0B009800B13348 /* CocoaBarDefaultLayout.xib */,
+				4618D28D1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift */,
+				4618D28F1DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -259,6 +265,7 @@
 			files = (
 				D6EF29F31D06C6E200E9F3FE /* CustomCocoaBarLayout.xib in Resources */,
 				D612E4231D0B009800B13348 /* CocoaBarDefaultLayout.xib in Resources */,
+				4618D2901DA6D3C100C0B495 /* CocoaBarSubtitleLayout.xib in Resources */,
 				4628CF3E1CF34BF200B4F4A8 /* Main.storyboard in Resources */,
 				D612E4211D0B009800B13348 /* CocoaBarActionLayout.xib in Resources */,
 				4628CF3B1CF34BF200B4F4A8 /* Assets.xcassets in Resources */,
@@ -273,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4618D28E1DA6D3B300C0B495 /* CocoaBarSubtitleLayout.swift in Sources */,
 				D612E41E1D0B009800B13348 /* CocoaBar.swift in Sources */,
 				46CC87371D0585650001CF71 /* ColorUtils.swift in Sources */,
 				D612E4201D0B009800B13348 /* CocoaBarActionLayout.swift in Sources */,

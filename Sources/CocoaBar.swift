@@ -117,6 +117,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
          Action style - text label with right side action button.
         */
         case action
+        /**
+         Subtitle style - title and subtitle label arranged vertically.
+         */
+        case subtitle
     }
     
     // MARK: Constants
@@ -360,6 +364,10 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 
             case .action:
                 layout = CocoaBarActionLayout()
+                break
+                
+            case .subtitle:
+                layout = CocoaBarSubtitleLayout()
                 break
                 
             default:

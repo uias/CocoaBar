@@ -16,7 +16,48 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var separatorView: UIView?
     
-    var styles: [BarStyle] = []
+    let styles: [BarStyle] = [BarStyle(title: "Default - Light",
+                                       description: "Default text-only layout with light blur background",
+                                       backgroundStyle: .blurLight,
+                                       displayStyle: .standard,
+                                       barStyle: .default,
+                                       duration: .long),
+                              BarStyle(title: "Default - Dark",
+                                       description: "Default text-only layout with dark blur background",
+                                       backgroundStyle: .blurDark,
+                                       displayStyle: .standard,
+                                       barStyle: .default,
+                                       duration: .long),
+                              BarStyle(title: "Action - Light",
+                                       description: "Action layout with light blur background",
+                                       backgroundStyle: .blurLight,
+                                       displayStyle: .standard,
+                                       barStyle: .action,
+                                       duration: .indeterminate),
+                              BarStyle(title: "Action - Round Rect Dark",
+                                       description: "Action layout with dark blur background and rounded rectangular display",
+                                       backgroundStyle: .blurDark,
+                                       displayStyle: .roundRectangle,
+                                       barStyle: .action,
+                                       duration: .indeterminate),
+                              BarStyle(title: "Action - Round Rect Dark",
+                                       description: "Action layout with dark blur background and rounded rectangular display",
+                                       backgroundStyle: .blurDark,
+                                       displayStyle: .roundRectangle,
+                                       barStyle: .action,
+                                       duration: .indeterminate),
+                              BarStyle(title: "Subtitle - Light",
+                                       description: "Subtitle layout with light blur background",
+                                       backgroundStyle: .blurLight,
+                                       displayStyle: .standard,
+                                       barStyle: .subtitle,
+                                       duration: .long),
+                              BarStyle(title: "Custom Layout",
+                                       description: "Custom CocoaBarLayout",
+                                       backgroundStyle: .blurLight,
+                                       displayStyle: .standard,
+                                       layout: CustomCocoaBarLayout(),
+                                       duration: .long)]
     
     // MARK: Lifecycle
     
@@ -24,37 +65,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
 
         self.gradientView?.colors = [UIColor.purple, UIColor(red: 29, green: 0, blue: 174)]
-        
-        self.styles.append(BarStyle(title: "Default - Light",
-            description: "Default text-only layout with light blur background",
-            backgroundStyle: .blurLight,
-            displayStyle: .standard,
-            barStyle: .default,
-            duration: .long))
-        self.styles.append(BarStyle(title: "Default - Dark",
-            description: "Default text-only layout with dark blur background",
-            backgroundStyle: .blurDark,
-            displayStyle: .standard,
-            barStyle: .default,
-            duration: .long))
-        self.styles.append(BarStyle(title: "Action - Light",
-            description: "Action layout with light blur background",
-            backgroundStyle: .blurLight,
-            displayStyle: .standard,
-            barStyle: .action,
-            duration: .indeterminate))
-        self.styles.append(BarStyle(title: "Action - Round Rect Dark",
-            description: "Action layout with dark blur background and rounded rectangular display",
-            backgroundStyle: .blurDark,
-            displayStyle: .roundRectangle,
-            barStyle: .action,
-            duration: .indeterminate))
-        self.styles.append(BarStyle(title: "Custom Layout",
-            description: "Custom CocoaBarLayout",
-            backgroundStyle: .blurLight,
-            displayStyle: .standard,
-            layout: CustomCocoaBarLayout(),
-            duration: .long))
         
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.tableView?.estimatedRowHeight = 96.0
