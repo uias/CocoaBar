@@ -5,7 +5,7 @@
 # CocoaBar
 [![Build Status](https://travis-ci.org/MerrickSapsford/CocoaBar.svg?branch=develop)](https://travis-ci.org/MerrickSapsford/CocoaBar)
 ![](https://img.shields.io/cocoapods/v/CocoaBar.svg)
-![](https://img.shields.io/badge/Swift-2.2-orange.svg)
+![](https://img.shields.io/badge/Swift-3.0-orange.svg)
 
 A flexible and simple to use SnackBar view for iOS.
 
@@ -14,9 +14,9 @@ CocoaBar is available through [CocoaPods](http://cocoapods.org). To install it, 
 
     pod 'CocoaBar'
 
-Swift 3 support is currently available in version 0.2.0 in beta:
+Swift 2.1 support is available in version 0.1.7 or below:
 
-    pod 'CocoaBar', '~> 0.2.0-beta'
+    pod 'CocoaBar', '~> 0.1.0'
 
 And run `pod install`.
 
