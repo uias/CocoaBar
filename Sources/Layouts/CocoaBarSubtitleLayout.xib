@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A319" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CocoaBarSubtitleLayout" customModule="Example" customModuleProvider="target">
+            <connections>
+                <outlet property="subtitleLabel" destination="fpa-nl-caq" id="reY-d7-STC"/>
+                <outlet property="titleLabel" destination="bFe-uO-d6j" id="6gr-4U-QSA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="H7p-42-j2W">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFe-uO-d6j">
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Subtitle label - a longer subtitle goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpa-nl-caq">
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fpa-nl-caq" firstAttribute="top" secondItem="bFe-uO-d6j" secondAttribute="bottom" constant="6" id="3MM-Cd-9ds"/>
+                <constraint firstAttribute="trailing" secondItem="bFe-uO-d6j" secondAttribute="trailing" constant="16" id="Cgz-8c-Hn1"/>
+                <constraint firstAttribute="trailing" secondItem="fpa-nl-caq" secondAttribute="trailing" constant="16" id="DBD-3N-1zt"/>
+                <constraint firstItem="bFe-uO-d6j" firstAttribute="leading" secondItem="H7p-42-j2W" secondAttribute="leading" constant="16" id="Qx8-c8-MuO"/>
+                <constraint firstItem="bFe-uO-d6j" firstAttribute="top" secondItem="H7p-42-j2W" secondAttribute="top" constant="16" id="hZB-DQ-10n"/>
+                <constraint firstAttribute="bottom" secondItem="fpa-nl-caq" secondAttribute="bottom" constant="16" id="qUI-I2-X47"/>
+                <constraint firstItem="fpa-nl-caq" firstAttribute="leading" secondItem="H7p-42-j2W" secondAttribute="leading" constant="16" id="yl0-yR-lOm"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="90.5"/>
+        </view>
+    </objects>
+</document>

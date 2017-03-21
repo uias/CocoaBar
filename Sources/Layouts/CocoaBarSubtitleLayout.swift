@@ -1,38 +1,39 @@
 //
-//  CocoaBarDefaultLayout.swift
+//  CocoaBarSubtitleLayout.swift
 //  CocoaBar Example
 //
-//  Created by Merrick Sapsford on 07/06/2016.
+//  Created by Merrick Sapsford on 06/10/2016.
 //  Copyright © 2016 Merrick Sapsford. All rights reserved.
 //
 
 import UIKit
 
-/**
- Default layout
- 
- Simply provides a title label which supports multi-line text.
- */
-public class CocoaBarDefaultLayout: CocoaBarLayout {
-    
+public class CocoaBarSubtitleLayout: CocoaBarLayout {
+
     // MARK: Properties
     
     /**
-     Title label
+     Title label.
      */
     @IBOutlet public weak var titleLabel: UILabel?
-
-    // MARK: Lifecycle
+    /**
+     Subtitle label.
+     */
+    @IBOutlet public weak var subtitleLabel: UILabel?
     
+    // MARK: Lifecycle
+
     open override func updateLayoutForBackgroundStyle(_ newStyle: BackgroundStyle,
-                                                        backgroundView: UIView?) {
+                                                      backgroundView: UIView?) {
         
         switch newStyle {
         case .blurDark:
             self.titleLabel?.textColor = UIColor.white
+            self.subtitleLabel?.textColor = UIColor.white
             self.dismissButton?.setTitleColor(UIColor.lightText, for: UIControlState())
         default:
             self.titleLabel?.textColor = UIColor.black
+            self.subtitleLabel?.textColor = UIColor.black
             self.dismissButton?.setTitleColor(self.tintColor, for: UIControlState())
         }
     }
