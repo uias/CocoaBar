@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
 
   s.name         = "CocoaBar"
-  s.version      = "0.2.0"
-  s.summary      = "A flexible and simple to use SnackBar view for iOS"
+  s.version      = "0.3.0"
+  s.summary      = "Snackbar for iOS."
   s.description  = <<-DESC
-                    A flexible and simple to use SnackBar view for iOS. Written in Swift 3.
+                    A flexible and simple to use SnackBar view for iOS.
                    DESC
   s.homepage     = "https://github.com/MerrickSapsford/CocoaBar"
   s.screenshots  = "https://raw.githubusercontent.com/MerrickSapsford/CocoaBar/develop/Resource/screenshot1.png", "https://raw.githubusercontent.com/MerrickSapsford/CocoaBar/develop/Resource/screenshot2.png"
