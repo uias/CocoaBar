@@ -99,7 +99,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                 return 8.0
                 
             default:
-                return DBL_MAX
+                return Double.greatestFiniteMagnitude
             }
         }
     }
