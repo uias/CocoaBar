@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/MerrickSapsford/CocoaBar/blob/develop/Resource/Icon.png?raw=true" alt="MSSTabbedPageViewController" height="160" width="160"/>
+    <img src="Artwork/logo.png" width="890" alt="CocoaBar"/>
 </p>
 
 # CocoaBar
