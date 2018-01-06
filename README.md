@@ -8,7 +8,7 @@
 
 ---
 
-**Unfortunately, over the last year or so, CocoaBar hasn't had much attention. Rather than deprecating CocoaBar, we're hard at working building a much improved brand new version. Please bear with us.**
+**Unfortunately, over the last year or so, CocoaBar hasn't had much attention. Rather than deprecating CocoaBar, we're hard at working building a much improved brand new version. Please bear with us. ✌️**
 
 ---
 
@@ -54,10 +54,3 @@ The following properties are available to customise on a CocoaBarLayout:
 
 ## Requirements
 Supports iOS 8 and above.
-
-## Author
-Merrick Sapsford
-
-[sapsford.tech](http://www.sapsford.tech)  
-[@MerrickSapsford](http://www.twitter.com/MerrickSapsford)  
-[merrick@sapsford.tech](mailto:merrick@sapsford.tech)
