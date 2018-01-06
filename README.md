@@ -2,10 +2,15 @@
     <img src="Artwork/logo.png" width="890" alt="CocoaBar"/>
 </p>
 
-# CocoaBar
 [![Build Status](https://travis-ci.org/MerrickSapsford/CocoaBar.svg?branch=develop)](https://travis-ci.org/MerrickSapsford/CocoaBar)
 ![](https://img.shields.io/cocoapods/v/CocoaBar.svg)
 ![](https://img.shields.io/badge/Swift-3.0-orange.svg)
+
+---
+
+**Unfortunately, over the last year or so, CocoaBar hasn't had much attention. Rather than deprecating CocoaBar, we're hard at working building a much improved brand new version. Please bear with us.**
+
+---
 
 A flexible and simple to use SnackBar view for iOS.
 
