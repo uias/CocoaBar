@@ -1,21 +1,27 @@
 <p align="center">
-  <img src="https://github.com/MerrickSapsford/CocoaBar/blob/develop/Resource/Icon.png?raw=true" alt="CocoaBar" height="160" width="160"/>
+    <img src="Artwork/logo.png" width="890" alt="CocoaBar"/>
 </p>
 
-# CocoaBar
 [![Build Status](https://travis-ci.org/MerrickSapsford/CocoaBar.svg?branch=develop)](https://travis-ci.org/MerrickSapsford/CocoaBar)
-![CocoaPods](https://img.shields.io/cocoapods/v/CocoaBar.svg)
-![Swift 4](https://img.shields.io/badge/Swift-4-orange.svg)
+![](https://img.shields.io/cocoapods/v/CocoaBar.svg)
+![](https://img.shields.io/badge/Swift-3.0-orange.svg)
+
+---
+
+**Unfortunately, over the last year or so, CocoaBar hasn't had much attention. Rather than deprecating CocoaBar, we're hard at working building a much improved brand new version. Please bear with us.**
+
+---
 
 A flexible and simple to use SnackBar view for iOS.
-
-## Requirements
-CocoaBar requires iOS 9 or above, and Swift 3.
 
 ## Installation
 CocoaBar is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
     pod 'CocoaBar'
+
+Swift 2.1 support is available in version 0.1.7 or below:
+
+    pod 'CocoaBar', '~> 0.1.0'
 
 And run `pod install`.
 
