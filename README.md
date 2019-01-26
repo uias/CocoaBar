@@ -8,10 +8,6 @@
 
 ---
 
-**Unfortunately, over the last year or so, CocoaBar hasn't had much attention. Rather than deprecating CocoaBar, we're hard at working building a much improved brand new version. Please bear with us. ✌️**
-
----
-
 A flexible and simple to use SnackBar view for iOS.
 
 ## Installation
