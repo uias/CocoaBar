@@ -22,11 +22,11 @@ internal extension UIView {
             
             var constraints = [NSLayoutConstraint]()
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: horizontalConstraints,
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views))
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: verticalConstraints,
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views))
             self.superview?.addConstraints(constraints)
@@ -44,11 +44,11 @@ internal extension UIView {
             
             var constraints = [NSLayoutConstraint]()
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: horizontalConstraints,
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views))
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: verticalConstraints,
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views))
             self.superview?.addConstraints(constraints)
@@ -66,11 +66,11 @@ internal extension UIView {
             
             var constraints = [NSLayoutConstraint]()
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: horizontalConstraints,
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views))
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: verticalConstraints,
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views))
             self.superview?.addConstraints(constraints)
@@ -89,11 +89,11 @@ internal extension UIView {
             
             var constraints = [NSLayoutConstraint]()
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: verticalConstraints,
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views))
             constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: centerHorizontalConstraints,
-                options: NSLayoutFormatOptions.alignAllCenterX,
+                options: NSLayoutConstraint.FormatOptions.alignAllCenterX,
                 metrics: nil,
                 views: views))
             
@@ -107,10 +107,10 @@ internal extension UIView {
     @discardableResult internal func cb_autoSetHeight(_ height: Float) -> NSLayoutConstraint? {
         if self.setUpForAutoLayout() != nil {
             let constraint = NSLayoutConstraint(item: self,
-                                                attribute: NSLayoutAttribute.height,
-                                                relatedBy: NSLayoutRelation.equal,
+                                                attribute: NSLayoutConstraint.Attribute.height,
+                                                relatedBy: NSLayoutConstraint.Relation.equal,
                                                 toItem: nil,
-                                                attribute: NSLayoutAttribute.notAnAttribute,
+                                                attribute: NSLayoutConstraint.Attribute.notAnAttribute,
                                                 multiplier: 1.0, constant: CGFloat(height))
             self.superview?.addConstraint(constraint)
             
@@ -122,10 +122,10 @@ internal extension UIView {
     @discardableResult internal func cb_autoSetWidth(_ width: Float) -> NSLayoutConstraint? {
         if self.setUpForAutoLayout() != nil {
             let constraint = NSLayoutConstraint(item: self,
-                                                attribute: NSLayoutAttribute.width,
-                                                relatedBy: NSLayoutRelation.equal,
+                                                attribute: NSLayoutConstraint.Attribute.width,
+                                                relatedBy: NSLayoutConstraint.Relation.equal,
                                                 toItem: nil,
-                                                attribute: NSLayoutAttribute.notAnAttribute,
+                                                attribute: NSLayoutConstraint.Attribute.notAnAttribute,
                                                 multiplier: 1.0, constant: CGFloat(width))
             self.superview?.addConstraint(constraint)
             

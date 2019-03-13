@@ -262,7 +262,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                                        object: nil)
         notificationCenter.addObserver(self,
                                        selector: #selector(self.windowDidBecomeVisible(_:)),
-                                       name: NSNotification.Name.UIWindowDidBecomeVisible,
+                                       name: UIWindow.didBecomeVisibleNotification,
                                        object: nil)
     }
     
@@ -331,7 +331,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
     
     private func bringBarToFront() {
         if let displayWindow = self.displayWindow {
-            displayWindow.bringSubview(toFront: self)
+            displayWindow.bringSubviewToFront(self)
         }
     }
     
@@ -478,7 +478,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     self.isAnimating = true
                     UIView.animate(withDuration: 0.2,
                                                delay: 0.0,
-                                               options: UIViewAnimationOptions.curveEaseOut,
+                                               options: UIView.AnimationOptions.curveEaseOut,
                                                animations:
                         {
                             self.superview?.layoutIfNeeded()
@@ -540,7 +540,7 @@ public class CocoaBar: UIView, CocoaBarLayoutDelegate {
                     self.layout.hideShadowAnimated(animated)
                     UIView.animate(withDuration: 0.2,
                                                delay: 0.0,
-                                               options: UIViewAnimationOptions.curveEaseIn,
+                                               options: UIView.AnimationOptions.curveEaseIn,
                                                animations:
                         {
                             self.superview?.layoutIfNeeded()

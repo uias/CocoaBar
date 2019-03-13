@@ -66,7 +66,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         self.gradientView?.colors = [UIColor.purple, UIColor(red: 29, green: 0, blue: 174)]
         
-        self.tableView?.rowHeight = UITableViewAutomaticDimension
+        self.tableView?.rowHeight = UITableView.automaticDimension
         self.tableView?.estimatedRowHeight = 96.0
         self.tableView?.reloadData()
     }

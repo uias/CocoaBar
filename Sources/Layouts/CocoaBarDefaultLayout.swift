@@ -30,10 +30,10 @@ public class CocoaBarDefaultLayout: CocoaBarLayout {
         switch newStyle {
         case .blurDark:
             self.titleLabel?.textColor = UIColor.white
-            self.dismissButton?.setTitleColor(UIColor.lightText, for: UIControlState())
+            self.dismissButton?.setTitleColor(UIColor.lightText, for: UIControl.State())
         default:
             self.titleLabel?.textColor = UIColor.black
-            self.dismissButton?.setTitleColor(self.tintColor, for: UIControlState())
+            self.dismissButton?.setTitleColor(self.tintColor, for: UIControl.State())
         }
     }
     
