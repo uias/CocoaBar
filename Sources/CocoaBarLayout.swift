@@ -110,7 +110,7 @@ open class CocoaBarLayout: DropShadowView {
             if let dismissButton = newValue {
                 dismissButton.addTarget(self,
                                         action: #selector(closeButtonPressed),
-                                        for: UIControlEvents.touchUpInside)
+                                        for: UIControl.Event.touchUpInside)
             }
         }
     }
@@ -123,7 +123,7 @@ open class CocoaBarLayout: DropShadowView {
             if let actionButton = newValue {
                 actionButton.addTarget(self,
                                         action: #selector(actionButtonPressed),
-                                        for: UIControlEvents.touchUpInside)
+                                        for: UIControl.Event.touchUpInside)
             }
         }
     }
@@ -284,10 +284,10 @@ open class CocoaBarLayout: DropShadowView {
             case .blurLight, .blurDark:
                 self.backgroundColor = UIColor.clear
                 
-                var style: UIBlurEffectStyle
+                var style: UIBlurEffect.Style
                 switch newStyle {
-                case .blurDark: style = UIBlurEffectStyle.dark
-                default: style = UIBlurEffectStyle.extraLight
+                case .blurDark: style = UIBlurEffect.Style.dark
+                default: style = UIBlurEffect.Style.extraLight
                 }
                 
                 // add blur view

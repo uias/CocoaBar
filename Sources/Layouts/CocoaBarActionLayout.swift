@@ -33,11 +33,11 @@ public class CocoaBarActionLayout: CocoaBarLayout {
         switch newStyle {
         case .blurDark:
             self.titleLabel?.textColor = UIColor.white
-            self.actionButton?.setTitleColor(UIColor.lightText, for: UIControlState())
+            self.actionButton?.setTitleColor(UIColor.lightText, for: UIControl.State())
             self.activityIndicator?.color = UIColor.white
         default:
             self.titleLabel?.textColor = UIColor.black
-            self.actionButton?.setTitleColor(self.tintColor, for: UIControlState())
+            self.actionButton?.setTitleColor(self.tintColor, for: UIControl.State())
             self.activityIndicator?.color = UIColor.darkGray
         }
     }
